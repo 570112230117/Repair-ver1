@@ -5,8 +5,6 @@ public class TabelDeviceBean {
 	private String devicename;
 	private String serialnumber;
 	private String devicetype;
-	private String brand;
-	private String generation;
 	private String customer;
 
 	public int getId() {
@@ -39,22 +37,6 @@ public class TabelDeviceBean {
 
 	public void setDevicetype(String devicetype) {
 		this.devicetype = devicetype;
-	}
-
-	public String getBrand() {
-		return brand;
-	}
-
-	public void setBrand(String brand) {
-		this.brand = brand;
-	}
-
-	public String getGeneration() {
-		return generation;
-	}
-
-	public void setGeneration(String generation) {
-		this.generation = generation;
 	}
 
 	public String getCustomer() {

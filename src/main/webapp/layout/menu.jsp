@@ -251,11 +251,6 @@
                                                             <i class="glyphicon glyphicon-pencil"></i> ตั้งค่าปัญหา
                                                         </div>
                                                     </a>
-                                                    <a href="#">
-                                                        <div class="sl-item unread-message">
-                                                            <i class="glyphicon glyphicon-flag"></i> ตั้งค่าหมวดหมู่อุปกรณ์
-                                                        </div>
-                                                    </a>
                                                     <a href="/repairsettingtype">
                                                         <div class="sl-item unread-message">
                                                             <i class="glyphicon glyphicon-wrench"></i> ตั้งค่าประเภทงานซ่อม

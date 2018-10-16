@@ -126,15 +126,9 @@
                                                                                                 </select>
                                                         </div>
                                                         <div class="form-group ">
-                                                            <label class="control-label mb-10 text-left">ชื่ออุปกรณ์:</label>
+                                                            <label class="control-label mb-10 text-left">ชื่ออุปกรณ์: <small class="text-danger">*** กรณีไม่มี กรุณาไปเพิ่มทะเบียนอุปกรณ์</small></label>
                                                             <select class="form-control" id="deviceName">
-                                                                                                    <option>== กรุณาเลือก ==</option>
-                                                                                                    <option>ไม่มี</option>
-                                                                                                    <option>N/B SAMSUNG รุ่นNP350U4X-908TH</option>
-                                                                                                    <option>ปริ้นเตอร์ CANON รุ่นIP2770/HRDB54331M</option>
-                                                                                                    <option>ปริ้นเตอร์ EPSON รุ่นLQ-630/EKCH014356</option>
-                                                                                                    <option>ปริ้นเตอร์ BROTHER รุ่นMFC-L6900DW/E75675D7N430420</option>
-                                                                                                    <option>โน๊ตบุ๊ค ACER รุ่น4740G-382G</option>
+                                                                                                                                                                                                        
                                                                                                      </select>
                                                         </div>
                                                         <div class="form-group " id="error_problem">
@@ -262,6 +256,25 @@
                                     }
                                 });
 
+                                $('#repairtype').change(function() {
+                                    $('#deviceName').empty();
+                                    var testBean = {
+                                        "a": $('#repairtype').val()
+                                    };
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/testdevice",
+                                        data: JSON.stringify(testBean),
+                                        contentType: "application/json; charset=utf-8",
+                                        dataType: "json",
+                                        success: function(msg) {
+                                            $('#deviceName').append('<option value="">== กรุณาเลือก ==</option>');
+                                            for (var i = 0; i < msg.length; i++) {
+                                                $('#deviceName').append('<option value="' + msg[i].id + '">' + msg[i].name + '</option>');
+                                            }
+                                        }
+                                    });
+                                });
                                 $('#repairtype').change(function() {
                                     $('#problem').empty();
                                     var testBean = {

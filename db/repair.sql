@@ -28,18 +28,18 @@ CREATE TABLE IF NOT EXISTS `brand` (
 -- Dumping data for table repair.brand: ~36 rows (approximately)
 /*!40000 ALTER TABLE `brand` DISABLE KEYS */;
 INSERT INTO `brand` (`id`, `name`, `device_name`, `id_repair_type`) VALUES
-	(1, 'NOTEBOOK ACER', 'NOTEBOOK', 1),
-	(2, 'NOTEBOOK ASUS', 'NOTEBOOK', 1),
-	(3, 'NOTEBOOK DELL', 'NOTEBOOK', 1),
-	(4, 'NOTEBOOK HP', 'NOTEBOOK', 1),
-	(5, 'NOTEBOOK LENOVO', 'NOTEBOOK', 1),
-	(6, 'Desktop Pc Acer', 'CASE', 2),
-	(7, 'Desktop Pc Asus', 'CASE', 2),
-	(8, 'Desktop Pc Dell', 'CASE', 2),
-	(9, 'Desktop Pc Hp', 'CASE', 2),
-	(10, 'Desktop Pc Lenovo', 'CASE', 2),
-	(11, 'Desktop Pc Intel', 'CASE', 2),
-	(12, 'Desktop Pc Alienware', 'CASE', 2),
+	(1, 'ACER', 'NOTEBOOK', 1),
+	(2, 'ASUS', 'NOTEBOOK', 1),
+	(3, 'DELL', 'NOTEBOOK', 1),
+	(4, 'HP', 'NOTEBOOK', 1),
+	(5, 'LENOVO', 'NOTEBOOK', 1),
+	(6, 'Acer', 'CASE', 2),
+	(7, 'Asus', 'CASE', 2),
+	(8, 'Dell', 'CASE', 2),
+	(9, 'Hp', 'CASE', 2),
+	(10, 'Lenovo', 'CASE', 2),
+	(11, 'Intel', 'CASE', 2),
+	(12, 'Alienware', 'CASE', 2),
 	(13, 'BROTHER', 'PRINTER', 3),
 	(14, 'CANON', 'PRINTER', 3),
 	(15, 'DOUBLE-A', 'PRINTER', 3),
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `cs` (
   PRIMARY KEY (`key`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Dumping data for table repair.cs: ~1 rows (approximately)
+-- Dumping data for table repair.cs: ~3 rows (approximately)
 /*!40000 ALTER TABLE `cs` DISABLE KEYS */;
 INSERT INTO `cs` (`key`) VALUES
 	(00001),
@@ -154,7 +154,7 @@ CREATE TABLE IF NOT EXISTS `cy` (
   PRIMARY KEY (`key`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Dumping data for table repair.cy: ~1 rows (approximately)
+-- Dumping data for table repair.cy: ~2 rows (approximately)
 /*!40000 ALTER TABLE `cy` DISABLE KEYS */;
 INSERT INTO `cy` (`key`) VALUES
 	(00001),
@@ -182,11 +182,11 @@ CREATE TABLE IF NOT EXISTS `device` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Dumping data for table repair.device: ~2 rows (approximately)
+-- Dumping data for table repair.device: ~3 rows (approximately)
 /*!40000 ALTER TABLE `device` DISABLE KEYS */;
 INSERT INTO `device` (`id`, `customer_id`, `device_number`, `device_date`, `device_name`, `serialnumber`, `device_type`, `brand`, `generation`, `cpu`, `harddisk`, `monitor`, `distributor`, `ip`, `warranty`, `note`) VALUES
 	(1, '๙๙1800008', 'xxxx', '2561-10-16', 'xxx', 'xxx', 1, 1, 'xxx', 'xxx', 'xxx', 'xxx', '-', 'xx', 'xxx', 'xxx'),
-	(2, '๙๙1800005', 'NB56612125', '2561-10-16', 'ASUS VIVOBOOK S510UQ-BQ282T (GOLD) (S510UQ-BQ282T)', '43857-0259', 1, 2, 'VIVOBOOK ', '-', '-', '-', '-', '-', '2Y', '-'),
+	(2, '๙๙1800005', 'NB54765767', '2561-10-16', 'N/B SAMSUNG รุ่นNP350U4X-908TH', '43857-0259', 1, 2, 'GTX 1080 ', '-', '-', '-', '-', '-', '2Y', '-'),
 	(3, '๙๙1800001', 'NB56612125', '2561-10-16', 'ASUS VIVOBOOK S510UQ-BQ282T (GOLD) (S510UQ-BQ282T)', '43857-0259', 1, 2, 'VIVOBOOK ', '-', '-', '-', 'บริษัท คอมเซเว่น จำกัด', '-', '-', '-');
 /*!40000 ALTER TABLE `device` ENABLE KEYS */;
 
@@ -231,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `mt` (
   PRIMARY KEY (`key`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Dumping data for table repair.mt: ~1 rows (approximately)
+-- Dumping data for table repair.mt: ~2 rows (approximately)
 /*!40000 ALTER TABLE `mt` DISABLE KEYS */;
 INSERT INTO `mt` (`key`) VALUES
 	(00001),
@@ -244,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `nb` (
   PRIMARY KEY (`key`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Dumping data for table repair.nb: ~4 rows (approximately)
+-- Dumping data for table repair.nb: ~6 rows (approximately)
 /*!40000 ALTER TABLE `nb` DISABLE KEYS */;
 INSERT INTO `nb` (`key`) VALUES
 	(00001),
@@ -264,7 +264,7 @@ CREATE TABLE IF NOT EXISTS `problem` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 
--- Dumping data for table repair.problem: ~43 rows (approximately)
+-- Dumping data for table repair.problem: ~41 rows (approximately)
 /*!40000 ALTER TABLE `problem` DISABLE KEYS */;
 INSERT INTO `problem` (`id`, `name`, `repair_type_name`, `repair_type_initials`) VALUES
 	(1, 'จอฟ้าา', 'ศูนย์บริการซ่อม NOTEBOOK', 'NB'),
@@ -307,7 +307,8 @@ INSERT INTO `problem` (`id`, `name`, `repair_type_name`, `repair_type_initials`)
 	(40, 'อื่นๆ', 'ศูนย์บริการซ่อม กล้อง', 'CM'),
 	(41, 'อื่นๆ', 'ศูนย์บริการซ่อม ตู้สาขา', 'SK'),
 	(42, 'อื่นๆ', 'ศูนย์บริการซ่อม โทรศัพท์', 'TN'),
-	(44, 'อื่นๆ', 'ศูนย์บริการเอกสารส่งซ่อม', 'S0');
+	(44, 'อื่นๆ', 'ศูนย์บริการเอกสารส่งซ่อม', 'S0'),
+	(46, 'xx', 'ศูนย์บริการซ่อม NOTEBOOK', 'NB');
 /*!40000 ALTER TABLE `problem` ENABLE KEYS */;
 
 -- Dumping structure for table repair.pt
@@ -316,7 +317,7 @@ CREATE TABLE IF NOT EXISTS `pt` (
   PRIMARY KEY (`key`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Dumping data for table repair.pt: ~1 rows (approximately)
+-- Dumping data for table repair.pt: ~2 rows (approximately)
 /*!40000 ALTER TABLE `pt` DISABLE KEYS */;
 INSERT INTO `pt` (`key`) VALUES
 	(00001),
@@ -367,7 +368,7 @@ CREATE TABLE IF NOT EXISTS `repair_status` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
--- Dumping data for table repair.repair_status: ~14 rows (approximately)
+-- Dumping data for table repair.repair_status: ~15 rows (approximately)
 /*!40000 ALTER TABLE `repair_status` DISABLE KEYS */;
 INSERT INTO `repair_status` (`id`, `name`) VALUES
 	(01, 'ส่งอุปกรณ์ / เคลม'),
@@ -418,7 +419,7 @@ CREATE TABLE IF NOT EXISTS `s0` (
   PRIMARY KEY (`key`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Dumping data for table repair.s0: ~2 rows (approximately)
+-- Dumping data for table repair.s0: ~1 rows (approximately)
 /*!40000 ALTER TABLE `s0` DISABLE KEYS */;
 INSERT INTO `s0` (`key`) VALUES
 	(00001);
@@ -441,7 +442,7 @@ CREATE TABLE IF NOT EXISTS `test` (
   `id` char(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table repair.test: ~8 rows (approximately)
+-- Dumping data for table repair.test: ~9 rows (approximately)
 /*!40000 ALTER TABLE `test` DISABLE KEYS */;
 INSERT INTO `test` (`id`) VALUES
 	('NB1800001'),
@@ -473,7 +474,7 @@ CREATE TABLE IF NOT EXISTS `ve` (
   PRIMARY KEY (`key`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Dumping data for table repair.ve: ~2 rows (approximately)
+-- Dumping data for table repair.ve: ~1 rows (approximately)
 /*!40000 ALTER TABLE `ve` DISABLE KEYS */;
 INSERT INTO `ve` (`key`) VALUES
 	(00001);

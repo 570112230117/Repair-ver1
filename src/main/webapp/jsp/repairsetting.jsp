@@ -49,7 +49,7 @@
                                                             <th>รหัส</th>
                                                             <th>ชื่อปัญหา</th>
                                                             <th>ประเภทงานซ่อม</th>
-                                                            <th>ชื่อย่อประเภทงานซ่อม</th>
+                                                            <!-- <th>ชื่อย่อประเภทงานซ่อม</th> -->
                                                             <th>แก้ไข</th>
                                                             <th>ลบ</th>
                                                         </tr>
@@ -60,7 +60,7 @@
                                                             <th>รหัส</th>
                                                             <th>ชื่อปัญหา</th>
                                                             <th>ประเภทงานซ่อม</th>
-                                                            <th>ชื่อย่อประเภทงานซ่อม</th>
+                                                            <!-- <th>ชื่อย่อประเภทงานซ่อม</th> -->
                                                             <th>แก้ไข</th>
                                                             <th>ลบ</th>
                                                         </tr>
@@ -102,8 +102,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label mb-10">ชื่อย่อประเภทงานซ่อม:</label>
-                                        <input type="text" class="form-control" id="n" name="typeInitials">
+                                        <!-- <label class="control-label mb-10">ชื่อย่อประเภทงานซ่อม:</label> -->
+                                        <input type="hidden" class="form-control" id="n" name="typeInitials">
                                     </div>
 
                                 </div>
@@ -145,8 +145,8 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label mb-10">ชื่อย่อประเภทงานซ่อม:</label>
-                                        <input type="text" class="form-control" id="aaa" disabled>
+                                        <!-- <label class="control-label mb-10">ชื่อย่อประเภทงานซ่อม:</label> -->
+                                        <input type="hidden" class="form-control" id="aaa" disabled>
                                     </div>
                                 </form>
                             </div>
@@ -310,8 +310,6 @@
                         "mData": "name"
                     }, {
                         "mData": "typeName"
-                    }, {
-                        "mData": "typeInitials"
                     }, {
                         "mData": "",
                         "mRender": function(data, type, full) {

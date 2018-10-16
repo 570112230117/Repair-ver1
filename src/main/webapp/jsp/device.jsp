@@ -77,8 +77,6 @@
                                                                                 <label class="control-label mb-10 text-left">ชื่ออุปกรณ์</label>
                                                                                 <input type="text" class="form-control" id="deviceName" placeholder="ชื่ออุปกรณ์">
                                                                             </div>
-
-
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
@@ -87,8 +85,6 @@
                                                                                 <label class="control-label mb-10 text-left">หมายเลขซีเรียล</label>
                                                                                 <input type="text" class="form-control" id="serialNumber" placeholder="หมายเลขซีเรียล">
                                                                             </div>
-
-
                                                                             <div class="span1"></div>
                                                                             <div class="col-md-6 col-xs-12">
                                                                                 <label class="control-label mb-10 text-left">ประเภทอุปกรณ์</label>
@@ -96,8 +92,6 @@
                                                                                                 <option>== กรุณาเลือก ==</option>
                                                                                                 </select>
                                                                             </div>
-
-
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
@@ -108,15 +102,11 @@
                                                                                         <option>== กรุณาเลือก ==</option>
                                                                                         </select>
                                                                             </div>
-
-
                                                                             <div class="span1"></div>
                                                                             <div class="col-md-6 col-xs-12">
                                                                                 <label class="control-label mb-10 text-left">รุ่นอุปกรณ์</label>
                                                                                 <input type="text" class="form-control" id="generation" placeholder="รุ่นอุปกรณ์">
                                                                             </div>
-
-
                                                                         </div>
                                                                         <!-- /Row -->
                                                                     </div>
@@ -126,15 +116,11 @@
                                                                                 <label class="control-label mb-10 text-left">CPU</label>
                                                                                 <input type="text" class="form-control" id="cpu" placeholder="CPU">
                                                                             </div>
-
-
                                                                             <div class="span1"></div>
                                                                             <div class="col-md-6 col-xs-12">
                                                                                 <label class="control-label mb-10 text-left">Hard Disk</label>
                                                                                 <input type="text" class="form-control" id="harddisk" placeholder="Hard Disk">
                                                                             </div>
-
-
                                                                         </div>
                                                                         <!-- /Row -->
                                                                     </div>

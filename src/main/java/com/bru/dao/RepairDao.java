@@ -90,7 +90,7 @@ public class RepairDao {
 		Connection conn = con.openConnect();
 
 		try {
-			sql.append("  SELECT * FROM repair_type WHERE id = ? ");
+			sql.append("SELECT * FROM repair_type WHERE id = ? ");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, id);
 			ResultSet rs = prepared.executeQuery();

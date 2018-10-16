@@ -30,6 +30,7 @@ import com.bru.model.RepairTypeBean;
 import com.bru.model.TabelDeviceBean;
 import com.bru.model.TabelallBean;
 import com.bru.model.TestBean;
+import com.bru.model.TestDeviceBean;
 
 @RestController
 public class RepairRestController {
@@ -180,6 +181,13 @@ public class RepairRestController {
 	public List<TabelDeviceBean> Device() throws SQLException {
 		List<TabelDeviceBean> list = new ArrayList<>();
 		list = deviceDao.Devicelist();
+		return list;
+	}
+	// ดรอบดาว
+	@RequestMapping(value = "/testdevice", method = RequestMethod.POST)
+	public List<TestDeviceBean> testdevice(@RequestBody TestBean testBean) throws SQLException {
+		List<TestDeviceBean> list = new ArrayList<>();
+		list = deviceDao.findById(testBean);
 		return list;
 	}
 	// end
