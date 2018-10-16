@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HelloController {
 	
 	
-	@RequestMapping(path = "/", method = RequestMethod.GET)
-	public String test(){
-		return "listitems";
-	}
+//	@RequestMapping(path = "/", method = RequestMethod.GET)
+//	public String test(){
+//		return "listitems";
+//	}
 	@RequestMapping(path = "/profile", method = RequestMethod.GET)
 	public String profile (){
 		return "profile";
@@ -73,9 +73,9 @@ public class HelloController {
 	@RequestMapping(path = "/customer", method = RequestMethod.GET)
 	public String customer(){
 		return "customer";
-	}
-	@RequestMapping(path = "/repairedit", method = RequestMethod.GET)
-	public String repairedit(){
-		return "repair_edit";
+	}	
+	@RequestMapping(path = "/company", method = RequestMethod.GET)
+	public String company(){
+		return "company";
 	}
 }

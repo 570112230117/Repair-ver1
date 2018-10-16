@@ -20,8 +20,8 @@ public class MemberController {
 
 	@Autowired
 	MemberDao memberDao;
-
-	@RequestMapping(path = "/login", method = RequestMethod.GET)
+//	@RequestMapping(path = "/login", method = RequestMethod.GET)
+	@RequestMapping(path = "/", method = RequestMethod.GET)
 	public String login(Model model) {
 		model.addAttribute("messessError", "");
 		return "login";

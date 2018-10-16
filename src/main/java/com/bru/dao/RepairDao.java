@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 
+import com.bru.model.AmnuayBean;
 import com.bru.model.KeyBean;
 import com.bru.model.ProblemBean;
 import com.bru.model.RepairBean;
@@ -40,6 +41,7 @@ public class RepairDao {
 				bean = new RepairTypeBean();
 				bean.setId(rs.getInt("id"));
 				bean.setName(rs.getString("name"));
+				bean.setDevice(rs.getString("device_type_name"));
 				bean.setInitials(rs.getString("initials"));
 				list.add(bean);
 			}
@@ -255,6 +257,49 @@ public class RepairDao {
 			conn.close();
 		}
 		return list;
+	}
+
+	public AmnuayBean editId(String id) throws SQLException {
+		SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		AmnuayBean bean = new AmnuayBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(
+					" SELECT r.id, r.repair_date , r.customer_name , c.name , c.phone, rt.name , r.device_name, p.name, r.other ,r.repair_complete , r.member_name, rs.name\r\n"
+							+ "FROM repair r\r\n" + "INNER JOIN customer c ON r.customer_name = c.id\r\n"
+							+ "INNER JOIN repair_type rt ON r.rapair_type = rt.initials\r\n"
+							+ "INNER JOIN repair_status rs ON r.repair_status = rs.id\r\n"
+							+ "INNER JOIN problem p ON r.problem = p.id\r\n" + "WHERE r.id = ? ;");
+			prepared = conn.prepareStatement(sql.toString());
+			prepared.setString(1, id);
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean.setId(rs.getString("r.id"));
+				bean.setDate(rs.getString("r.repair_date"));
+				bean.setCustomer(rs.getString("r.customer_name"));
+				Date date = dt.parse(bean.getDate());
+				bean.setDate(dt.format(date));
+				bean.setName(rs.getString("c.name"));
+				bean.setPhone(rs.getString("c.phone"));
+				bean.setType(rs.getString("rt.name"));
+				bean.setDevice(rs.getString("r.device_name"));
+				bean.setProblem(rs.getString("p.name"));
+				bean.setOther(rs.getString("r.other"));
+				bean.setComplete(rs.getString("r.repair_complete"));
+				bean.setMember(rs.getString("r.member_name"));
+				bean.setStatus(rs.getString("rs.name"));
+
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
 	}
 
 	public KeyBean nb() throws SQLException {

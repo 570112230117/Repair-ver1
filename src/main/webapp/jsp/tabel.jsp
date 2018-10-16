@@ -17,7 +17,7 @@
                         <div class="panel panel-default card-view">
                             <div class="panel-heading">
                                 <div class="pull-left">
-                                    <h6 class="panel-title txt-dark">ตารางการแจ้งซ่อม <small>รวมรายการแจ้งซ่อมทั้งหมด <span class="label label-danger">0</span> รายการ</small></h6>
+                                    <h6 class="panel-title txt-dark">ตารางการแจ้งซ่อม</h6>
 
                                 </div>
                                 <div class="clearfix"></div>
@@ -37,7 +37,7 @@
                                                             <th>โทรศัพท์</th>
                                                             <th>ชื่ออุปกรณ์</th>
                                                             <th>ปัญหา</th>
-                                                            <th>ผู้ดำเนินการ</th>
+                                                            <th>ผู้ดำเนินการซ่อม</th>
                                                             <th>สถานะ</th>
                                                             <th>แก้ไข</th>
                                                             <th>รายละเอียด</th>
@@ -52,7 +52,7 @@
                                                             <th>โทรศัพท์</th>
                                                             <th>ชื่ออุปกรณ์</th>
                                                             <th>ปัญหา</th>
-                                                            <th>ผู้ดำเนินการ</th>
+                                                            <th>ผู้ดำเนินการซ่อม</th>
                                                             <th>สถานะ</th>
                                                             <th>แก้ไข</th>
                                                             <th>รายละเอียด</th>
@@ -131,7 +131,7 @@
                 }, {
                     "mData": "",
                     "mRender": function(data, type, full) {
-                        return '<a onclick="gotoUpdate(' + "'" + full.id + "'" + ')" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-edit"></span>' + '</a> ';
+                        return '<a href="/' + full.id + '" ' + ' class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-edit"></span>' + '</a> ';
                     }
                 }, {
                     "mData": "",

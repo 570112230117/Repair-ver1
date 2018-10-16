@@ -4,20 +4,27 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.bru.dao.CompanyDao;
 import com.bru.dao.CustomerDao;
+import com.bru.dao.DeviceDao;
 import com.bru.dao.MemberDao;
 import com.bru.dao.ProblemDao;
 import com.bru.dao.RepairDao;
 import com.bru.dao.RepairStatusDao;
+import com.bru.model.AmnuayBean;
+import com.bru.model.CompanyBean;
 import com.bru.model.CustomerBean;
+import com.bru.model.DeviceBean;
 import com.bru.model.KeyBean;
 import com.bru.model.ProblemBean;
 import com.bru.model.RepairBean;
@@ -36,7 +43,11 @@ public class RepairController {
 	RepairStatusDao repairStatusDao;
 	@Autowired
 	ProblemDao problemDao;
-
+	@Autowired
+	CompanyDao companyDao;
+	@Autowired
+	DeviceDao deviceDao;
+	
 	// insert
 	@RequestMapping(value = "/insertcutromer")
 	public String insertrepair(@RequestBody CustomerBean customerBean) throws Exception {
@@ -100,13 +111,46 @@ public class RepairController {
 		problemDao.delete(id);
 		return "repairsetting";
 	}
-	
+
 	@RequestMapping(path = "/updatetype", method = RequestMethod.POST)
 	public String updatetype(RepairTypeBean repairTypeBean) throws SQLException {
 		repairDao.update(repairTypeBean);
 		return "repairsettingtype";
 	}
 
+	@RequestMapping(path = "/{values}", method = RequestMethod.GET)
+	public String edit(@PathVariable("values") String values, HttpServletRequest request, Model model)
+			throws SQLException {
+		AmnuayBean bean = new AmnuayBean();
+		bean = repairDao.editId(values);
+		request.setAttribute("repairbean", bean);
+		return "repair_edit";
+	}
+
+	// insert
+	@RequestMapping(value = "/insertcompany")
+	public String insertcompany(@RequestBody CompanyBean companyBean) throws Exception {
+		companyDao.insert(companyBean);
+		return "company";
+	}
+
+	@RequestMapping(path = "/updatecompany", method = RequestMethod.POST)
+	public String updatecompany(CompanyBean companyBean) throws SQLException {
+		companyDao.update(companyBean);
+		return "company";
+	}
+
+	@RequestMapping(path = "/deletecompany/{id}", method = RequestMethod.DELETE)
+	public String deletecompany(@PathVariable String id) throws SQLException {
+		companyDao.delete(id);
+		return "company";
+	}
+	// insert
+	@RequestMapping(value = "/insertdevice")
+	public String insertdevice(@RequestBody DeviceBean deviceBean) throws Exception {
+		deviceDao.insertdevice(deviceBean);
+		return "device";
+	}
 	// insert
 	@RequestMapping(value = { "/insertrepair" }, method = RequestMethod.POST, produces = "application/json")
 	public Map<String, String> insertrepair(@RequestBody RepairBean repairBean) throws Exception {

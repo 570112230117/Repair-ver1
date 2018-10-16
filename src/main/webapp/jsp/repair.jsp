@@ -78,6 +78,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
                                         <div class="panel panel-default card-view">
                                             <div class="panel-heading">
                                                 <div class="pull-left">
@@ -90,15 +92,13 @@
                                                     <div class="row">
                                                         <div class="col-sm-12 col-xs-12">
                                                             <div class="form-wrap">
-                                                                <form>
-                                                                    <div class="form-group">
-                                                                        <label class="control-label mb-10">ประมานการซ่อมเสร็จ:</label>
-                                                                        <input type="text" class="form-control" id="repairComplete" value="<%out.println(aaa + bb);%>" disabled="disabled">
-                                                                    </div>
-                                                                    <div class="form-group ">
-                                                                        <label class="control-label mb-10">ชื่อพนักงาน:</label> <input type="text" class="form-control" id="member" disabled>
-                                                                    </div>
-                                                                </form>
+                                                                <div class="form-group">
+                                                                    <label class="control-label mb-10">ประมานการซ่อมเสร็จ:</label>
+                                                                    <input type="text" class="form-control" id="repairComplete" value="<%out.println(aaa + bb);%>" disabled="disabled">
+                                                                </div>
+                                                                <div class="form-group ">
+                                                                    <label class="control-label mb-10">ชื่อพนักงาน:</label> <input type="text" class="form-control" id="member" disabled>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -106,7 +106,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
                                         <div class="panel panel-default card-view">
                                             <div class="panel-heading">
                                                 <div class="pull-left">
@@ -116,19 +118,16 @@
                                             </div>
                                             <div class="panel-wrapper collapse in">
                                                 <div class="panel-body">
-                                                    <div class="row">
-                                                        <div class="col-sm-12 col-xs-12">
-                                                            <div class="form-wrap">
-                                                                <form>
-                                                                    <div class="form-group" id="error_repairtype">
-                                                                        <label class="control-label mb-10 text-left">ประเภทงานซ่อม:</label>
-                                                                        <select class="form-control" id="repairtype">
+                                                    <div class="form-wrap">
+                                                        <div class="form-group" id="error_repairtype">
+                                                            <label class="control-label mb-10 text-left">ประเภทงานซ่อม:</label>
+                                                            <select class="form-control" id="repairtype">
                                                                                                 <option>== กรุณาเลือก ==</option>
                                                                                                 </select>
-                                                                    </div>
-                                                                    <div class="form-group ">
-                                                                        <label class="control-label mb-10 text-left">ชื่ออุปกรณ์:</label>
-                                                                        <select class="form-control" id="deviceName">
+                                                        </div>
+                                                        <div class="form-group ">
+                                                            <label class="control-label mb-10 text-left">ชื่ออุปกรณ์:</label>
+                                                            <select class="form-control" id="deviceName">
                                                                                                     <option>== กรุณาเลือก ==</option>
                                                                                                     <option>ไม่มี</option>
                                                                                                     <option>N/B SAMSUNG รุ่นNP350U4X-908TH</option>
@@ -137,25 +136,40 @@
                                                                                                     <option>ปริ้นเตอร์ BROTHER รุ่นMFC-L6900DW/E75675D7N430420</option>
                                                                                                     <option>โน๊ตบุ๊ค ACER รุ่น4740G-382G</option>
                                                                                                      </select>
-                                                                    </div>
-                                                                    <div class="form-group " id="error_problem">
-                                                                        <label class="control-label mb-10 text-left">ปัญหา:</label>
-                                                                        <select class="form-control" id="problem">
+                                                        </div>
+                                                        <div class="form-group " id="error_problem">
+                                                            <label class="control-label mb-10 text-left">ปัญหา:</label>
+                                                            <select class="form-control" id="problem">
                                                                         <option>== กรุณาเลือก ==</option>
                                                                         </select>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label class="control-label mb-10 text-left">อื่นๆ:</label>
-                                                                        <textarea class="form-control" rows="4" id="other"></textarea>
-                                                                    </div>
-                                                                    <div class="form-group" id="error_repairstatus">
-                                                                        <label class="control-label mb-10 text-left">สถานะ:</label>
-                                                                        <select class="form-control" id="repairstatus">
+                                                        </div>
+                                                        <div class="form-group ">
+                                                            <label class="control-label mb-10 text-left">บริการส่งซ่อม:</label>
+                                                            <select class="form-control" id="company">
+                                                                                                                                 
+                                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label mb-10 text-left">อื่นๆ:</label>
+                                                            <textarea class="form-control" rows="4" id="other"></textarea>
+                                                        </div>
+                                                        <div class="form-group" id="error_repairstatus">
+                                                            <label class="control-label mb-10 text-left">สถานะ:</label>
+                                                            <select class="form-control" id="repairstatus">
                                                                                                             <option>== กรุณาเลือก ==</option>
                                                                                                             </select>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label mb-10">ค่าอะไหล่:</label>
+                                                            <input type="number" class="form-control" id="input1" placeholder="0" onkeyup='nStr()'>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label mb-10">ค่าบริการ:</label>
+                                                            <input type="number" class="form-control" id="input2" placeholder="0" onkeyup='nStr()'>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label mb-10">รวม:</label>
+                                                            <label class="form-control" id="show" color=""></label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -163,6 +177,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mr-10" onclick="insertConfirm()">บันทึก</button>
                                     <button type="submit" class="btn btn-default">ยกเลิก</button>
@@ -215,13 +230,13 @@
                                 <!-- /Footer -->
                             </div>
                         </div>
+
                         <!-- JavaScript -->
                         <!-- Bootstrap Core JavaScript -->
                         <script src="vendors/bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
                         <!-- JavaScripts -->
                         <script>
                             $(document).ready(function() {
-
                                 $.ajax({
                                     type: "GET",
                                     url: "/profileid",
@@ -234,10 +249,7 @@
 
                                     }
                                 });
-                            });
-                        </script>
-                        <script>
-                            $(document).ready(function() {
+
                                 $.ajax({
                                     type: "GET",
                                     url: "/repairtype",
@@ -294,10 +306,69 @@
                                         }
                                     }
                                 });
+                                $('#repairtype').change(function() {
+                                    $('#company').empty();
+                                    if ($('#repairtype').val() == 'S0') {
+                                        $.ajax({
+                                            type: "GET",
+                                            url: "/companyDrop",
+                                            contentType: "application/json; charset=utf-8",
+                                            dataType: "json",
+                                            success: function(msg) {
+                                                $('#company').append('<option value="">== กรุณาเลือกสถานที่ส่งซ่อม ==</option>');
+                                                for (var i = 0; i < msg.length; i++) {
+                                                    $('#company').append('<option value="' + msg[i].id + '">' + msg[i].name + '</option>');
+                                                }
+
+                                            }
+                                        });
+                                    }
+                                });
+
+
                             });
                         </script>
 
                         <script>
+                            function nStr() {
+                                var int1 = document.getElementById('input1').value;
+                                var int2 = document.getElementById('input2').value;
+                                var n1 = parseInt(int1);
+                                var n2 = parseInt(int2);
+                                var show = document.getElementById('show');
+
+                                if (isNaN(n1)) {
+                                    document.getElementById("show").setAttribute("color", "red");
+                                    show.innerHTML = "ERROR"
+                                    if (int2.length > 0) {
+                                        if (isNaN(int1)) {
+                                            document.getElementById("show").setAttribute("color", "red");
+                                            show.innerHTML = "ERROR"
+                                        } else if (isNaN(int2)) {
+                                            document.getElementById("show").setAttribute("color", "red");
+                                            show.innerHTML = "ERROR"
+                                        } else if (int1.length > 0) {
+                                            document.getElementById("show").setAttribute("color", "Blue");
+                                            show.innerHTML = n1 + n2;
+                                        } else if (int2.length > 0) {
+                                            document.getElementById("show").setAttribute("color", "Blue");
+                                            show.innerHTML = n2;
+                                        }
+                                    }
+                                } else if (int1.length > 0) {
+                                    if (isNaN(int2)) {
+                                        document.getElementById("show").setAttribute("color", "red");
+                                        show.innerHTML = "ERROR"
+                                    } else if (int2.length > 0) {
+                                        document.getElementById("show").setAttribute("color", "Blue");
+                                        show.innerHTML = n1 + n2;
+                                    } else if (int1.length > 0) {
+                                        document.getElementById("show").setAttribute("color", "Blue");
+                                        show.innerHTML = n1;
+                                    }
+                                }
+                            }
+
                             function test() {
                                 var pass = true;
                                 if ('== เลือกผู้แจ้ง ==' == $('#name').val()) {

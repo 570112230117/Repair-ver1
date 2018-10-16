@@ -18,7 +18,7 @@
                         <div class="panel panel-default card-view">
                             <div class="panel-heading">
                                 <div class="pull-left">
-                                    <h6 class="panel-title txt-dark">ทะเบียนอุปกรณ์</h6>
+                                    <h6 class="panel-title txt-dark">ตารางทะเบียนอุปกรณ์</h6>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -34,12 +34,12 @@
                                                     <!-- Header Table -->
                                                     <thead>
                                                         <tr>
-                                                            <th>รูปภาพ</th>
-                                                            <th>หมวดหมู่อุปกรณ์</th>
                                                             <th>ชื่ออุปกรณ์</th>
-                                                            <th>หน่วยงาน / แผนก</th>
+                                                            <th>หมายเลขซีเรียล</th>
+                                                            <th>ประเภทอุปกรณ์</th>
+                                                            <th>ยี่ห้ออุปกรณ์</th>
+                                                            <th>รุ่นอุปกรณ์</th>
                                                             <th>ผู้ใช้งานอุปกรณ์</th>
-                                                            <th>ประวัติการซ่อม</th>
                                                             <th>รายละเอียด</th>
 
                                                         </tr>
@@ -47,12 +47,12 @@
                                                     <!-- Footer Table -->
                                                     <tfoot>
                                                         <tr>
-                                                            <th>รูปภาพ</th>
-                                                            <th>หมวดหมู่อุปกรณ์</th>
                                                             <th>ชื่ออุปกรณ์</th>
-                                                            <th>หน่วยงาน / แผนก</th>
+                                                            <th>หมายเลขซีเรียล</th>
+                                                            <th>ประเภทอุปกรณ์</th>
+                                                            <th>ยี่ห้ออุปกรณ์</th>
+                                                            <th>รุ่นอุปกรณ์</th>
                                                             <th>ผู้ใช้งานอุปกรณ์</th>
-                                                            <th>ประวัติการซ่อม</th>
                                                             <th>รายละเอียด</th>
                                                         </tr>
                                                     </tfoot>
@@ -80,26 +80,29 @@
     <script>
         $(document).ready(function() {
             var table = $('#datable_1').DataTable({
-                "sAjaxSource": "",
+                "sAjaxSource": "/devicelist",
                 "sAjaxDataProp": "",
                 "order": [
                     [0, "asc"]
                 ],
                 "aoColumns": [{
-                    "mData": "id"
+                    "mData": "devicename"
                 }, {
-                    "mData": "name"
+                    "mData": "serialnumber"
                 }, {
-                    "mData": "lastName"
+                    "mData": "devicetype"
                 }, {
-                    "mData": "email"
+                    "mData": "brand"
                 }, {
-                    "mData": "phone"
+                    "mData": "generation"
                 }, {
-                    "mData": "active"
+                    "mData": "customer"
                 }, {
-                    "mData": "active"
-                }, ]
+                    "mData": "",
+                    "mRender": function(data, type, full) {
+                        return null;
+                    }
+                }]
             })
         });
     </script>

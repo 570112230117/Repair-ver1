@@ -1,31 +1,35 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-    <html>
+<html>
 
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Insert title here</title>
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                var country = ["aaa", "Bangladesh", "Denmark", "Hong Kong", "Indonesia", "Netherlands", "New Zealand", "South Africa"];
-                $("#country").select2({
-                    data: country
-                });
+<head>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $("#txtNumberA,#txtNumberB,,#txtNumberC").keyup(function() {
+
+                if (isNaN($("#txtNumberA").val())) {
+                    alert('Please input Number A is number');
+                    $("#txtNumberA").val('');
+                }
+
+                if (isNaN($("#txtNumberB").val())) {
+                    alert('Please input Number B is number');
+                    $("#txtNumberB").val('');
+                }
+
+                if (isNaN($("#txtNumberC").val())) {
+                    alert('Please input Number C is number');
+                    $("#txtNumberC").val('');
+                }
+
+                $("#txtNumberD").val(parseFloat($("#txtNumberA").val()) + parseFloat($("#txtNumberB").val()) + parseFloat($("#txtNumberC").val()));
             });
-        </script>
-    </head>
+        });
+    </script>
+</head>
 
-    <body>
-        <h1>DropDown with Search using jQuery</h1>
-        <div>
-            <select id="country" style="width:300px;">
-                <!-- Dropdown List Option -->
-                </select>
-        </div>
-    </body>
+<body>
+    Number A <input type="text" id="txtNumberA" value=""> <br> Number B <input type="text" id="txtNumberB" value=""> <br> Number C <input type="text" id="txtNumberC" value=""> <br> A + B + C = <input type="text" id="txtNumberD" value=""><br>
+</body>
 
-    </html>
+</html>

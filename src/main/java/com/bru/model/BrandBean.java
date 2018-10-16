@@ -1,11 +1,11 @@
 package com.bru.model;
 
-public class RepairTypeBean {
+public class BrandBean {
 
 	private int id;
 	private String name;
 	private String device;
-	private String initials;
+	private int repairType;
 	
 	public int getId() {
 		return id;
@@ -25,11 +25,12 @@ public class RepairTypeBean {
 	public void setDevice(String device) {
 		this.device = device;
 	}
-	public String getInitials() {
-		return initials;
+	public int getRepairType() {
+		return repairType;
 	}
-	public void setInitials(String initials) {
-		this.initials = initials;
+	public void setRepairType(int repairType) {
+		this.repairType = repairType;
 	}
-
+	
+	
 }

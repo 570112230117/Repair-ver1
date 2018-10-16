@@ -12,17 +12,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bru.dao.BrandDao;
+import com.bru.dao.CompanyDao;
 import com.bru.dao.CustomerDao;
+import com.bru.dao.DeviceDao;
 import com.bru.dao.MemberDao;
 import com.bru.dao.ProblemDao;
 import com.bru.dao.RepairDao;
 import com.bru.dao.RepairStatusDao;
+import com.bru.model.BrandBean;
+import com.bru.model.CompanyBean;
 import com.bru.model.CustomerBean;
 import com.bru.model.MemberBean;
 import com.bru.model.ProblemBean;
-
 import com.bru.model.RepairStatusBean;
 import com.bru.model.RepairTypeBean;
+import com.bru.model.TabelDeviceBean;
 import com.bru.model.TabelallBean;
 import com.bru.model.TestBean;
 
@@ -38,7 +43,12 @@ public class RepairRestController {
 	RepairStatusDao repairStatusDao;
 	@Autowired
 	ProblemDao problemDao;
-
+	@Autowired
+	CompanyDao companyDao;
+	@Autowired
+	BrandDao brandDao;
+	@Autowired
+	DeviceDao deviceDao;
 	// ดรอบดาวประเภทงานซ่อม
 	@RequestMapping(value = "/repairtype")
 	public List<RepairTypeBean> appliances() throws SQLException {
@@ -144,6 +154,32 @@ public class RepairRestController {
 	public List<TabelallBean> repairtabel() throws SQLException, ParseException {
 		List<TabelallBean> list = new ArrayList<>();
 		list = repairDao.list();
+		return list;
+	}
+	// ดรอบดาวบริษัทส่งซ่อม
+	@RequestMapping(value = "/companyDrop")
+	public List<CompanyBean> company() throws SQLException {
+		List<CompanyBean> list = new ArrayList<>();
+		list = companyDao.company();
+		return list;
+	}
+	@RequestMapping(value = "/listcompany")
+	public CompanyBean listcompany(@RequestBody TestBean testBean) throws SQLException {
+		CompanyBean bean = new CompanyBean();
+		bean = companyDao.companyId(testBean.getA());
+		return bean;
+	}
+	// ดรอบดาวปัญหา
+	@RequestMapping(value = "/brand", method = RequestMethod.POST)
+	public List<BrandBean> brand(@RequestBody TestBean testBean) throws SQLException {
+		List<BrandBean> list = new ArrayList<>();
+		list = brandDao.Brand(testBean);
+		return list;
+	}
+	@RequestMapping(value = "/devicelist")
+	public List<TabelDeviceBean> Device() throws SQLException {
+		List<TabelDeviceBean> list = new ArrayList<>();
+		list = deviceDao.Devicelist();
 		return list;
 	}
 	// end
