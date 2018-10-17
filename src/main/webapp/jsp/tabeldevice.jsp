@@ -34,22 +34,21 @@
                                                     <!-- Header Table -->
                                                     <thead>
                                                         <tr>
+                                                            <th>ID</th>
                                                             <th>ชื่ออุปกรณ์</th>
                                                             <th>หมายเลขซีเรียล</th>
                                                             <th>ประเภทอุปกรณ์</th>
-
                                                             <th>ผู้ใช้งานอุปกรณ์</th>
                                                             <th>รายละเอียด</th>
-
                                                         </tr>
                                                     </thead>
                                                     <!-- Footer Table -->
                                                     <tfoot>
                                                         <tr>
+                                                            <th>ID</th>
                                                             <th>ชื่ออุปกรณ์</th>
                                                             <th>หมายเลขซีเรียล</th>
                                                             <th>ประเภทอุปกรณ์</th>
-
                                                             <th>ผู้ใช้งานอุปกรณ์</th>
                                                             <th>รายละเอียด</th>
                                                         </tr>
@@ -84,6 +83,8 @@
                     [0, "asc"]
                 ],
                 "aoColumns": [{
+                    "mData": "id"
+                }, {
                     "mData": "devicename"
                 }, {
                     "mData": "serialnumber"
@@ -94,9 +95,9 @@
                 }, {
                     "mData": "",
                     "mRender": function(data, type, full) {
-                        return null;
+                        return '<a class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-edit"></span>' + '</a> ';
                     }
-                }]
+                }, ]
             })
         });
     </script>

@@ -64,7 +64,7 @@ public class DeviceDao {
 			sql.append(
 					"SELECT d.id , d.serialnumber , rt.device_type_name ,c.name , CONCAT(d.device_number, \" - \",rt.device_type_name, \" \", b.name , \" รุ่น \", d.generation) AS nameconcat\r\n"
 							+ "FROM device d \r\n" + "INNER JOIN repair_type rt ON d.device_type = rt.id\r\n"
-							+ "INNER JOIN brand b ON d.device_type = b.id\r\n"
+							+ "INNER JOIN brand b ON d.brand = b.id\r\n"
 							+ "INNER JOIN customer c ON d.customer_id = c.id;");
 			prepared = conn.prepareStatement(sql.toString());
 			ResultSet rs = prepared.executeQuery();
@@ -99,7 +99,7 @@ public class DeviceDao {
 			sql.append(
 					"SELECT d.id , rt.initials, CONCAT(d.device_number, \" - \",rt.device_type_name, \" \", b.name , \" รุ่น \", d.generation) AS name\r\n"
 							+ "FROM device d \r\n" + "INNER JOIN repair_type rt ON d.device_type = rt.id\r\n"
-							+ "INNER JOIN brand b ON d.device_type = b.id\r\n" + "WHERE rt.initials = ? ;");
+							+ "INNER JOIN brand b ON d.brand = b.id\r\n" + "WHERE rt.initials = ? ;");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, testBean.getA());
 			ResultSet rs = prepared.executeQuery();
