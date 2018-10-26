@@ -152,6 +152,12 @@
                             <i class="zmdi zmdi-more"></i>
                         </li>
                         <li>
+                            <a href="/Dashboard">
+                                <div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">Dashboard</span></div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </li>
+                        <li>
                             <a href="/repair">
                                 <div class="pull-left"><i class="zmdi zmdi-home  mr-20"></i><span class="right-nav-text">บันทึกงานซ่อม</span></div>
                                 <div class="clearfix"></div>
@@ -163,7 +169,7 @@
                                 <div class="clearfix"></div>
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="javascript:void(0);" data-toggle="collapse" data-target="#ecom_dr">
                                 <div class="pull-left"><i class="zmdi zmdi-menu mr-20"></i><span class="right-nav-text">ตรวจสอบสถานะ</span> <span class="label label-danger">New</span></div>
                                 <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
@@ -183,7 +189,7 @@
                                     <a href="#">ดำเนินการ<div class="pull-right"><span class="label label-danger">2</span></div></a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> -->
                         <li>
                             <hr class="light-grey-hr mb-10" />
                         </li>
@@ -192,18 +198,38 @@
                             <i class="zmdi zmdi-more"></i>
                         </li>
                         <li>
-                            <a href="/tabeldevice">
-                                <div class="pull-left"><i class="zmdi zmdi-collection-text  mr-20"></i><span class="right-nav-text">ทะเบียนอุปกรณ์</span></div>
+                            <a href="/customer">
+                                <div class="pull-left"><i class="zmdi zmdi-account-add mr-20"></i><span class="right-nav-text">ลูกค้า</span></div>
                                 <div class="clearfix"></div>
                             </a>
                         </li>
                         <li>
-                            <a href="/report">
-                                <div class="pull-left"><i class="zmdi zmdi-file  mr-20"></i><span class="right-nav-text">รายงาน</span></div>
+                            <a href="/tabeldevice">
+                                <div class="pull-left"><i class="zmdi zmdi-collection-text mr-20"></i><span class="right-nav-text">อุปกรณ์</span></div>
                                 <div class="clearfix"></div>
                             </a>
                         </li>
-
+                        <!-- <li>
+                            <a href="/report">
+                                <div class="pull-left"><i class="zmdi zmdi-file mr-20"></i><span class="right-nav-text">รายงาน</span></div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </li> -->
+                        <li>
+                            <a href="/company">
+                                <div class="pull-left"><i class="zmdi zmdi-mail-send mr-20"></i><span class="right-nav-text">อุปกรณ์ส่งซ่อม</span></div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <%if(bean.getRole().equals("admin")){
+                                    %>
+                                <a href="/membersetting">
+                                    <div class="pull-left"><i class="zmdi zmdi-account mr-20"></i><span class="right-nav-text">ผู้ใช้งานระบบ</span></div>
+                                    <div class="clearfix"></div>
+                                </a>
+                                <%  }  %>
+                        </li>
                         <li>
                             <hr class="light-grey-hr mb-10" />
                         </li>
@@ -241,11 +267,6 @@
                                         <div class="set-height-wrap" style="height: 935px;">
                                             <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;">
                                                 <div class="streamline message-box nicescroll-bar" style="overflow: hidden; width: auto; height: 100%;">
-                                                    <a href="/customer">
-                                                        <div class="sl-item unread-message">
-                                                            <i class="glyphicon glyphicon-plus"></i> ตั้งค่าผู้แจ้ง
-                                                        </div>
-                                                    </a>
                                                     <a href="/repairsetting">
                                                         <div class="sl-item unread-message">
                                                             <i class="glyphicon glyphicon-pencil"></i> ตั้งค่าปัญหา
@@ -253,7 +274,7 @@
                                                     </a>
                                                     <a href="/repairsettingtype">
                                                         <div class="sl-item unread-message">
-                                                            <i class="glyphicon glyphicon-wrench"></i> ตั้งค่าประเภทงานซ่อม
+                                                            <i class="glyphicon glyphicon-wrench"></i> ตั้งค่าหมวดหมู่อุปกรณ์
                                                         </div>
                                                     </a>
                                                     <a href="/status">
@@ -261,17 +282,7 @@
                                                             <i class="glyphicon glyphicon-check"></i> ตั้งค่าสถานะ
                                                         </div>
                                                     </a>
-                                                    <a href="/membersetting">
-                                                        <div class="sl-item unread-message">
-                                                            <i class="glyphicon glyphicon-user"></i> ตั้งค่าพนักงาน / ช่างซ่อม
-                                                        </div>
-                                                    </a>
-                                                    <a href="/company">
-                                                        <div class="sl-item unread-message">
-                                                            <i class="glyphicon glyphicon-envelope"></i> ตั้งค่าส่งซ่อม
-                                                        </div>
-                                                    </a>
-                                                    <a href="#">
+                                                    <a href="/brandsetting">
                                                         <div class="sl-item unread-message">
                                                             <i class="glyphicon glyphicon-move"></i> ตั้งค่ายี่ห้อ
                                                         </div>
@@ -288,7 +299,6 @@
                 <!-- /Right Sidebar Menu -->
 
                 <!-- JavaScript -->
-
                 <!-- jQuery -->
                 <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
 

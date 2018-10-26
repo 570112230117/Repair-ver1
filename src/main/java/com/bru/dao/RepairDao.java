@@ -24,6 +24,12 @@ import java.text.ParseException;
 @Repository
 public class RepairDao {
 
+	public TestBean valuesId(String values) {
+		TestBean bean = new TestBean();
+		bean.setIdvalues(values);
+		return bean;
+	}
+	
 	// ดรอบดาวประเภทงานซ่อม
 	public List<RepairTypeBean> repairtype() throws SQLException {
 		List<RepairTypeBean> list = new ArrayList<>();
@@ -200,7 +206,7 @@ public class RepairDao {
 		Connection conn = con.openConnect();
 		try {
 			sql.append(
-					" INSERT INTO repair (id,repair_date,customer_name,repair_complete,member_name,rapair_type,device_name,problem,other,repair_status) VALUES (?,?,?,?,?,?,?,?,?,?) ");
+					" INSERT INTO repair (id,repair_date,customer_name,repair_complete,member_name,rapair_type,device_name,problem,repair_service,repair_status,spare_parts,service_charge,sum) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?) ");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, bean.getId() + c + bean.getSeq());
 			prepared.setString(2, bean.getRepairDate());
@@ -210,9 +216,11 @@ public class RepairDao {
 			prepared.setString(6, bean.getRapairType());
 			prepared.setString(7, bean.getDeviceName());
 			prepared.setString(8, bean.getProblem());
-			prepared.setString(9, bean.getOther());
+			prepared.setString(9, bean.getRepairservice());
 			prepared.setString(10, bean.getRepairStatus());
-
+			prepared.setString(11, bean.getSpareparts());
+			prepared.setString(12, bean.getServicecharge());
+			prepared.setString(13, bean.getSum());
 			prepared.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -221,7 +229,34 @@ public class RepairDao {
 			conn.close();
 		}
 	}
-
+	public void updaterepairedit(RepairBean bean) throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(
+					" UPDATE repair	SET rapair_type = ?, device_name = ?, problem = ? , date_completion = ? , member_role = ? , repair_details = ? , repair_status = ? , spare_parts = ? , service_charge = ? , sum = ?  WHERE id = ? ");
+			prepared = conn.prepareStatement(sql.toString());	
+			prepared.setString(1, bean.getRapairType());
+			prepared.setString(2, bean.getDeviceName());
+			prepared.setString(3, bean.getProblem());
+			prepared.setDate(4, bean.getDatecompletion());
+			prepared.setString(5, bean.getMemberrole());
+			prepared.setString(6, bean.getRepairdetails());			
+			prepared.setString(7, bean.getRepairStatus());
+			prepared.setString(8, bean.getSpareparts());
+			prepared.setString(9, bean.getServicecharge());
+			prepared.setString(10, bean.getSum());
+			prepared.setString(11, bean.getId());
+			prepared.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+	}
 	public List<TabelallBean> list() throws SQLException, ParseException {
 		SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		List<TabelallBean> list = new ArrayList<>();
@@ -232,9 +267,9 @@ public class RepairDao {
 		Connection conn = con.openConnect();
 		try {
 			sql.append(
-					" SELECT r.id , r.repair_date , c.name , c.phone , r.device_name , p.name , rs.name FROM repair r "
-							+ "INNER JOIN customer c ON r.customer_name = c.id INNER JOIN problem p ON r.problem  = p.id "
-							+ "INNER JOIN repair_status rs ON r.repair_status = rs.id; ");
+					" SELECT r.id , r.repair_date , c.name , c.phone , r.device_name , r.problem , r.repair_status \r\n" + 
+					"FROM repair r\r\n" + 
+					"INNER JOIN customer c ON r.customer_name = c.id;");
 			prepared = conn.prepareStatement(sql.toString());
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
@@ -246,8 +281,8 @@ public class RepairDao {
 				bean.setDate(dt.format(date));
 				bean.setPhone(rs.getString("c.phone"));
 				bean.setDevice(rs.getString("r.device_name"));
-				bean.setProblem(rs.getString("p.name"));
-				bean.setStatus(rs.getString("rs.name"));
+				bean.setProblem(rs.getString("r.problem"));
+				bean.setStatus(rs.getString("r.repair_status"));
 				list.add(bean);
 			}
 		} catch (Exception e) {
@@ -268,11 +303,11 @@ public class RepairDao {
 		Connection conn = con.openConnect();
 		try {
 			sql.append(
-					" SELECT r.id, r.repair_date , r.customer_name , c.name , c.phone, rt.name , r.device_name, p.name, r.other ,r.repair_complete , r.member_name, rs.name\r\n"
-							+ "FROM repair r\r\n" + "INNER JOIN customer c ON r.customer_name = c.id\r\n"
-							+ "INNER JOIN repair_type rt ON r.rapair_type = rt.initials\r\n"
-							+ "INNER JOIN repair_status rs ON r.repair_status = rs.id\r\n"
-							+ "INNER JOIN problem p ON r.problem = p.id\r\n" + "WHERE r.id = ? ;");
+					"SELECT r.id , r.customer_name , c.name , c.address , c.phone , r.repair_date , r.repair_complete , r.member_name , r.repair_service , rt.name , r.device_name , r.problem , r.repair_status , r.spare_parts , r.service_charge , r.sum \r\n" + 
+					"FROM repair r \r\n" + 
+					"INNER JOIN customer c ON r.customer_name = c.id\r\n" + 
+					"INNER JOIN repair_type rt ON r.rapair_type = rt.initials\r\n" + 
+					"WHERE r.id = ? ");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, id);
 			ResultSet rs = prepared.executeQuery();
@@ -283,15 +318,18 @@ public class RepairDao {
 				Date date = dt.parse(bean.getDate());
 				bean.setDate(dt.format(date));
 				bean.setName(rs.getString("c.name"));
+				bean.setAddress(rs.getString("c.address"));
 				bean.setPhone(rs.getString("c.phone"));
 				bean.setType(rs.getString("rt.name"));
 				bean.setDevice(rs.getString("r.device_name"));
-				bean.setProblem(rs.getString("p.name"));
-				bean.setOther(rs.getString("r.other"));
+				bean.setProblem(rs.getString("r.problem"));
 				bean.setComplete(rs.getString("r.repair_complete"));
 				bean.setMember(rs.getString("r.member_name"));
-				bean.setStatus(rs.getString("rs.name"));
-
+				bean.setStatus(rs.getString("r.repair_status"));
+				bean.setSpareparts(rs.getString("r.spare_parts"));
+				bean.setServicecharge(rs.getString("r.service_charge"));
+				bean.setSum(rs.getString("r.sum"));
+				bean.setCompany(rs.getString("r.repair_service"));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

@@ -7,6 +7,8 @@
         <jsp:include page="../layout/menu.jsp"></jsp:include>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>repairsetting</title>
+        <!--alerts CSS -->
+        <link href="vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
     </head>
 
     <body>
@@ -48,7 +50,7 @@
                                                         <tr>
                                                             <th>รหัส</th>
                                                             <th>ชื่อปัญหา</th>
-                                                            <th>ประเภทงานซ่อม</th>
+                                                            <th>หมวดหมู่อุปกรณ์</th>
                                                             <!-- <th>ชื่อย่อประเภทงานซ่อม</th> -->
                                                             <th>แก้ไข</th>
                                                             <th>ลบ</th>
@@ -59,7 +61,7 @@
                                                         <tr>
                                                             <th>รหัส</th>
                                                             <th>ชื่อปัญหา</th>
-                                                            <th>ประเภทงานซ่อม</th>
+                                                            <th>หมวดหมู่อุปกรณ์</th>
                                                             <!-- <th>ชื่อย่อประเภทงานซ่อม</th> -->
                                                             <th>แก้ไข</th>
                                                             <th>ลบ</th>
@@ -94,7 +96,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="form-group">
-                                            <label class="control-label mb-10">ประเภทงานซ่อม:</label>
+                                            <label class="control-label mb-10">หมวดหมู่อุปกรณ์:</label>
                                             <select class="form-control" id="repairtype" name="typeName">
                                                         <option>== กรุณาเลือก ==</option>
                                                         
@@ -138,7 +140,7 @@
                                         <input type="text" class="form-control" id="name" placeholder="ชื่อปัญหา">
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label mb-10">ประเภทงานซ่อม:</label>
+                                        <label class="control-label mb-10">หมวดหมู่อุปกรณ์:</label>
                                         <select class="form-control" id="r">
                                             <option>== กรุณาเลือก ==</option>
                                             
@@ -170,6 +172,8 @@
             </div>
         </div>
         <input id="xx" type="hidden">
+        <!-- Sweet-Alert  -->
+        <script src="vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
         <script>
             function insertConfirm() {
                 var problemBean = {
@@ -219,17 +223,29 @@
             };
 
             function gotoDetele(id) {
-                $.ajax({
-                    type: "DELETE",
-                    url: "/deleteproblem/" + id,
-                    success: function(msg) {
-                        console.log("เย้ๆ")
-                    },
-                    error: function() {
-                        console.log("error")
-                        window.location.reload();
-                    }
+
+                swal({
+                    title: "Are you sure?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#f8b32d",
+                    confirmButtonText: "Yes, delete it!",
+                    closeOnConfirm: false
+                }, function() {
+                    swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                    $.ajax({
+                        type: "DELETE",
+                        url: "/deleteproblem/" + id,
+                        success: function(msg) {
+                            console.log("เย้ๆ")
+                        },
+                        error: function() {
+                            console.log("error")
+                            window.location.reload();
+                        }
+                    });
                 });
+                return false;
             };
         </script>
         <script>
@@ -258,7 +274,7 @@
                         dataType: "json",
                         success: function(msg) {
                             $('#aaa').val(msg.typeInitials);
-
+                            console.log(msg)
                         }
                     });
                 });

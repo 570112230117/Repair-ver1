@@ -5,7 +5,7 @@
 
     <head>
         <jsp:include page="../layout/menu.jsp"></jsp:include>
-        <title>Repair_edit</title>
+        <!-- <title>Repair_edit</title> -->
     </head>
 
     <body>
@@ -39,8 +39,8 @@
                                                             <th>ปัญหา</th>
                                                             <th>ผู้ดำเนินการซ่อม</th>
                                                             <th>สถานะ</th>
-                                                            <th>แก้ไข</th>
-                                                            <th>รายละเอียด</th>
+                                                            <th></th>
+                                                            <th></th>
                                                         </tr>
                                                     </thead>
                                                     <!-- Footer Table -->
@@ -54,8 +54,8 @@
                                                             <th>ปัญหา</th>
                                                             <th>ผู้ดำเนินการซ่อม</th>
                                                             <th>สถานะ</th>
-                                                            <th>แก้ไข</th>
-                                                            <th>รายละเอียด</th>
+                                                            <th></th>
+                                                            <th></th>
                                                         </tr>
                                                     </tfoot>
                                                 </table>
@@ -106,6 +106,10 @@
                 "order": [
                     [0, "desc"]
                 ],
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
                 "aoColumns": [{
                     "mData": "id"
                 }, {
@@ -142,5 +146,16 @@
             })
         });
     </script>
+
+    <!-- Data table JavaScript -->
+    <script src="vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="vendors/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="vendors/bower_components/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="vendors/bower_components/jszip/dist/jszip.min.js"></script>
+    <script src="vendors/bower_components/pdfmake/build/pdfmake.min.js"></script>
+    <script src="vendors/bower_components/pdfmake/build/vfs_fonts.js"></script>
+    <script src="vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="dist/js/export-table-data.js"></script>
 
     </html>

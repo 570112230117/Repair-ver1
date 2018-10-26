@@ -12,8 +12,14 @@ public class RepairBean {
 	private String rapairType;
 	private String deviceName;
 	private String problem;
-	private String other;
+	private String repairservice;
 	private String repairStatus;
+	private String spareparts;
+	private String servicecharge;
+	private String sum;
+	private Date datecompletion;
+	private String memberrole;
+	private String repairdetails;
 
 	public String getId() {
 		return id;
@@ -87,20 +93,68 @@ public class RepairBean {
 		this.problem = problem;
 	}
 
-	public String getOther() {
-		return other;
-	}
-
-	public void setOther(String other) {
-		this.other = other;
-	}
-
 	public String getRepairStatus() {
 		return repairStatus;
 	}
 
 	public void setRepairStatus(String repairStatus) {
 		this.repairStatus = repairStatus;
+	}
+
+	public String getRepairservice() {
+		return repairservice;
+	}
+
+	public void setRepairservice(String repairservice) {
+		this.repairservice = repairservice;
+	}
+
+	public String getSpareparts() {
+		return spareparts;
+	}
+
+	public void setSpareparts(String spareparts) {
+		this.spareparts = spareparts;
+	}
+
+	public String getServicecharge() {
+		return servicecharge;
+	}
+
+	public void setServicecharge(String servicecharge) {
+		this.servicecharge = servicecharge;
+	}
+
+	public String getSum() {
+		return sum;
+	}
+
+	public void setSum(String sum) {
+		this.sum = sum;
+	}
+
+	public Date getDatecompletion() {
+		return datecompletion;
+	}
+
+	public void setDatecompletion(Date datecompletion) {
+		this.datecompletion = datecompletion;
+	}
+
+	public String getMemberrole() {
+		return memberrole;
+	}
+
+	public void setMemberrole(String memberrole) {
+		this.memberrole = memberrole;
+	}
+
+	public String getRepairdetails() {
+		return repairdetails;
+	}
+
+	public void setRepairdetails(String repairdetails) {
+		this.repairdetails = repairdetails;
 	}
 
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.bru.dao.BrandDao;
 import com.bru.dao.CompanyDao;
 import com.bru.dao.CustomerDao;
 import com.bru.dao.DeviceDao;
@@ -22,6 +23,7 @@ import com.bru.dao.ProblemDao;
 import com.bru.dao.RepairDao;
 import com.bru.dao.RepairStatusDao;
 import com.bru.model.AmnuayBean;
+import com.bru.model.BrandBean;
 import com.bru.model.CompanyBean;
 import com.bru.model.CustomerBean;
 import com.bru.model.DeviceBean;
@@ -47,7 +49,9 @@ public class RepairController {
 	CompanyDao companyDao;
 	@Autowired
 	DeviceDao deviceDao;
-	
+	@Autowired
+	BrandDao brandDao;
+
 	// insert
 	@RequestMapping(value = "/insertcutromer")
 	public String insertrepair(@RequestBody CustomerBean customerBean) throws Exception {
@@ -145,12 +149,33 @@ public class RepairController {
 		companyDao.delete(id);
 		return "company";
 	}
+
 	// insert
 	@RequestMapping(value = "/insertdevice")
 	public String insertdevice(@RequestBody DeviceBean deviceBean) throws Exception {
 		deviceDao.insertdevice(deviceBean);
 		return "device";
 	}
+
+	// insert
+	@RequestMapping(value = "/insertbrand")
+	public String insertbrand(@RequestBody BrandBean brandBean) throws Exception {
+		brandDao.insert(brandBean);
+		return "brandsetting";
+	}
+
+	@RequestMapping(path = "/updatebrand", method = RequestMethod.POST)
+	public String updatebrand(BrandBean brandBean) throws SQLException {
+		brandDao.update(brandBean);
+		return "brandsetting";
+	}
+
+	@RequestMapping(path = "/deletebrand/{id}", method = RequestMethod.DELETE)
+	public String deletebrand(@PathVariable String id) throws SQLException {
+		brandDao.delete(id);
+		return "brandsetting";
+	}
+
 	// insert
 	@RequestMapping(value = { "/insertrepair" }, method = RequestMethod.POST, produces = "application/json")
 	public Map<String, String> insertrepair(@RequestBody RepairBean repairBean) throws Exception {
@@ -238,6 +263,13 @@ public class RepairController {
 		}
 		Map<String, String> repair = new HashMap<String, String>();
 		return repair;
+	}
+
+	@RequestMapping(path = "/updaterepairedit", method = RequestMethod.POST)
+	public String insertrepairedit(RepairBean repairBean) throws SQLException {
+		repairDao.updaterepairedit(repairBean);
+		System.out.println(repairBean.getId());
+		return "tabel";
 	}
 
 }

@@ -15,25 +15,12 @@
         <!-- Main Content -->
         <div class="page-wrapper" style="min-height: 980px;">
             <div class="container-fluid">
-                <div class="row heading-bg">
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h5 class="txt-dark">ตั้งค่าพนักงาน / ช่างซ่อม</h5>
-                    </div>
-                    <!-- Breadcrumb -->
-                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                        <ol class="breadcrumb">
-                            <li><a>ตั้งค่า</a></li>
-                            <li class="active"><span>ตั้งค่าพนักงาน / ช่างซ่อม</span></li>
-                        </ol>
-                    </div>
-                    <!-- /Breadcrumb -->
-                </div>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="panel panel-default card-view">
                             <div class="panel-heading">
                                 <div class="pull-left">
-                                    <h6 class="panel-title txt-dark">ตั้งค่าพนักงาน / ช่างซ่อม</h6>
+                                    <h6 class="panel-title txt-dark">พนักงาน / ช่างซ่อม</h6>
 
                                 </div>
                                 <div class="clearfix"></div>
@@ -54,7 +41,6 @@
                                                             <th>อีเมล์</th>
                                                             <th>เบอร์โทรศัพท์</th>
                                                             <th>ตำแหน่ง</th>
-                                                            <th>วันเข้างาน</th>
                                                             <th>การใช้งาน</th>
                                                             <th>แก้ไข</th>
                                                         </tr>
@@ -67,7 +53,6 @@
                                                             <th>อีเมล์</th>
                                                             <th>เบอร์โทรศัพท์</th>
                                                             <th>ตำแหน่ง</th>
-                                                            <th>วันเข้างาน</th>
                                                             <th>การใช้งาน</th>
                                                             <th>แก้ไข</th>
                                                         </tr>
@@ -138,11 +123,8 @@
                                                 <option value="">== กรุณาเลือกตำแหน่ง ==</option>
                                                 <option value="พนักงาน">พนักงาน</option>
                                                 <option value="ช่างซ่อม">ช่างซ่อม</option>
+                                                <option value="admin">admin</option>
                                             </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label mb-10">วันที่เข้างาน:</label>
-                                        <input type="date" class="form-control" id="j" name="joiningDate">
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label mb-10">การใช้งาน:</label>
@@ -227,11 +209,8 @@
                                             <option value="">== กรุณาเลือกตำแหน่ง ==</option>
                                             <option value="พนักงาน">พนักงาน</option>
                                             <option value="ช่างซ่อม">ช่างซ่อม</option>
+                                            <option value="admin">admin</option>
                                         </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label mb-10">วันที่เข้างาน:</label>
-                                        <input type="date" class="form-control" id="joiningDate">
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label mb-10">การใช้งาน:</label>
@@ -312,7 +291,6 @@
                         $('#p').val(msg.phone);
                         $('#a').val(msg.address);
                         $('#r').val(msg.role);
-                        $('#j').val(msg.joiningDate);
                         if (msg.gender == "ชาย") {
                             document.getElementById('r1').checked = true;
                         } else if (msg.gender == "หญิง") {
@@ -327,54 +305,6 @@
                 });
             };
 
-            // var gen = "";
-            // var sta = "";
-            // $(document).ready(function() {
-            //     $("#r1").change(function() {
-            //         gen = "ชาย";
-            //     });
-            //     $("#r2").change(function() {
-            //         gen = "หญิง";
-            //     });
-            //     $("#r3").change(function() {
-            //         sta = "ใช้งาน";
-            //     });
-            //     $("#r4").change(function() {
-            //         sta = "เลิกใช้งาน";
-            //     });
-            // });
-
-            // function updateConfirm(id) {
-            //     var memberBean = {
-            //         id: $('#i').val(),
-            //         email: $('#e').val(),
-            //         password: $('#pass').val(),
-            //         name: $('#n').val(),
-            //         phone: $('#p').val(),
-            //         address: $('#a').val(),
-            //         gender: gen,
-            //         role: $('#r').val(),
-            //         status: sta,
-            //         joiningDate: $('#j').val(),
-            //     }
-            //     $.ajax({
-            //         type: "POST",
-            //         url: "/updatemember",
-            //         contentType: "application/json; charset=utf-8",
-            //         data: JSON.stringify(memberBean),
-            //         dataType: "json",
-            //         success: function(msg) {
-            //             console.log("success")
-            //             window.location.reload();
-            //         },
-            //         error: function() {
-            //             console.log("error")
-            //             $('#Modal').modal('hide')
-            //             window.location.reload();
-            //         }
-            //     });
-            // }
-
             function insertConfirm() {
                 var memberBean = {
                     email: $('#email').val(),
@@ -385,7 +315,6 @@
                     gender: gender,
                     role: $('#role').val(),
                     status: status,
-                    joiningDate: $('#joiningDate').val(),
                 }
                 $.ajax({
                     type: "POST",
@@ -395,12 +324,13 @@
                     dataType: "json",
                     success: function(msg) {
                         console.log("success")
-                        window.location.reload();
+                            // window.location.reload();
                     },
                     error: function() {
                         console.log("error")
                         $('#Modal').modal('hide')
-                        window.location.reload();
+                        $('datable_1').html(msg);
+                        // window.location.reload();
                     }
                 });
             }
@@ -428,10 +358,10 @@
                                 return '<span class="label label-primary">' + full.role + '</span>';
                             } else if (full.role == 'ช่างซ่อม') {
                                 return '<span class="label label-warning">' + full.role + '</span>';
+                            } else if (full.role == 'admin') {
+                                return '<span class="label label-danger">' + full.role + '</span>';
                             }
                         }
-                    }, {
-                        "mData": "joiningDate"
                     }, {
                         "mData": "",
                         "mRender": function(data, type, full) {

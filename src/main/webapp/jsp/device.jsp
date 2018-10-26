@@ -10,8 +10,8 @@
                     <head>
                         <jsp:include page="../layout/menu.jsp"></jsp:include>
                         <title>Device</title>
-                        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet" />
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
+                        <link href="vendors/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
+                        <link href="dist/css/style.css" rel="stylesheet" type="text/css">
                         <% Calendar c = Calendar.getInstance();
 	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 	String currentDate = df.format(c.getTime());
@@ -59,10 +59,9 @@
                                                                             <div class="span1"></div>
                                                                             <div class="col-md-6 col-xs-12">
                                                                                 <label class="control-label mb-10 text-left">ผู้ใช้งานอุปกรณ์</label>
-                                                                                <!-- <input type="text" class="form-control" id="customer" placeholder="ผู้ใช้งานอุปกรณ์"> -->
-                                                                                <select class="form-control" id="customer">
-                                                                                        <option>== เลือกผู้แจ้ง ==</option>
-                                                                                        </select>
+                                                                                <select class="form-control select2 select2-hidden-accessible " id="customer">
+                                                                                        <option value="">== เลือกผู้แจ้ง ==</option>
+                                                                                     </select>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -87,9 +86,9 @@
                                                                             </div>
                                                                             <div class="span1"></div>
                                                                             <div class="col-md-6 col-xs-12">
-                                                                                <label class="control-label mb-10 text-left">ประเภทอุปกรณ์</label>
+                                                                                <label class="control-label mb-10 text-left">หมวดหมู่อุปกรณ์</label>
                                                                                 <select class="form-control" id="repairtype">
-                                                                                                <option>== กรุณาเลือก ==</option>
+                                                                                                <option value="">== เลือกหมวดหมู่อุปกรณ์ ==</option>
                                                                                                 </select>
                                                                             </div>
                                                                         </div>
@@ -99,7 +98,7 @@
                                                                             <div class="col-md-6 col-xs-12">
                                                                                 <label class="control-label mb-10 text-left">ยี่ห้ออุปกรณ์</label>
                                                                                 <select class="form-control" id="brand">
-                                                                                        <option>== กรุณาเลือก ==</option>
+                                                                                        <option value="">== เลือกยี่ห้ออุปกรณ์ ==</option>
                                                                                         </select>
                                                                             </div>
                                                                             <div class="span1"></div>
@@ -262,12 +261,35 @@
                                     success: function(msg) {
                                         for (var i = 0; i < msg.length; i++) {
                                             $('#customer').append('<option value="' + msg[i].id + '">' + msg[i].name + '</option>');
-                                            $("#customer").select2({});
+                                            // $("#customer").select2({});
                                         }
                                     }
                                 });
                             });
                         </script>
+
+                        <!-- Select2 JavaScript -->
+                        <script src="vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
+
+                        <!-- Bootstrap Select JavaScript -->
+                        <script src="vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+
+
+                        <!-- Bootstrap Touchspin JavaScript -->
+                        <script src="vendors/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+
+                        <!-- Multiselect JavaScript -->
+                        <script src="vendors/bower_components/multiselect/js/jquery.multi-select.js"></script>
+
+
+                        <!-- Bootstrap Switch JavaScript -->
+                        <script src="vendors/bower_components/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
+
+
+                        <!-- Form Advance Init JavaScript -->
+                        <script src="dist/js/form-advance-data.js"></script>
+
+
                     </body>
 
                     </html>

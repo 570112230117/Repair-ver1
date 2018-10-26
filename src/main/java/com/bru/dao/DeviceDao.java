@@ -5,13 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 import com.bru.model.DeviceBean;
+
 import com.bru.model.TabelDeviceBean;
-import com.bru.model.TestBean;
+
 import com.bru.model.TestDeviceBean;
 import com.bru.util.ConnectDB;
 
@@ -88,7 +90,7 @@ public class DeviceDao {
 		return list;
 	}
 
-	public List<TestDeviceBean> findById(TestBean testBean) throws SQLException {
+	public List<TestDeviceBean> concatlist() throws SQLException {
 		List<TestDeviceBean> list = new ArrayList<>();
 		ConnectDB con = new ConnectDB();
 		PreparedStatement prepared = null;
@@ -96,18 +98,16 @@ public class DeviceDao {
 		TestDeviceBean bean = new TestDeviceBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append(
-					"SELECT d.id , rt.initials, CONCAT(d.device_number, \" - \",rt.device_type_name, \" \", b.name , \" รุ่น \", d.generation) AS name\r\n"
-							+ "FROM device d \r\n" + "INNER JOIN repair_type rt ON d.device_type = rt.id\r\n"
-							+ "INNER JOIN brand b ON d.brand = b.id\r\n" + "WHERE rt.initials = ? ;");
+			sql.append("SELECT d.id , CONCAT(d.device_number, \" - \",d.device_name) AS name\r\n" + 
+					"FROM device d ;");
 			prepared = conn.prepareStatement(sql.toString());
-			prepared.setString(1, testBean.getA());
+		
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
 				bean = new TestDeviceBean();
 				bean.setId(rs.getInt("d.id"));
 				bean.setName(rs.getString("name"));
-				bean.setInitials(rs.getString("rt.initials"));
+				
 				list.add(bean);
 			}
 		} catch (Exception e) {
@@ -118,4 +118,5 @@ public class DeviceDao {
 		}
 		return list;
 	}
+	
 }

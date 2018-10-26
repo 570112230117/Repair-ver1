@@ -5,7 +5,43 @@
 
     <head>
         <jsp:include page="../layout/menu.jsp"></jsp:include>
-        <title>Repair_edit</title>
+        <title>Dashboard</title>
+        <style>
+            * {
+                box-sizing: border-box
+            }
+            
+            .container {
+                width: 100%;
+                background-color: #ddd;
+            }
+            
+            .skills {
+                text-align: right;
+                padding: 10px;
+                color: white;
+            }
+            
+            .html {
+                width: 90%;
+                background-color: #4CAF50;
+            }
+            
+            .css {
+                width: 80%;
+                background-color: #2196F3;
+            }
+            
+            .js {
+                width: 65%;
+                background-color: #f44336;
+            }
+            
+            .php {
+                width: 60%;
+                background-color: #808080;
+            }
+        </style>
     </head>
 
     <body>
@@ -13,52 +49,54 @@
         <div class="page-wrapper" style="min-height: 1000px;">
             <div class="container-fluid pt-25">
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-md-6">
                         <div class="panel panel-default card-view">
                             <div class="panel-heading">
                                 <div class="pull-left">
-                                    <h6 class="panel-title txt-dark">ตารางการแจ้งซ่อม</h6>
-
+                                    <h6 class="panel-title txt-dark">จำนวนอุปกรณ์</h6>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="panel-wrapper collapse in">
                                 <div class="panel-body">
-                                    <div class="table-wrap">
-                                        <div class="table-responsive">
-                                            <div id="datable_1_wrapper" class="dataTables_wrapper">
-                                                <table id="datable_1" class="table table-hover display  pb-30 dataTable" role="grid" aria-describedby="datable_1_info">
-                                                    <!-- Header Table -->
-                                                    <thead>
-                                                        <tr>
-                                                            <th>เลขที่ใบแจ้งซ่อม</th>
-                                                            <th>วันที่รับซ่อม</th>
-                                                            <th>ชื่อ - สกุล</th>
-                                                            <th>โทรศัพท์</th>
-                                                            <th>ชื่ออุปกรณ์</th>
-                                                            <th>ปัญหา</th>
-                                                            <th>ผู้ดำเนินการ</th>
-                                                            <th>สถานะ</th>
-                                                            <th>แก้ไข</th>
-                                                            <th>รายละเอียด</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <!-- Footer Table -->
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th>เลขที่ใบแจ้งซ่อม</th>
-                                                            <th>วันที่รับซ่อม</th>
-                                                            <th>ชื่อ - สกุล</th>
-                                                            <th>โทรศัพท์</th>
-                                                            <th>ชื่ออุปกรณ์</th>
-                                                            <th>ปัญหา</th>
-                                                            <th>ผู้ดำเนินการ</th>
-                                                            <th>สถานะ</th>
-                                                            <th>แก้ไข</th>
-                                                            <th>รายละเอียด</th>
-                                                        </tr>
-                                                    </tfoot>
-                                                </table>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div id="piechart"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="panel panel-default card-view">
+                            <div class="panel-heading">
+                                <div class="pull-left">
+                                    <h6 class="panel-title txt-dark">สถิติการซ่อมแยกตามหมวดหมู่</h6>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="panel-wrapper collapse in">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-xs-12">
+                                            <div class="form-wrap">
+                                                <p> NOTEBOOK</p>
+                                                <div class="form-group">
+                                                    <div class="skills html">90%</div>
+                                                </div>
+
+                                                <p> CASE</p>
+                                                <div class="form-group">
+                                                    <div class="skills css">80%</div>
+                                                </div>
+
+                                                <p>PRINTER</p>
+                                                <div class="form-group">
+                                                    <div class="skills js">65%</div>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -66,81 +104,49 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Footer -->
-                <footer class="footer container-fluid pl-30 pr-30">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <p>2017 &copy; Elmer. Pampered by Hencework</p>
+                    <!-- Footer -->
+                    <footer class="footer container-fluid pl-30 pr-30">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <p>2017 &copy; Elmer. Pampered by Hencework</p>
+                            </div>
                         </div>
-                    </div>
-                </footer>
-                <!-- /Footer -->
+                    </footer>
+                    <!-- /Footer -->
+                </div>
             </div>
-        </div>
-        <input id="xx" type="hidden">
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+            <script type="text/javascript">
+                // Load google charts
+                google.charts.load('current', {
+                    'packages': ['corechart']
+                });
+                google.charts.setOnLoadCallback(drawChart);
+
+                // Draw the chart and set the chart values
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Task', 'Hours per Day'],
+                        ['Work', 8],
+                        ['Eat', 2],
+                        ['TV', 4],
+                        ['Gym', 2],
+                        ['Sleep', 8]
+                    ]);
+
+                    // Optional; add a title and set the width and height of the chart
+                    var options = {
+                        'title': 'My Average Day',
+                        'width': 550,
+                        'height': 400
+                    };
+
+                    // Display the chart inside the <div> element with id="piechart"
+                    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                    chart.draw(data, options);
+                }
+            </script>
     </body>
-    <script>
-        function gotoUpdate(id) {
-            document.getElementById("xx").value = id;
-            var testBean = {
-                "a": $('#xx').val()
-            };
-            // $.ajax({
-            //     type: "POST",
-            //     url: "",
-            //     data: JSON.stringify(testBean),
-            //     contentType: "application/json; charset=utf-8",
-            //     dataType: "json",
-            //     success: function(msg) {
-            //         console.log('ทำงานแล้ว')
-            //     }
-            // });
-        };
-
-
-        $(document).ready(function() {
-            var table = $('#datable_1').DataTable({
-                "sAjaxSource": "/repairtabel",
-                "sAjaxDataProp": "",
-                "order": [
-                    [0, "desc"]
-                ],
-                "aoColumns": [{
-                    "mData": "id"
-                }, {
-                    "mData": "date"
-                }, {
-                    "mData": "name"
-                }, {
-                    "mData": "phone"
-                }, {
-                    "mData": "device"
-                }, {
-                    "mData": "problem"
-                }, {
-                    "mData": "",
-                    "mRender": function(data, type, full) {
-                        return null;
-                    }
-                }, {
-                    "mData": "",
-                    "mRender": function(data, type, full) {
-                        return '<span class="label label-default">' + full.status + '</span>';
-                    }
-                }, {
-                    "mData": "",
-                    "mRender": function(data, type, full) {
-                        return '<a href="/' + full.id + '" ' + ' class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-edit"></span>' + '</a> ';
-                    }
-                }, {
-                    "mData": "",
-                    "mRender": function(data, type, full) {
-                        return '<a class="btn btn-info btn-xs"><span class="icon-list"></span></a>';
-                    }
-                }]
-            })
-        });
-    </script>
 
     </html>

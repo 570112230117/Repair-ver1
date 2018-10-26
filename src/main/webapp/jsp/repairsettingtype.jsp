@@ -14,13 +14,13 @@
             <div class="container-fluid">
                 <div class="row heading-bg">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h5 class="txt-dark">ตั้งค่าประเภทงานซ่อม</h5>
+                        <h5 class="txt-dark">ตั้งค่าหมวดหมู่อุปกรณ์</h5>
                     </div>
                     <!-- Breadcrumb -->
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
                             <li><a>ตั้งค่า</a></li>
-                            <li class="active"><span>ตั้งค่าประเภทงานซ่อม</span></li>
+                            <li class="active"><span>ตั้งค่าหมวดหมู่อุปกรณ์</span></li>
                         </ol>
                     </div>
                     <!-- /Breadcrumb -->
@@ -30,7 +30,7 @@
                         <div class="panel panel-default card-view">
                             <div class="panel-heading">
                                 <div class="pull-left">
-                                    <h6 class="panel-title txt-dark">ตั้งค่าประเภทงานซ่อม</h6>
+                                    <h6 class="panel-title txt-dark">ตั้งค่าหมวดหมู่อุปกรณ์</h6>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -80,7 +80,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">แก้ไขประเภทงานซ่อม</h4>
+                                <h4 class="modal-title">ตั้งค่าหมวดหมู่อุปกรณ์</h4>
                             </div>
                             <form action="/updatetype" name="updatetype" id="updatetype" method="POST">
                                 <div class="modal-body">

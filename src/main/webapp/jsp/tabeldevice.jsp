@@ -28,8 +28,9 @@
                                         <div class="table-responsive">
                                             <div id="datable_1_wrapper" class="dataTables_wrapper">
                                                 <div class="pull-left">
-                                                    <button onclick="window.location.href='/device'" class="btn btn-success btn-anim btn-sm"><i class="icon-rocket"></i><span class="btn-text">เพิ่มอุปกรณ์</span></button>
+                                                    <button onclick="window.location.href='/device'" class="btn btn-info btn-anim btn-sm"><i class="icon-rocket"></i><span class="btn-text">เพิ่มอุปกรณ์</span></button>
                                                 </div>
+                                                <br><br><br>
                                                 <table id="datable_1" class="table table-hover display  pb-30 dataTable" role="grid" aria-describedby="datable_1_info">
                                                     <!-- Header Table -->
                                                     <thead>
@@ -39,6 +40,7 @@
                                                             <th>หมายเลขซีเรียล</th>
                                                             <th>ประเภทอุปกรณ์</th>
                                                             <th>ผู้ใช้งานอุปกรณ์</th>
+                                                            <th>ประวัติการซ่อม</th>
                                                             <th>รายละเอียด</th>
                                                         </tr>
                                                     </thead>
@@ -50,6 +52,7 @@
                                                             <th>หมายเลขซีเรียล</th>
                                                             <th>ประเภทอุปกรณ์</th>
                                                             <th>ผู้ใช้งานอุปกรณ์</th>
+                                                            <th>ประวัติการซ่อม</th>
                                                             <th>รายละเอียด</th>
                                                         </tr>
                                                     </tfoot>
@@ -82,6 +85,10 @@
                 "order": [
                     [0, "asc"]
                 ],
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
                 "aoColumns": [{
                     "mData": "id"
                 }, {
@@ -97,9 +104,24 @@
                     "mRender": function(data, type, full) {
                         return '<a class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-edit"></span>' + '</a> ';
                     }
+                }, {
+                    "mData": "",
+                    "mRender": function(data, type, full) {
+                        return '<a class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-edit"></span>' + '</a> ';
+                    }
                 }, ]
             })
         });
     </script>
+    <!-- Data table JavaScript -->
+    <script src="vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="vendors/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="vendors/bower_components/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="vendors/bower_components/jszip/dist/jszip.min.js"></script>
+    <script src="vendors/bower_components/pdfmake/build/pdfmake.min.js"></script>
+    <script src="vendors/bower_components/pdfmake/build/vfs_fonts.js"></script>
+    <script src="vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="dist/js/export-table-data.js"></script>
 
     </html>

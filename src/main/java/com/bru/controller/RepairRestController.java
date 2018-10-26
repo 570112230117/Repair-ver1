@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -177,18 +178,36 @@ public class RepairRestController {
 		list = brandDao.Brand(testBean);
 		return list;
 	}
+	@RequestMapping(value = "/brandname", method = RequestMethod.POST)
+	public BrandBean brandname(@RequestBody TestBean testBean) throws SQLException {
+		BrandBean bean = new BrandBean();
+		bean = brandDao.Brandname(testBean.getA());
+		return bean;
+	}
 	@RequestMapping(value = "/devicelist")
 	public List<TabelDeviceBean> Device() throws SQLException {
 		List<TabelDeviceBean> list = new ArrayList<>();
 		list = deviceDao.Devicelist();
 		return list;
 	}
-	// ดรอบดาว
-	@RequestMapping(value = "/testdevice", method = RequestMethod.POST)
-	public List<TestDeviceBean> testdevice(@RequestBody TestBean testBean) throws SQLException {
+	
+	@RequestMapping(value = "/testdevice")
+	public List<TestDeviceBean> testdevice() throws SQLException {
 		List<TestDeviceBean> list = new ArrayList<>();
-		list = deviceDao.findById(testBean);
+		list = deviceDao.concatlist();
 		return list;
+	}
+	@RequestMapping(value = "/BrandTabel")
+	public List<BrandBean> BrandTabel() throws SQLException {
+		List<BrandBean> list = new ArrayList<>();
+		list = brandDao.BrandTabel();
+		return list;
+	}
+	@RequestMapping(value = "/BrandBeanId", method = RequestMethod.POST)
+	public BrandBean BrandBeanId(@RequestBody TestBean testBean) throws SQLException {
+		BrandBean bean = new BrandBean();
+		bean = brandDao.BrandBeanId(testBean.getA());
+		return bean;
 	}
 	// end
 }

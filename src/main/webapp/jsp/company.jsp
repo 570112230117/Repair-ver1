@@ -7,31 +7,20 @@
         <jsp:include page="../layout/menu.jsp"></jsp:include>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Company</title>
+        <!--alerts CSS -->
+        <link href="vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
     </head>
 
     <body>
         <!-- Main Content -->
         <div class="page-wrapper" style="min-height: 980px;">
             <div class="container-fluid">
-                <div class="row heading-bg">
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h5 class="txt-dark">ตั้งค่าส่งซ่อม</h5>
-                    </div>
-                    <!-- Breadcrumb -->
-                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                        <ol class="breadcrumb">
-                            <li><a>ตั้งค่า</a></li>
-                            <li class="active"><span>ตั้งค่าส่งซ่อม</span></li>
-                        </ol>
-                    </div>
-                    <!-- /Breadcrumb -->
-                </div>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="panel panel-default card-view">
                             <div class="panel-heading">
                                 <div class="pull-left">
-                                    <h6 class="panel-title txt-dark">ตั้งค่าส่งซ่อม</h6>
+                                    <h6 class="panel-title txt-dark">อุปกรณ์ส่งซ่อม</h6>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -136,7 +125,8 @@
             </div>
         </div>
         <input id="xx" type="hidden">
-
+        <!-- Sweet-Alert  -->
+        <script src="vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
         <script>
             function insertConfirm() {
                 var companyBean = {
@@ -180,18 +170,31 @@
             };
 
             function gotoDetele(id) {
-                $.ajax({
-                    type: "DELETE",
-                    url: "/deletecompany/" + id,
-                    success: function(msg) {
-                        console.log("เย้ๆ")
-                    },
-                    error: function() {
-                        console.log("error")
-                        window.location.reload();
-                    }
+                swal({
+                    title: "Are you sure?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#f8b32d",
+                    confirmButtonText: "Yes, delete it!",
+                    closeOnConfirm: false
+                }, function() {
+                    swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                    $.ajax({
+                        type: "DELETE",
+                        url: "/deletecompany/" + id,
+                        success: function(msg) {
+                            console.log("เย้ๆ")
+                        },
+                        error: function() {
+                            console.log("error")
+                            window.location.reload();
+                        }
+                    });
+
                 });
+                return false;
             };
+
 
             $(document).ready(function() {
                 var table = $('#datable_1').DataTable({

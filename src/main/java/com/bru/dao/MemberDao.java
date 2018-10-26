@@ -42,7 +42,6 @@ public class MemberDao {
 				bean.setGender(rs.getString("gender"));
 				bean.setRole(rs.getString("role"));
 				bean.setStatus(rs.getString("status"));
-				bean.setJoiningDate(rs.getDate("joining_date"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -58,7 +57,6 @@ public class MemberDao {
 		TestBean bean = new TestBean();
 		bean.setId(a);
 		return bean;
-
 	}
 
 	public List<MemberBean> list() throws SQLException {
@@ -84,7 +82,6 @@ public class MemberDao {
 				bean.setGender(rs.getString("gender"));
 				bean.setRole(rs.getString("role"));
 				bean.setStatus(rs.getString("status"));
-				bean.setJoiningDate(rs.getDate("joining_date"));
 				list.add(bean);
 			}
 		} catch (Exception e) {
@@ -117,7 +114,6 @@ public class MemberDao {
 				bean.setGender(rs.getString("gender"));
 				bean.setRole(rs.getString("role"));
 				bean.setStatus(rs.getString("status"));
-				bean.setJoiningDate(rs.getDate("joining_date"));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -135,7 +131,7 @@ public class MemberDao {
 		Connection conn = con.openConnect();
 		try {
 			sql.append(
-					"INSERT INTO member (email, password, name, phone, address, gender, role, status, joining_date) VALUES (?,?,?,?,?,?,?,?,?);");
+					"INSERT INTO member (email, password, name, phone, address, gender, role, status) VALUES (?,?,?,?,?,?,?,?);");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, bean.getEmail());
 			prepared.setString(2, bean.getPassword());
@@ -145,7 +141,6 @@ public class MemberDao {
 			prepared.setString(6, bean.getGender());
 			prepared.setString(7, bean.getRole());
 			prepared.setString(8, bean.getStatus());
-			prepared.setDate(9, bean.getJoiningDate());
 			prepared.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -162,7 +157,7 @@ public class MemberDao {
 		Connection conn = con.openConnect();
 		try {
 			sql.append(
-					" UPDATE member SET  email = ? , password = ?, name = ?, phone = ?, address = ?, gender = ?, role = ?, status = ?, joining_date = ? WHERE id = ? ");
+					" UPDATE member SET  email = ? , password = ?, name = ?, phone = ?, address = ?, gender = ?, role = ?, status = ? WHERE id = ? ");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, bean.getEmail());
 			prepared.setString(2, bean.getPassword());
@@ -172,8 +167,7 @@ public class MemberDao {
 			prepared.setString(6, bean.getGender());
 			prepared.setString(7, bean.getRole());
 			prepared.setString(8, bean.getStatus());
-			prepared.setDate(9, bean.getJoiningDate());
-			prepared.setString(10, bean.getId());
+			prepared.setString(9, bean.getId());
 			prepared.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception

@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.bru.dao.MemberDao;
 import com.bru.model.MemberBean;
 
-
 @Controller
 public class MemberController {
 
 	@Autowired
 	MemberDao memberDao;
-//	@RequestMapping(path = "/login", method = RequestMethod.GET)
-	@RequestMapping(path = "/", method = RequestMethod.GET)
+
+	// @RequestMapping(path = "/login", method = RequestMethod.GET)
+	@RequestMapping(path = "/login", method = RequestMethod.GET)
 	public String login(Model model) {
 		model.addAttribute("messessError", "");
 		return "login";
@@ -36,11 +36,13 @@ public class MemberController {
 		request.getSession().setAttribute("login", bean);
 		if (bean.getEmail() != null) {
 //			if (bean.getRole().equals("พนักงาน")) {
-//				authen = "index1";
-//			} else if (bean.getRole().equals("")) {
-//				authen = "hello";
+//				authen = "index2";
+//			} else if (bean.getRole().equals("ช่างซ่อม")) {
+//				authen = "index2";
+//			} else if (bean.getRole().equals("admin")) {
+//				authen = "index2";
 //			}
-			authen = "index1";
+			 authen = "index1";
 		} else {
 			model.addAttribute("messessError", "F");
 			authen = "login";
@@ -61,13 +63,13 @@ public class MemberController {
 		memberDao.insert(memberBean);
 		return "membersetting";
 	}
-	
+
 	@RequestMapping(value = "/updatemember")
 	public String updateproblem(MemberBean memberBean) throws SQLException {
 		memberDao.update(memberBean);
 		return "membersetting";
 	}
-	
+
 	@RequestMapping(value = "/updateprofile")
 	public String updateprofile(MemberBean memberBean) throws SQLException {
 		memberDao.update(memberBean);

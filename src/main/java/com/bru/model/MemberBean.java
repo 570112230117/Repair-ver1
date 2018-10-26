@@ -1,6 +1,5 @@
 package com.bru.model;
 
-import java.sql.Date;
 
 public class MemberBean {
 
@@ -13,7 +12,7 @@ public class MemberBean {
 	private String gender;
 	private String role;
 	private String status;
-	private Date joiningDate;
+
 	public String getId() {
 		return id;
 	}
@@ -67,12 +66,6 @@ public class MemberBean {
 	}
 	public void setStatus(String status) {
 		this.status = status;
-	}
-	public Date getJoiningDate() {
-		return joiningDate;
-	}
-	public void setJoiningDate(Date joiningDate) {
-		this.joiningDate = joiningDate;
 	}
 
 	

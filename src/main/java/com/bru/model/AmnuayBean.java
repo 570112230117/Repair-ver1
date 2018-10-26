@@ -6,6 +6,7 @@ public class AmnuayBean {
 	private String date;
 	private String customer;
 	private String name;
+	private String address;
 	private String phone;
 	private String type;
 	private String device;
@@ -14,6 +15,10 @@ public class AmnuayBean {
 	private String complete;
 	private String member;
 	private String status;
+	private String spareparts;
+	private String servicecharge;
+	private String sum; 
+	private String company;
 	
 	public String getCustomer() {
 		return customer;
@@ -38,6 +43,13 @@ public class AmnuayBean {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	public String getPhone() {
 		return phone;
@@ -86,6 +98,30 @@ public class AmnuayBean {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getSpareparts() {
+		return spareparts;
+	}
+	public void setSpareparts(String spareparts) {
+		this.spareparts = spareparts;
+	}
+	public String getServicecharge() {
+		return servicecharge;
+	}
+	public void setServicecharge(String servicecharge) {
+		this.servicecharge = servicecharge;
+	}
+	public String getSum() {
+		return sum;
+	}
+	public void setSum(String sum) {
+		this.sum = sum;
+	}
+	public String getCompany() {
+		return company;
+	}
+	public void setCompany(String company) {
+		this.company = company;
 	}
 	
 	

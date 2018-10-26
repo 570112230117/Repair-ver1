@@ -52,7 +52,7 @@ bean = (MemberBean) request.getSession().getAttribute("login");
                                             </h6>
                                         </div>
                                         <div class="social-info">
-                                            <button class="btn btn-primary btn-block  btn-anim mt-30" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i><span class="btn-text">edit profile</span></button>
+                                            <button class="btn btn-primary btn-block  btn-anim mt-30" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i><span class="btn-text">แก้ไขโปรไฟล์</span></button>
                                             <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
@@ -60,7 +60,7 @@ bean = (MemberBean) request.getSession().getAttribute("login");
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                             <h5 class="modal-title" id="myModalLabel">แก้ไขโปรไฟล์</h5>
                                                         </div>
-                                                        <form action="/updateprofile" id="updateprofile" name="updateprofile">
+                                                        <form action="/updateprofile" id="updateprofile" name="updateprofile" method="GET">
                                                             <div class="modal-body">
                                                                 <!-- Row -->
                                                                 <div class="row">
@@ -133,6 +133,7 @@ bean = (MemberBean) request.getSession().getAttribute("login");
                                                                                                                     <option value="">== กรุณาเลือกตำแหน่ง ==</option>
                                                                                                                     <option value="พนักงาน">พนักงาน</option>
                                                                                                                     <option value="ช่างซ่อม">ช่างซ่อม</option>
+                                                                                                                    <option value="admin">admin</option>
                                                                                                                 </select>
                                                                                                     </div>
 

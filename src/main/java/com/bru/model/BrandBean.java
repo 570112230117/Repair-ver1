@@ -5,7 +5,8 @@ public class BrandBean {
 	private int id;
 	private String name;
 	private String device;
-	private int repairType;
+	private String initials;
+
 	
 	public int getId() {
 		return id;
@@ -25,11 +26,12 @@ public class BrandBean {
 	public void setDevice(String device) {
 		this.device = device;
 	}
-	public int getRepairType() {
-		return repairType;
+
+	public String getInitials() {
+		return initials;
 	}
-	public void setRepairType(int repairType) {
-		this.repairType = repairType;
+	public void setInitials(String initials) {
+		this.initials = initials;
 	}
 	
 	
