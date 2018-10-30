@@ -1,471 +1,541 @@
-<%@page import="com.bru.model.AmnuayBean"%>
-    <%@page import="com.bru.model.RepairBean"%>
-        <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page import="java.text.SimpleDateFormat"%>
+    <%@page import="java.util.Calendar"%>
+        <%@page import="com.bru.model.AmnuayBean"%>
+            <%@page import="com.bru.model.RepairBean"%>
+                <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-            <!DOCTYPE html>
-            <html>
+                    <!DOCTYPE html>
+                    <html>
 
-            <head>
-                <jsp:include page="../layout/menu.jsp"></jsp:include>
-                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-                <title>Repair_edit</title>
-
-                <% AmnuayBean bean = null;
-        bean = (AmnuayBean) request.getAttribute("repairbean");
+                    <head>
+                        <jsp:include page="../layout/menu.jsp"></jsp:include>
+                        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                        <title>แก้ไขใบแจ้งซ่อม</title>
+                        <% AmnuayBean bean = null;
+        bean = (AmnuayBean) request.getSession().getAttribute("repairbean");
         %>
-            </head>
+                            <%	Calendar c = Calendar.getInstance();
+    	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    	String currentDate = df.format(c.getTime());
+    	  %>
+                    </head>
 
-            <body>
-                <div class="page-wrapper" style="min-height: 1000px;">
-                    <div class="container-fluid">
-                        <div class="row heading-bg">
-                            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                                <h5 class="txt-dark">แก้ไขข้อมูลการซ่อม เลขที่
-                                    <%=bean.getId() %>
-                                </h5>
-                            </div>
-                            <input type="hidden" id="idd" value="<%=bean.getId() %>">
-                            <!-- Breadcrumb -->
-                            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                                <ol class="breadcrumb">
-                                    <li><a>ตารางการแจ้งซ่อม</a></li>
-                                    <li class="active"><span>แก้ไขข้อมูลการซ่อม</span></li>
-                                </ol>
-                            </div>
-                            <!-- /Breadcrumb -->
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="panel panel-default card-view">
-                                    <div class="panel-heading">
-                                        <div class="pull-left">
-                                            <h6 class="panel-title txt-dark">ข้อมูลผู้แจ้ง</h6>
-                                        </div>
-                                        <div class="clearfix"></div>
+                    <body>
+                        <div class="page-wrapper" style="min-height: 1000px;">
+                            <div class="container-fluid">
+                                <div class="row heading-bg">
+                                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                                        <h5 class="txt-dark">แก้ไขข้อมูลการซ่อม เลขที่
+                                            <%=bean.getId() %>
+                                        </h5>
                                     </div>
-                                    <div class="panel-wrapper collapse in">
-                                        <div class="panel-body">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-wrap">
-
-                                                        <div class="form-body">
-                                                            <div class="row">
-                                                                <div class="col-md-4">
-
-                                                                </div>
-                                                                <!--/span-->
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <h5>
-                                                                            <%=bean.getType() %>
-                                                                        </h5>
-                                                                    </div>
-                                                                </div>
-                                                                <!--/span-->
-
-                                                                <div class="col-md-4">
-
-                                                                </div>
-                                                                <!--/span-->
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label class="control-label col-md-3">ลูกค้า:</label>
-                                                                        <div class="col-md-9">
-                                                                            <p class="form-control-static">
-                                                                                <%=bean.getCustomer() %>
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!--/span-->
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label class="control-label col-md-3">เลขที่ใบรับซ่อม:</label>
-                                                                        <div class="col-md-9">
-                                                                            <p class="form-control-static">
-                                                                                <%=bean.getId() %>
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!--/span-->
-                                                            </div>
-                                                            <!-- /Row -->
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label class="control-label col-md-3">คุณ:</label>
-                                                                        <div class="col-md-9">
-                                                                            <p class="form-control-static">
-                                                                                <%=bean.getName()%>
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!--/span-->
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label class="control-label col-md-3">วันที่ / เวลารับ:</label>
-                                                                        <div class="col-md-9">
-                                                                            <p class="form-control-static">
-                                                                                <%=bean.getDate() %>
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!--/span-->
-                                                            </div>
-                                                            <!-- /Row -->
-                                                            <!-- /Row -->
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label class="control-label col-md-3">โทรศัพท์:</label>
-                                                                        <div class="col-md-9">
-                                                                            <p class="form-control-static">
-                                                                                <%=bean.getPhone() %>
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!--/span-->
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label class="control-label col-md-3">ประมานการซ่อมเสร็จ:</label>
-                                                                        <div class="col-md-9">
-                                                                            <p class="form-control-static">
-                                                                                <%=bean.getComplete() %>
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!--/span-->
-                                                            </div>
-                                                            <!-- /Row -->
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label class="control-label col-md-3">ที่อยู่:</label>
-                                                                        <div class="col-md-9">
-                                                                            <p class="form-control-static">
-                                                                                <%=bean.getAddress() %>
-                                                                            </p>
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
-                                                                <!--/span-->
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label class="control-label col-md-3">พนักงานรับเรื่อง:</label>
-                                                                        <div class="col-md-9">
-                                                                            <p class="form-control-static">
-                                                                                <%=bean.getMember() %>
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!--/span-->
-                                                            </div>
-                                                            <!-- /Row -->
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label class="control-label col-md-3">สถานที่ส่ง:</label>
-                                                                        <div class="col-md-9">
-                                                                            <p class="form-control-static">
-                                                                                <%=bean.getCompany() %>
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!--/span-->
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label class="control-label col-md-3">S/N:</label>
-                                                                        <div class="col-md-9">
-                                                                            <p class="form-control-static"> </p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!--/span-->
-                                                            </div>
-                                                            <!-- /Row -->
-                                                            <!-- <div class="seprator-block"></div> -->
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <input type="hidden" id="idd" value="<%=bean.getId() %>">
+                                    <input type="hidden" id="custo" value="<%=bean.getCustomer() %>">
+                                    <input type="hidden" id="deviceID" value="<%=bean.getDevice() %>">
+                                    <!-- Breadcrumb -->
+                                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                                        <ol class="breadcrumb">
+                                            <li><a>ตารางการแจ้งซ่อม</a></li>
+                                            <li class="active"><span>แก้ไขข้อมูลการซ่อม</span></li>
+                                        </ol>
                                     </div>
+                                    <!-- /Breadcrumb -->
                                 </div>
-                            </div>
-                        </div>
-                        <form action="/updaterepairedit" name="updaterepairedit" method="POST">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="panel panel-default card-view">
-                                        <div class="panel-heading">
-                                            <div class="pull-left">
-                                                <h6 class="panel-title txt-dark">ข้อมูลปัญหา</h6>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
 
-                                        <input type="hidden" name="id" value="<%=bean.getId() %>">
-                                        <div class="panel-wrapper collapse in">
-                                            <div class="panel-body">
-                                                <div class="form-wrap">
-                                                    <div class="form-group ">
-                                                        <label class="control-label mb-10 text-left">ประเภทงานซ่อม:</label>
-                                                        <select class="form-control" id="repairtype" name="rapairType">
-                                                                                                <option value=""><%=bean.getType() %></option>
-                                                                                                </select>
-                                                    </div>
-                                                    <div class="form-group ">
-                                                        <label class="control-label mb-10 text-left">ชื่ออุปกรณ์:</label>
-                                                        <select class="form-control" id="deviceName" name="deviceName">
-                                                                                                    <option value=""><%=bean.getDevice() %></option>
-                                                                                           
-                                                                                                     </select>
-                                                    </div>
-                                                    <div class="form-group ">
-                                                        <label class="control-label mb-10 text-left">ปัญหา:</label> <select class="form-control" id="problem" name="problem">
-                                                                                                <option value=""><%=bean.getProblem() %></option>
-                                                                                                </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label mb-10 text-left">อื่นๆ:</label>
-                                                        <textarea class="form-control" rows="4" id="other" name="other"></textarea>
-                                                    </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="panel panel-default card-view">
+                                            <div class="panel-heading">
+                                                <div class="pull-left">
+                                                    <h6 class="panel-title txt-dark" id="had"></h6>
                                                 </div>
+                                                <div class="clearfix"></div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="panel panel-default card-view">
-                                        <div class="panel-heading">
-                                            <div class="pull-left">
-                                                <h6 class="panel-title txt-dark">ผลการแก้ไข</h6>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <div class="panel-wrapper collapse in">
-                                            <div class="panel-body">
-                                                <div class="form-wrap">
+                                            <div class="panel-wrapper collapse in">
+                                                <div class="panel-body">
                                                     <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label class="control-label mb-10">วันที่เสร็จ:</label>
-                                                                <input type="date" class="form-control" id="datecompletion" name="datecompletion">
+                                                        <div class="col-md-12">
+                                                            <div class="form-wrap">
+                                                                <form class="form-horizontal" role="form">
+                                                                    <div class="form-body">
+                                                                        <h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-account mr-10"></i>รายละเอียดของลูกค้า</h6>
+                                                                        <hr class="light-grey-hr">
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label col-md-3">รหัสลูกค้า:</label>
+                                                                                    <div class="col-md-9">
+                                                                                        <p class="form-control-static" id="customerID"></p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--/span-->
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label col-md-3">คุณ:</label>
+                                                                                    <div class="col-md-9">
+                                                                                        <p class="form-control-static" id="customerName"></p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--/span-->
+                                                                        </div>
+                                                                        <!-- /Row -->
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label col-md-3">ที่อยู่:</label>
+                                                                                    <div class="col-md-9">
+                                                                                        <p class="form-control-static" id="customerAddress"></p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--/span-->
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label col-md-3">โทรศัพท์:</label>
+                                                                                    <div class="col-md-9">
+                                                                                        <p class="form-control-static" id="customePhone"></p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--/span-->
+                                                                        </div>
+
+                                                                        <div class="seprator-block"></div>
+
+                                                                        <h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-laptop mr-10"></i>รายละเอียดอุปกรณ์</h6>
+                                                                        <hr class="light-grey-hr">
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label col-md-3">รหัสอุปกรณ์:</label>
+                                                                                    <div class="col-md-9">
+                                                                                        <p class="form-control-static" id="deviceid">
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label col-md-3">หมวดหมู่อุปกรณ์:</label>
+                                                                                    <div class="col-md-9">
+                                                                                        <p class="form-control-static" id="deviceCategory">
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label col-md-3">ยี่ห้ออุปกรณ์:</label>
+                                                                                    <div class="col-md-9">
+                                                                                        <p class="form-control-static" id="devicebrand"></p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--/span-->
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label col-md-3">รุ่นอุปกรณ์:</label>
+                                                                                    <div class="col-md-9">
+                                                                                        <p class="form-control-static" id="devicegeneration"></p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--/span-->
+                                                                        </div>
+                                                                        <!-- /Row -->
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label col-md-3">หมายเลขซีเรียล:</label>
+                                                                                    <div class="col-md-9">
+                                                                                        <p class="form-control-static" id="deviceserialnumber"></p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--/span-->
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label col-md-3">ระยะเวลารับประกัน:</label>
+                                                                                    <div class="col-md-9">
+                                                                                        <p class="form-control-static" id="devicewarranty"></p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--/span-->
+                                                                        </div>
+                                                                        <!-- /Row -->
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label col-md-3">ราคา:</label>
+                                                                                    <div class="col-md-3">
+                                                                                        <p class="form-control-static" id="deviceprice"></p>
+
+                                                                                    </div>
+                                                                                    <div class="col-md-6">
+                                                                                        <p class="form-control-static">บาท</p>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label col-md-3">หมายเหตุ:</label>
+                                                                                    <div class="col-md-9">
+                                                                                        <p class="form-control-static" id="devicenote"></p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="seprator-block"></div>
+
+                                                                        <h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-receipt mr-10"></i>รายละเอียดปัญหา</h6>
+                                                                        <hr class="light-grey-hr">
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label col-md-3">เลขที่ใบรับซ่อม:</label>
+                                                                                    <div class="col-md-9">
+                                                                                        <p class="form-control-static" id="repairId">
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label col-md-3">พนักงานรับเรื่อง:</label>
+                                                                                    <div class="col-md-9">
+                                                                                        <p class="form-control-static" id="repairmemberId">
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label col-md-3">วันที่ / เวลารับ:</label>
+                                                                                    <div class="col-md-9">
+                                                                                        <p class="form-control-static" id="repairrepairDate"></p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--/span-->
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label col-md-3">ประมานการซ่อมเสร็จ:</label>
+                                                                                    <div class="col-md-9">
+                                                                                        <p class="form-control-static" id="repaircompleteDate"></p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--/span-->
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label col-md-3">อาการเสีย:</label>
+                                                                                    <div class="col-md-9">
+                                                                                        <textarea class="form-control" rows="6" id="repairproblem"></textarea>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
                                                             </div>
                                                         </div>
-                                                        <!--/span-->
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label class="control-label mb-10">ช่างที่แก้ไข:</label>
-                                                                <input type="text" class="form-control" id="repairmem" name="memberrole" disabled>
-                                                            </div>
-                                                        </div>
-                                                        <!--/span-->
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label mb-10">รายละเอียดการซ่อม:</label>
-                                                        <textarea class="form-control" rows="4" id="repairdetails" name="repairdetails"></textarea>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label mb-10 text-left">สถานะ:</label>
-                                                        <select class="form-control" id="repairstatus" name="repairStatus">
-                                                                    <option value=""><%=bean.getStatus() %></option>
-                                                                    </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label mb-10">ค่าอะไหล่:</label>
-                                                        <input type="number" class="form-control" id="input1" placeholder="0" onkeyup='nStr()' value="<%=bean.getSpareparts() %>" name="spareparts">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label mb-10">ค่าบริการ:</label>
-                                                        <input type="number" class="form-control" id="input2" placeholder="0" onkeyup='nStr()' value="<%=bean.getServicecharge() %>" name="servicecharge">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label mb-10">รวม:</label>
-                                                        <input type="number" class="form-control" id="show" placeholder="0" value="<%=bean.getSum() %>" name="sum">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-success mr-10">บันทึก</button>
-                                <button type="submit" class="btn btn-default">ยกเลิก</button>
-                            </div>
-                        </form>
-
-                        <!-- Footer -->
-                        <footer class="footer container-fluid pl-30 pr-30">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <p>2017 &copy; Elmer. Pampered by Hencework</p>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="panel panel-default card-view">
+                                            <div class="panel-heading">
+                                                <div class="pull-left">
+                                                    <h6 class="panel-title txt-dark">ผลการแก้ไข</h6>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="panel-wrapper collapse in">
+                                                <div class="panel-body">
+                                                    <div class="form-wrap">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="control-label mb-10">วันที่เสร็จ:</label>
+                                                                    <input type="text" class="form-control" id="datecompletion" name="datecompletion" value="<%out.println(currentDate);%>" disabled="disabled">
+                                                                </div>
+                                                            </div>
+                                                            <!--/span-->
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="control-label mb-10">ช่างที่แก้ไข:</label>
+                                                                    <input type="text" class="form-control" id="repairmem" name="memberrole" disabled>
+                                                                </div>
+                                                            </div>
+                                                            <!--/span-->
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label mb-10">รายละเอียดการซ่อม:</label>
+                                                            <textarea class="form-control" rows="4" id="repairdetails" name="repairdetails"></textarea>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label mb-10 text-left">สถานะ:</label>
+                                                            <select class="form-control" id="status">                                               
+                                                   
+                                                        </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label mb-10">ค่าอะไหล่:</label>
+                                                            <input type="number" class="form-control" id="input1" placeholder="0" onkeyup='nStr()' value="" name="spareparts">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label mb-10">ค่าบริการ:</label>
+                                                            <input type="number" class="form-control" id="input2" placeholder="0" onkeyup='nStr()' value="" name="servicecharge">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label mb-10">รวม:</label>
+                                                            <input type="number" class="form-control" id="show" placeholder="0" value="" name="sum">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                                <div class="pull-left">
+                                    <a type="button" class="btn btn-primary mr-10" onclick="openInNewTab()"><i class="glyphicon glyphicon-print"></i> พิมพ์ใบรับซ่อม</a>
+                                    <a type="button" class="btn btn-primary" onclick="reportreceipt()"><i class="glyphicon glyphicon-print"></i> พิมพ์ใบเสร็จรับเงิน</a>
+                                </div>
+                                <div class="text-center">
+                                    <button type="button" class="btn btn-info mr-10" onclick="insertConfirm()">บันทึก</button>
+                                    <button type="button" class="btn btn-default">ยกเลิก</button>
+                                </div>
+
+                                <!-- Footer -->
+                                <footer class="footer container-fluid pl-30 pr-30">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <p>2017 &copy; Elmer. Pampered by Hencework</p>
+                                        </div>
+                                    </div>
+                                </footer>
+                                <!-- /Footer -->
                             </div>
-                        </footer>
-                        <!-- /Footer -->
-                    </div>
-                </div>
+                        </div>
 
-                <script>
-                    $(document).ready(function() {
-                        var elem = document.getElementById('idd').value;
-                        // var xxxx = {
-                        //     kkk: $('#idd').val(),
-
-                        // }
-                        // console.log("ไอดี" + $('#idd').val())
-                        console.log(elem)
-                    });
-                </script>
-                <script>
-                    // function insertConfirm() {
-                    //     var repairBean = {
-                    //         id: $('#id').val(),
-                    //         rapairType: $('#repairtype').val(),
-                    //         deviceName: $('#deviceName').val(),
-                    //         problem: $('#problem').val(),
-                    //         other: $('#other').val(),
-                    //         datecompletion: $('#datecompletion').val(),
-                    //         memberrole: $('#repairmem').val(),
-                    //         repairdetails: $('#repairdetails').val(),
-                    //         repairStatus: $('#repairstatus').val(),
-                    //         spareparts: $('#input1').val(),
-                    //         servicecharge: $('#input2').val(),
-                    //         sum: $('#show').val(),
-
-                    //     }
-
-                    //     $.ajax({
-                    //         type: "POST",
-                    //         url: "/updaterepairedit",
-                    //         contentType: "application/json; charset=utf-8",
-                    //         data: JSON.stringify(repairBean),
-                    //         dataType: "json",
-                    //         success: function(msg) {
-                    //             console.log(msg)
-                    //             window.location.href = msg.page;
-                    //         },
-                    //         error: function() {
-                    //             window.location.href = "/tabel";
-
-                    //         }
-                    //     });
-
-                    // }
-
-                    function nStr() {
-                        var int1 = document.getElementById('input1').value;
-                        var int2 = document.getElementById('input2').value;
-                        var n1 = parseInt(int1);
-                        var n2 = parseInt(int2);
-                        var sumx;
-                        if (sumx = n1 + n2) {
-                            $('#show').val(sumx);
-                        } else if (sumx = n1) {
-                            $('#show').val(sumx);
-                        } else if (sumx = n2) {
-                            $('#show').val(sumx);
-                        } else if (sumx = 'NaN') {
-                            $('#show').val('');
-                        }
-                        console.log(sumx)
-                    }
-                </script>
-                <script>
-                    $(document).ready(function() {
-                        $.ajax({
-                            type: "GET",
-                            url: "/profileid",
-                            contentType: "application/json; charset=utf-8",
-                            dataType: "json",
-                            success: function(msg) {
-                                console.log('ทำงานแล้ว')
-                                    // $('#id').val(msg.id);
-                                $('#repairmem').val(msg.name);
-
+                        <script>
+                            function openInNewTab(url) {
+                                var win = window.open('testreport');
+                                win.focus();
                             }
-                        });
 
-                        $.ajax({
-                            type: "GET",
-                            url: "/repairstatus",
-                            contentType: "application/json; charset=utf-8",
-                            dataType: "json",
-                            success: function(msg) {
-                                for (var i = 0; i < msg.length; i++) {
-                                    $('#repairstatus').append('<option value="' + msg[i].id + '">' + msg[i].name + '</option>');
+                            function reportreceipt(url) {
+                                var win = window.open('reportreceipt');
+                                win.focus();
+                            }
+
+                            function insertConfirm() {
+
+                                var repairBean = {
+                                    id: $('#idd').val(),
+                                    problem: $('#repairproblem').val(),
+                                    completionDate: $('#datecompletion').val(),
+                                    technician: $('#repairmem').val(),
+                                    repairDetails: $('#repairdetails').val(),
+                                    repairStatus: $('#status').val(),
+                                    spareparts: $('#input1').val(),
+                                    serviceCharge: $('#input2').val(),
+                                    sum: $('#show').val(),
                                 }
-                            }
-                        });
-                        $.ajax({
-                            type: "GET",
-                            url: "/repairtype",
-                            contentType: "application/json; charset=utf-8",
-                            dataType: "json",
-                            success: function(msg) {
-                                for (var i = 0; i < msg.length; i++) {
-                                    $('#repairtype').append('<option value="' + msg[i].initials + '">' + msg[i].name + '</option>');
-                                }
-                            }
-                        });
-                        $('#repairtype').change(function() {
-                            $('#deviceName').empty();
-                            var testBean = {
-                                "a": $('#repairtype').val()
-                            };
-                            $.ajax({
-                                type: "POST",
-                                url: "/testdevice",
-                                data: JSON.stringify(testBean),
-                                contentType: "application/json; charset=utf-8",
-                                dataType: "json",
-                                success: function(msg) {
-                                    $('#deviceName').append('<option value="">== กรุณาเลือก ==</option>');
-                                    for (var i = 0; i < msg.length; i++) {
-                                        $('#deviceName').append('<option value="' + msg[i].id + '">' + msg[i].name + '</option>');
+                                console.log(repairBean)
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/updateedit",
+                                    contentType: "application/json; charset=utf-8",
+                                    data: JSON.stringify(repairBean),
+                                    dataType: "json",
+                                    success: function(msg) {
+                                        console.log(msg)
+                                        window.location.href = msg.page;
+                                    },
+                                    error: function() {
+                                        window.location.href = "/tabel";
                                     }
-                                }
-                            });
-                        });
-                        $('#repairtype').change(function() {
-                            $('#problem').empty();
-                            var testBean = {
-                                "a": $('#repairtype').val()
-                            };
-                            $.ajax({
-                                type: "POST",
-                                url: "/problem",
-                                data: JSON.stringify(testBean),
-                                contentType: "application/json; charset=utf-8",
-                                dataType: "json",
-                                success: function(msg) {
-                                    $('#problem').append('<option value="">== กรุณาเลือก ==</option>');
-                                    for (var i = 0; i < msg.length; i++) {
-                                        $('#problem').append('<option value="' + msg[i].id + '">' + msg[i].name + '</option>');
+                                });
+                            }
+                            $(document).ready(function() {
+                                document.getElementById('idd').value;
+                                document.getElementById('custo').value;
+                                document.getElementById('deviceID').value;
+                                var testBean = {
+                                    "a": $('#custo').val(),
+                                    "b": $('#deviceID').val(),
+                                    "id": $('#idd').val(),
+                                };
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/CustomerfindById",
+                                    data: JSON.stringify(testBean),
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    success: function(msg) {
+                                        $('#customerID').append(msg.id);
+                                        $('#customerName').append(msg.name);
+                                        $('#customerAddress').append(msg.address);
+                                        $('#customePhone').append(msg.phone);
                                     }
-                                }
-                            });
-                        });
-                    });
-                </script>
-            </body>
+                                });
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/deviceID",
+                                    data: JSON.stringify(testBean),
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    success: function(msg) {
+                                        $('#deviceid').append(msg.deviceId);
+                                        $('#had').append(msg.deviceCategory);
+                                        $('#deviceCategory').append(msg.deviceCategory);
+                                        $('#devicebrand').append(msg.brand);
+                                        $('#devicegeneration').append(msg.generation);
+                                        $('#deviceserialnumber').append(msg.serialnumber);
+                                        $('#devicewarranty').append(msg.warranty);
+                                        $('#deviceprice').append(msg.price);
+                                        $('#devicenote').append(msg.note);
+                                    }
+                                });
+                                $('#status').empty();
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/repairEdit",
+                                    data: JSON.stringify(testBean),
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    success: function(msg) {
+                                        $('#repairId').append(msg.id);
+                                        $('#repairmemberId').append(msg.memberId);
+                                        $('#repairrepairDate').append(msg.repairDate);
+                                        $('#repaircompleteDate').append(msg.completeDate);
+                                        $('#repairproblem').val(msg.problem);
+                                        // $('#status').html(msg.repairStatus);
+                                        $("#status").append("<option value='" + msg.repairStatus + "'>" + msg.repairStatus + "</option>");
+                                        $('#input1').val(msg.spareparts);
+                                        $('#input2').val(msg.serviceCharge);
+                                        $('#show').val(msg.sum);
+                                        $('#repairdetails').val(msg.repairDetails);
 
-            </html>
+                                        console.log(msg)
+                                    }
+                                });
+
+                            });
+                        </script>
+                        <script>
+                            function nStr() {
+                                var int1 = document.getElementById('input1').value;
+                                var int2 = document.getElementById('input2').value;
+                                var n1 = parseInt(int1);
+                                var n2 = parseInt(int2);
+                                var sumx;
+                                if (sumx = n1 + n2) {
+                                    $('#show').val(sumx);
+                                } else if (sumx = n1) {
+                                    $('#show').val(sumx);
+                                } else if (sumx = n2) {
+                                    $('#show').val(sumx);
+                                } else if (sumx = 'NaN') {
+                                    $('#show').val('');
+                                }
+                                console.log(sumx)
+                            }
+                        </script>
+                        <script>
+                            $(document).ready(function() {
+                                $.ajax({
+                                    type: "GET",
+                                    url: "/profileid",
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    success: function(msg) {
+                                        console.log('ทำงานแล้ว')
+                                            // $('#id').val(msg.id);
+                                        $('#repairmem').val(msg.name);
+
+                                    }
+                                });
+
+                                $.ajax({
+                                    type: "GET",
+                                    url: "/repairstatus",
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    success: function(msg) {
+                                        for (var i = 0; i < msg.length; i++) {
+                                            $('#status').append('<option value="' + msg[i].name + '">' + msg[i].name + '</option>');
+                                        }
+                                    }
+                                });
+                                $.ajax({
+                                    type: "GET",
+                                    url: "/repairtype",
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    success: function(msg) {
+                                        for (var i = 0; i < msg.length; i++) {
+                                            $('#repairtype').append('<option value="' + msg[i].initials + '">' + msg[i].name + '</option>');
+                                        }
+                                    }
+                                });
+                                $('#repairtype').change(function() {
+                                    $('#deviceName').empty();
+                                    var testBean = {
+                                        "a": $('#repairtype').val()
+                                    };
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/testdevice",
+                                        data: JSON.stringify(testBean),
+                                        contentType: "application/json; charset=utf-8",
+                                        dataType: "json",
+                                        success: function(msg) {
+                                            $('#deviceName').append('<option value="">== กรุณาเลือก ==</option>');
+                                            for (var i = 0; i < msg.length; i++) {
+                                                $('#deviceName').append('<option value="' + msg[i].id + '">' + msg[i].name + '</option>');
+                                            }
+                                        }
+                                    });
+                                });
+                                $('#repairtype').change(function() {
+                                    $('#problem').empty();
+                                    var testBean = {
+                                        "a": $('#repairtype').val()
+                                    };
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/problem",
+                                        data: JSON.stringify(testBean),
+                                        contentType: "application/json; charset=utf-8",
+                                        dataType: "json",
+                                        success: function(msg) {
+                                            $('#problem').append('<option value="">== กรุณาเลือก ==</option>');
+                                            for (var i = 0; i < msg.length; i++) {
+                                                $('#problem').append('<option value="' + msg[i].id + '">' + msg[i].name + '</option>');
+                                            }
+                                        }
+                                    });
+                                });
+                            });
+                        </script>
+                    </body>
+
+                    </html>

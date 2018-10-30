@@ -5,22 +5,20 @@ import java.sql.Date;
 public class RepairBean {
 	private String id;
 	private String seq;
+	private String customerId;
+	private String deviceId;
 	private String repairDate;
-	private String customerName;
-	private Date repairComplete;
-	private String memberName;
-	private String rapairType;
-	private String deviceName;
+	private Date completeDate;
 	private String problem;
-	private String repairservice;
+	private String memberId;
 	private String repairStatus;
-	private String spareparts;
-	private String servicecharge;
-	private String sum;
-	private Date datecompletion;
-	private String memberrole;
-	private String repairdetails;
-
+	private float spareparts;
+	private float serviceCharge;
+	private float sum;
+	private String completionDate;
+	private String technician;
+	private String repairDetails;
+	
 	public String getId() {
 		return id;
 	}
@@ -37,6 +35,22 @@ public class RepairBean {
 		this.seq = seq;
 	}
 
+	public String getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
+	}
+
+	public String getDeviceId() {
+		return deviceId;
+	}
+
+	public void setDeviceId(String deviceId) {
+		this.deviceId = deviceId;
+	}
+
 	public String getRepairDate() {
 		return repairDate;
 	}
@@ -45,44 +59,12 @@ public class RepairBean {
 		this.repairDate = repairDate;
 	}
 
-	public String getCustomerName() {
-		return customerName;
+	public Date getCompleteDate() {
+		return completeDate;
 	}
 
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
-	}
-
-	public Date getRepairComplete() {
-		return repairComplete;
-	}
-
-	public void setRepairComplete(Date repairComplete) {
-		this.repairComplete = repairComplete;
-	}
-
-	public String getMemberName() {
-		return memberName;
-	}
-
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
-	}
-
-	public String getRapairType() {
-		return rapairType;
-	}
-
-	public void setRapairType(String rapairType) {
-		this.rapairType = rapairType;
-	}
-
-	public String getDeviceName() {
-		return deviceName;
-	}
-
-	public void setDeviceName(String deviceName) {
-		this.deviceName = deviceName;
+	public void setCompleteDate(Date completeDate) {
+		this.completeDate = completeDate;
 	}
 
 	public String getProblem() {
@@ -93,6 +75,14 @@ public class RepairBean {
 		this.problem = problem;
 	}
 
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+
 	public String getRepairStatus() {
 		return repairStatus;
 	}
@@ -101,60 +91,52 @@ public class RepairBean {
 		this.repairStatus = repairStatus;
 	}
 
-	public String getRepairservice() {
-		return repairservice;
-	}
-
-	public void setRepairservice(String repairservice) {
-		this.repairservice = repairservice;
-	}
-
-	public String getSpareparts() {
+	public float getSpareparts() {
 		return spareparts;
 	}
 
-	public void setSpareparts(String spareparts) {
+	public void setSpareparts(float spareparts) {
 		this.spareparts = spareparts;
 	}
 
-	public String getServicecharge() {
-		return servicecharge;
+	public float getServiceCharge() {
+		return serviceCharge;
 	}
 
-	public void setServicecharge(String servicecharge) {
-		this.servicecharge = servicecharge;
+	public void setServiceCharge(float serviceCharge) {
+		this.serviceCharge = serviceCharge;
 	}
 
-	public String getSum() {
+	public float getSum() {
 		return sum;
 	}
 
-	public void setSum(String sum) {
+	public void setSum(float sum) {
 		this.sum = sum;
 	}
 
-	public Date getDatecompletion() {
-		return datecompletion;
+	public String getCompletionDate() {
+		return completionDate;
 	}
 
-	public void setDatecompletion(Date datecompletion) {
-		this.datecompletion = datecompletion;
+	public void setCompletionDate(String completionDate) {
+		this.completionDate = completionDate;
 	}
 
-	public String getMemberrole() {
-		return memberrole;
+	public String getTechnician() {
+		return technician;
 	}
 
-	public void setMemberrole(String memberrole) {
-		this.memberrole = memberrole;
+	public void setTechnician(String technician) {
+		this.technician = technician;
 	}
 
-	public String getRepairdetails() {
-		return repairdetails;
+	public String getRepairDetails() {
+		return repairDetails;
 	}
 
-	public void setRepairdetails(String repairdetails) {
-		this.repairdetails = repairdetails;
+	public void setRepairDetails(String repairDetails) {
+		this.repairDetails = repairDetails;
 	}
 
 }

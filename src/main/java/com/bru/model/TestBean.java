@@ -5,6 +5,7 @@ public class TestBean {
 	
 	private String id;
 	private String a;
+	private String b;
 	private String idvalues;
 	public String getA() {
 		return a;
@@ -28,6 +29,14 @@ public class TestBean {
 
 	public void setIdvalues(String idvalues) {
 		this.idvalues = idvalues;
+	}
+
+	public String getB() {
+		return b;
+	}
+
+	public void setB(String b) {
+		this.b = b;
 	}
 	
 	

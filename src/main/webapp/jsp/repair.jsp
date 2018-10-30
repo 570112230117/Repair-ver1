@@ -99,7 +99,7 @@
                                                     <div class="panel panel-default card-view">
                                                         <div class="panel-heading">
                                                             <div class="pull-left">
-                                                                <h6 class="panel-title txt-dark">รายละเอียดอุปกรณ์</h6>
+                                                                <h6 class="panel-title txt-dark">รายละเอียดอุปกรณ์ : <small class="text-danger">*** กรุณากรอกข้อมูลรายละเอียดอุปกรณ์ หากไม่มีขีดเครื่องหมาย (-)</small></h6>
                                                             </div>
                                                             <div class="clearfix"></div>
                                                         </div>
@@ -110,7 +110,7 @@
                                                                         <div class="row">
                                                                             <div class="col-md-6 col-xs-12">
                                                                                 <label class="control-label mb-10 text-left">รหัสอุปกรณ์</label>
-                                                                                <input type="text " class="form-control " id="" placeholder="รหัสอุปกรณ์ ">
+                                                                                <input type="text " class="form-control " id="deviceId" placeholder="รหัสอุปกรณ์ ">
                                                                             </div>
 
                                                                             <div class="span1"></div>
@@ -141,13 +141,23 @@
                                                                         <div class="row">
                                                                             <div class="col-md-6 col-xs-12">
                                                                                 <label class="control-label mb-10 text-left">หมายเลขซีเรียล</label>
-                                                                                <input type="text" class="form-control" id="deviceNumber" placeholder="หมายเลขซีเรียล">
+                                                                                <input type="text" class="form-control" id="serialnumber" placeholder="หมายเลขซีเรียล">
                                                                             </div>
                                                                             <div class="span1"></div>
                                                                             <div class="col-md-6 col-xs-12">
                                                                                 <label class="control-label mb-10 text-left">ระยะเวลารับประกัน</label>
                                                                                 <input type="text" class="form-control" id="warranty" placeholder="ระยะเวลารับประกัน">
                                                                             </div>
+                                                                        </div>
+                                                                        <!-- /Row -->
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <div class="row">
+                                                                            <div class="col-md-6 col-xs-12">
+                                                                                <label class="control-label mb-10 text-left">ราคา</label>
+                                                                                <input type="number" class="form-control" id="price" placeholder="ราคา">
+                                                                            </div>
+                                                                            <div class="span1"></div>
                                                                         </div>
                                                                         <!-- /Row -->
                                                                     </div>
@@ -181,21 +191,6 @@
                                                                         </div>
                                                                         <!-- /Row -->
                                                                     </div>
-                                                                    <!-- <div class="form-group">
-                                                            <div class="row">
-                                                                <div class="col-md-6 col-xs-12">
-                                                                    <label class="control-label mb-10 text-left">Monitor</label>
-                                                                    <input type="text " class="form-control" id="monitor" placeholder="Monitor">
-                                                                </div>
-
-                                                                <div class="span1"></div>
-                                                                <div class="col-md-6 col-xs-12">
-                                                                    <label class="control-label mb-10 text-left">IP</label>
-                                                                    <input type="text" class="form-control" id="ip" placeholder="IP">
-                                                                </div>
-                                                            </div>
-                                                            
-                                                        </div> -->
                                                                     <div class="form-group">
                                                                         <label class="control-label mb-10 text-left">หมายเหตุ</label>
                                                                         <textarea class="form-control" rows="4" id="note"></textarea>
@@ -223,14 +218,14 @@
                                                                             <div class="form-group">
                                                                                 <div class="row">
                                                                                     <div class="col-md-6 col-xs-12">
-                                                                                        <label class="control-label mb-10">วันที่รับ:</label>
-                                                                                        <input type="text" class="form-control" id="date" disabled value="<%out.println(currentDate); %>">
+                                                                                        <label class="control-label mb-10">วันที่ / เวลารับ:</label>
+                                                                                        <input type="text" class="form-control" id="repairDate" disabled value="<%out.println(currentDate); %>">
                                                                                     </div>
 
                                                                                     <div class="span1"></div>
                                                                                     <div class="col-md-6 col-xs-12">
                                                                                         <label class="control-label mb-10 ">ประมานการซ่อมเสร็จ:</label>
-                                                                                        <input type="text" class="form-control" id="repairComplete" value="<%out.println(fromdate);%>" disabled="disabled">
+                                                                                        <input type="text" class="form-control" id="completeDate" value="<%out.println(fromdate);%>" disabled="disabled">
                                                                                     </div>
                                                                                 </div>
 
@@ -238,9 +233,9 @@
                                                                             <div class="form-group">
                                                                                 <div class="row">
                                                                                     <div class="col-md-6 col-xs-12" id="error_problem">
-                                                                                        <label class="control-label mb-10 text-left">ปัญหา:</label>
+                                                                                        <label class="control-label mb-10 text-left">อาการเสีย:</label>
                                                                                         <select class="form-control" id="problem">
-                                                                                            <option value="">== เลือกปัญหา ==</option>
+                                                                                            <option value="">== เลือกอาการเสีย ==</option>
                                                                                             </select>
                                                                                     </div>
 
@@ -256,7 +251,7 @@
                                                                                 <div class="check">
                                                                                     <input id="ch" type="checkbox" style="width: 20px; height: 20px;">
                                                                                     <label class="control-label mb-10">
-                                                                                 อื่นๆ:
+                                                                                 อาการอื่นๆ:
                                                                         </label>
                                                                                 </div>
                                                                             </div>
@@ -314,6 +309,74 @@
 
                                     <!-- JavaScript -->
                                     <script>
+                                        $.ajax({
+                                            type: "GET",
+                                            url: "/repairtype",
+                                            contentType: "application/json; charset=utf-8",
+                                            dataType: "json",
+                                            success: function(msg) {
+                                                for (var i = 0; i < msg.length; i++) {
+                                                    $('#repairtype').append('<option value="' + msg[i].initials + '">' + msg[i].name + '</option>');
+                                                }
+                                            }
+                                        });
+                                        $('#repairtype').change(function() {
+                                            $('#brand').empty();
+                                            var testBean = {
+                                                "a": $('#repairtype').val()
+                                            };
+                                            $.ajax({
+                                                type: "POST",
+                                                url: "/brand",
+                                                data: JSON.stringify(testBean),
+                                                contentType: "application/json; charset=utf-8",
+                                                dataType: "json",
+                                                success: function(msg) {
+                                                    $('#brand').append('<option value="">== เลือกยี่ห้ออุปกรณ์ ==</option>');
+                                                    for (var i = 0; i < msg.length; i++) {
+                                                        $('#brand').append('<option value="' + msg[i].name + '">' + msg[i].name + '</option>');
+                                                    }
+                                                }
+                                            });
+                                        });
+
+                                        $('#repairtype').change(function() {
+                                            $('#CPU').empty();
+                                            $('#Memory').empty();
+                                            $('#HardDisk').empty();
+                                            $('#Graphics').empty();
+                                            $('#Display').empty();
+                                            $('#OS').empty();
+
+                                            if ('NB' == $('#repairtype').val()) {
+                                                $('#1').addClass("row");
+                                                $('#2').addClass("row");
+                                                $('#3').addClass("row");
+                                                $('#CPU').append('<label class="control-label mb-10 text-left ">CPU</label><input type="text" class="form-control" placeholder="CPU" id="cpu">');
+                                                $('#Memory').append('<label class="control-label mb-10 text-left">Memory</label><input type="text" class="form-control" placeholder="Memory" id="memory">');
+                                                $('#HardDisk').append('<label class="control-label mb-10 text-left">HardDisk</label><input type="text" class="form-control"  placeholder="HardDisk" id="harddisk">');
+                                                $('#Graphics').append('<label class="control-label mb-10 text-left">Graphics</label><input type="text " class="form-control" placeholder="Graphics" id="graphics">');
+                                                $('#Display').append('<label class="control-label mb-10 text-left">Display</label><input type="text " class="form-control" placeholder="Display" id="display">');
+                                                $('#OS').append('<label class="control-label mb-10 text-left">OS</label><input type="text" class="form-control" placeholder="OS" id="os">');
+
+                                            } else if ('CS' == $('#repairtype').val()) {
+                                                $('#1').addClass("row");
+                                                $('#2').addClass("row");
+                                                $('#3').addClass("row");
+                                                $('#CPU').append('<label class="control-label mb-10 text-left ">CPU</label><input type="text" class="form-control" placeholder="CPU" id="cpu">');
+                                                $('#Memory').append('<label class="control-label mb-10 text-left">Memory</label><input type="text" class="form-control" placeholder="Memory" id="memory">');
+                                                $('#HardDisk').append('<label class="control-label mb-10 text-left">HardDisk</label><input type="text" class="form-control"  placeholder="HardDisk" id="harddisk">');
+                                                $('#Graphics').append('<label class="control-label mb-10 text-left">Graphics</label><input type="text " class="form-control" placeholder="Graphics" id="graphics">');
+                                                $('#Display').append('<label class="control-label mb-10 text-left">Display</label><input type="text " class="form-control" placeholder="Display" id="display">');
+                                                $('#OS').append('<label class="control-label mb-10 text-left">OS</label><input type="text" class="form-control" placeholder="OS" id="os">');
+
+                                            } else {
+                                                $('#1').removeClass("row");
+                                                $('#2').removeClass("row");
+                                                $('#3').removeClass("row");
+                                            }
+                                        });
+
                                         var ch = "off";
                                         problemList = "";
                                         $("#other").prop('disabled', true);
@@ -389,23 +452,20 @@
                                         function insertConfirm() {
                                             // var pass = true;
                                             // pass = test();
-
                                             var repairBean = {
-                                                    id: $('#repairtype').val(),
-                                                    repairDate: $('#date').val(),
-                                                    customerName: $('#name').val(),
-                                                    repairComplete: $('#repairComplete').val(),
-                                                    memberName: $('#member').val(),
-                                                    rapairType: $('#repairtype').val(),
-                                                    deviceName: $('#deviceName').val(),
-                                                    problem: problemList,
-
-                                                    // other: $('#other').val(),
-                                                    repairStatus: $('#repairstatus').val(),
-                                                    spareparts: $('#input1').val(),
-                                                    servicecharge: $('#input2').val(),
-                                                    sum: $('#show').val(),
-                                                }
+                                                id: $('#repairtype').val(),
+                                                customerId: $('#listcustomer').val(),
+                                                deviceId: $('#deviceId').val(),
+                                                repairDate: $('#repairDate').val(),
+                                                completeDate: $('#completeDate').val(),
+                                                problem: problemList,
+                                                memberId: $('#member').val(),
+                                                repairStatus: $('#repairstatus').val(),
+                                                spareparts: $('#input1').val(),
+                                                serviceCharge: $('#input2').val(),
+                                                sum: $('#show').val(),
+                                            }
+                                            console.log(repairBean)
                                                 // if (pass) {
                                             $.ajax({
                                                 type: "POST",
@@ -423,6 +483,42 @@
                                                 }
                                             });
                                             // }
+                                            var deviceBean = {
+                                                deviceId: $('#deviceId').val(),
+                                                deviceCategory: $('#repairtype').val(),
+                                                brand: $('#brand').val(),
+                                                generation: $('#generation').val(),
+                                                serialnumber: $('#serialnumber').val(),
+                                                warranty: $('#warranty').val(),
+                                                price: $('#price').val(),
+                                                cpu: $('#cpu').val(),
+                                                memory: $('#memory').val(),
+                                                harddisk: $('#harddisk').val(),
+                                                graphics: $('#graphics').val(),
+                                                display: $('#display').val(),
+                                                os: $('#os').val(),
+                                                note: $('#note').val(),
+                                                custromerId: $('#listcustomer').val(),
+                                                deviceDate: $('#repairDate').val(),
+
+                                            }
+                                            console.log(deviceBean)
+                                                // if (pass) {
+                                            $.ajax({
+                                                type: "POST",
+                                                url: "/insertdevice",
+                                                contentType: "application/json; charset=utf-8",
+                                                data: JSON.stringify(deviceBean),
+                                                dataType: "json",
+                                                success: function(msg) {
+                                                    console.log(msg)
+                                                    window.location.href = msg.page;
+                                                },
+                                                error: function() {
+                                                    window.location.href = "/tabel";
+
+                                                }
+                                            });
                                         }
                                         $(document).ready(function() {
                                             $.ajax({
@@ -449,7 +545,6 @@
 
                                                 }
                                             });
-
                                             $('#listcustomer').change(function() {
                                                 $('#custumer_id').empty();
                                                 $('#custumer_name').empty();
@@ -480,91 +575,6 @@
                                                     }
                                                 });
                                             });
-                                            $.ajax({
-                                                type: "GET",
-                                                url: "/repairtype",
-                                                contentType: "application/json; charset=utf-8",
-                                                dataType: "json",
-                                                success: function(msg) {
-                                                    for (var i = 0; i < msg.length; i++) {
-                                                        $('#repairtype').append('<option value="' + msg[i].initials + '">' + msg[i].name + '</option>');
-                                                    }
-                                                }
-                                            });
-                                            $('#repairtype').change(function() {
-                                                $('#brand').empty();
-                                                var testBean = {
-                                                    "a": $('#repairtype').val()
-                                                };
-                                                $.ajax({
-                                                    type: "POST",
-                                                    url: "/brand",
-                                                    data: JSON.stringify(testBean),
-                                                    contentType: "application/json; charset=utf-8",
-                                                    dataType: "json",
-                                                    success: function(msg) {
-                                                        $('#brand').append('<option value="">== เลือกยี่ห้ออุปกรณ์ ==</option>');
-                                                        for (var i = 0; i < msg.length; i++) {
-                                                            $('#brand').append('<option value="' + msg[i].name + '">' + msg[i].name + '</option>');
-                                                        }
-                                                    }
-                                                });
-                                            });
-
-                                            $('#repairtype').change(function() {
-                                                $('#CPU').empty();
-                                                $('#Memory').empty();
-                                                $('#HardDisk').empty();
-                                                $('#Graphics').empty();
-                                                $('#Display').empty();
-                                                $('#OS').empty();
-                                                if ('NB' == $('#repairtype').val()) {
-                                                    $('#1').addClass("row");
-                                                    $('#2').addClass("row");
-                                                    $('#3').addClass("row");
-                                                    $('#CPU').append('<label class="control-label mb-10 text-left ">CPU</label><input type="text" class="form-control" placeholder="CPU">');
-                                                    $('#Memory').append('<label class="control-label mb-10 text-left">Memory</label><input type="text" class="form-control" placeholder="Memory">');
-                                                    $('#HardDisk').append('<label class="control-label mb-10 text-left">HardDisk</label><input type="text" class="form-control"  placeholder="HardDisk">');
-                                                    $('#Graphics').append('<label class="control-label mb-10 text-left">Graphics</label><input type="text " class="form-control" placeholder="Graphics">');
-                                                    $('#Display').append('<label class="control-label mb-10 text-left">Display</label><input type="text " class="form-control" placeholder="Display">');
-                                                    $('#OS').append('<label class="control-label mb-10 text-left">OS</label><input type="text" class="form-control" placeholder="OS">');
-                                                } else if ('CS' == $('#repairtype').val()) {
-                                                    $('#1').addClass("row");
-                                                    $('#2').addClass("row");
-                                                    $('#3').addClass("row");
-                                                    $('#CPU').append('<label class="control-label mb-10 text-left ">CPU</label><input type="text" class="form-control" placeholder="CPU">');
-                                                    $('#Memory').append('<label class="control-label mb-10 text-left">Memory</label><input type="text" class="form-control" placeholder="Memory">');
-                                                    $('#HardDisk').append('<label class="control-label mb-10 text-left">HardDisk</label><input type="text" class="form-control"  placeholder="HardDisk">');
-                                                    $('#Graphics').append('<label class="control-label mb-10 text-left">Graphics</label><input type="text " class="form-control" placeholder="Graphics">');
-                                                    $('#Display').append('<label class="control-label mb-10 text-left">Display</label><input type="text " class="form-control" placeholder="Display">');
-                                                    $('#OS').append('<label class="control-label mb-10 text-left">OS</label><input type="text" class="form-control" placeholder="OS">');
-                                                } else {
-                                                    $('#1').removeClass("row");
-                                                    $('#2').removeClass("row");
-                                                    $('#3').removeClass("row");
-                                                }
-
-                                            });
-                                            // $('#repairtype').change(function() {
-                                            //     $('#deviceName').empty();
-                                            //     var testBean = {
-                                            //         "a": $('#repairtype').val()
-                                            //     };
-                                            //     $.ajax({
-                                            //         type: "POST",
-                                            //         url: "/testdevice",
-                                            //         data: JSON.stringify(testBean),
-                                            //         contentType: "application/json; charset=utf-8",
-                                            //         dataType: "json",
-                                            //         success: function(msg) {
-                                            //             $('#deviceName').append('<option value="">== กรุณาเลือก ==</option>');
-                                            //             for (var i = 0; i < msg.length; i++) {
-                                            //                 $('#deviceName').append('<option value="' + msg[i].name + '">' + msg[i].name + '</option>');
-                                            //             }
-                                            //         }
-                                            //     });
-                                            // });
-
                                             $('#repairtype').change(function() {
                                                 $('#problem').empty();
                                                 var testBean = {
@@ -577,7 +587,7 @@
                                                     contentType: "application/json; charset=utf-8",
                                                     dataType: "json",
                                                     success: function(msg) {
-                                                        $('#problem').append('<option value="">== กรุณาเลือก ==</option>');
+                                                        $('#problem').append('<option value="">== เลือกอาการเสีย ==</option>');
                                                         for (var i = 0; i < msg.length; i++) {
                                                             $('#problem').append('<option value="' + msg[i].name + '">' + msg[i].name + '</option>');
                                                         }

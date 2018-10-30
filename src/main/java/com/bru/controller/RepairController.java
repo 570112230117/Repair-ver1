@@ -127,7 +127,7 @@ public class RepairController {
 			throws SQLException {
 		AmnuayBean bean = new AmnuayBean();
 		bean = repairDao.editId(values);
-		request.setAttribute("repairbean", bean);
+		request.getSession().setAttribute("repairbean", bean);
 		return "repair_edit";
 	}
 
@@ -264,12 +264,15 @@ public class RepairController {
 		Map<String, String> repair = new HashMap<String, String>();
 		return repair;
 	}
-
-	@RequestMapping(path = "/updaterepairedit", method = RequestMethod.POST)
-	public String insertrepairedit(RepairBean repairBean) throws SQLException {
-		repairDao.updaterepairedit(repairBean);
-		System.out.println(repairBean.getId());
+	
+	@RequestMapping(path = "/updateedit", method = RequestMethod.POST)
+	public String updateedit(@RequestBody RepairBean repairBean) throws Exception {
+		repairDao.updateedit(repairBean);			
 		return "tabel";
 	}
-
+	@RequestMapping(path = "/updatedevice", method = RequestMethod.POST)
+	public String updatedevice(@RequestBody DeviceBean deviceBean) throws Exception {
+		deviceDao.updatedevice(deviceBean);			
+		return "tabeldevice";
+	}
 }

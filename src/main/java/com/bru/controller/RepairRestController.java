@@ -24,8 +24,10 @@ import com.bru.dao.RepairStatusDao;
 import com.bru.model.BrandBean;
 import com.bru.model.CompanyBean;
 import com.bru.model.CustomerBean;
+import com.bru.model.DeviceBean;
 import com.bru.model.MemberBean;
 import com.bru.model.ProblemBean;
+import com.bru.model.RepairBean;
 import com.bru.model.RepairStatusBean;
 import com.bru.model.RepairTypeBean;
 import com.bru.model.TabelDeviceBean;
@@ -207,6 +209,37 @@ public class RepairRestController {
 	public BrandBean BrandBeanId(@RequestBody TestBean testBean) throws SQLException {
 		BrandBean bean = new BrandBean();
 		bean = brandDao.BrandBeanId(testBean.getA());
+		return bean;
+	}
+	
+	@RequestMapping(value = "/CustomerfindById")
+	public CustomerBean membCustomerfindByIderid(@RequestBody TestBean testBean) throws SQLException {
+		CustomerBean bean = new CustomerBean();
+		bean = repairDao.CustomerfindById(testBean.getA());
+		return bean;
+	}
+	@RequestMapping(value = "/deviceID")
+	public DeviceBean deviceID(@RequestBody TestBean testBean) throws SQLException {
+		DeviceBean bean = new DeviceBean();
+		bean = deviceDao.deviceID(testBean.getB());
+		return bean;
+	}
+	@RequestMapping(value = "/repairEdit")
+	public RepairBean repairEdit(@RequestBody TestBean testBean) throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.repairEdit(testBean.getId());
+		return bean;
+	}
+	@RequestMapping(value = "/Editdevice")
+	public DeviceBean Editdevice(@RequestBody TestBean testBean) throws SQLException {
+		DeviceBean bean = new DeviceBean();
+		bean = deviceDao.findById(testBean.getA());
+		return bean;
+	}
+	@RequestMapping(value = "/Track")
+	public TabelallBean Track(@RequestBody TestBean testBean) throws SQLException {
+		TabelallBean bean = new TabelallBean();
+		bean = repairDao.Track(testBean.getA());
 		return bean;
 	}
 	// end

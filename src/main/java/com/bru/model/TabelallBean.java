@@ -9,7 +9,11 @@ public class TabelallBean {
 	private String device;
 	private String problem;
 	private String status;
-	
+	private String technician;
+	private String customerID;
+	private String spareparts;
+	private String servicecharge;
+	private String sum;
 	public String getId() {
 		return id;
 	}
@@ -51,6 +55,36 @@ public class TabelallBean {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getTechnician() {
+		return technician;
+	}
+	public void setTechnician(String technician) {
+		this.technician = technician;
+	}
+	public String getCustomerID() {
+		return customerID;
+	}
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
+	}
+	public String getSpareparts() {
+		return spareparts;
+	}
+	public void setSpareparts(String spareparts) {
+		this.spareparts = spareparts;
+	}
+	public String getServicecharge() {
+		return servicecharge;
+	}
+	public void setServicecharge(String servicecharge) {
+		this.servicecharge = servicecharge;
+	}
+	public String getSum() {
+		return sum;
+	}
+	public void setSum(String sum) {
+		this.sum = sum;
 	}
 	
 	

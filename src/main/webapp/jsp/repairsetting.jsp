@@ -212,7 +212,7 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function(msg) {
-                        console.log('ทำงานแล้ว')
+                        console.log(msg)
                         $('#aa').val(msg.id);
                         $('#bb').val(msg.name);
                         $('#repairtype').val(msg.typeName);

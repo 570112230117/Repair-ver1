@@ -100,4 +100,16 @@ public class HelloController {
 	public String brandsetting() {
 		return "brandsetting";
 	}
+	@RequestMapping(path = "/testreport", method = RequestMethod.GET)
+	public String testreport() {
+		return null;
+	}
+	@RequestMapping(path = "/reportreceipt", method = RequestMethod.GET)
+	public String reportreceipt() {
+		return null;
+	}
+	@RequestMapping(path = "/track", method = RequestMethod.GET)
+	public String track() {
+		return "Track";
+	}
 }

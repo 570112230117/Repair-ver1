@@ -6,6 +6,7 @@
     <head>
         <jsp:include page="../layout/menu.jsp"></jsp:include>
         <title>Dashboard</title>
+
         <style>
             * {
                 box-sizing: border-box
@@ -68,6 +69,7 @@
                             </div>
                         </div>
                     </div>
+
 
                     <div class="col-md-6">
                         <div class="panel panel-default card-view">

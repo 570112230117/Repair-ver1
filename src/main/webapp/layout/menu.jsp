@@ -31,7 +31,7 @@
                             <li>
                                 <a id="open_right_sidebar" href="#"><i class="zmdi zmdi-settings top-nav-icon"></i></a>
                             </li>
-                            <li class="dropdown alert-drp">
+                            <!-- <li class="dropdown alert-drp">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="zmdi zmdi-notifications top-nav-icon"></i><span class="top-nav-icon-badge">5</span></a>
                                 <ul class="dropdown-menu alert-dropdown" data-dropdown-in="bounceIn" data-dropdown-out="bounceOut">
                                     <li>
@@ -124,7 +124,7 @@
                                         </div>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> -->
                             <li class="dropdown auth-drp">
                                 <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><i class="zmdi zmdi-account-circle top-nav-icon"></i> <span class="label_user "></span><%=bean.getName() %></span>
                             <span class="caret"></span></a>

@@ -49,7 +49,7 @@
                                     <div class="col-sm-12 col-xs-12">
                                         <div class="mb-30">
                                             <div class="logo-wrap" style="text-align: center">
-                                                <img class="brand-img" style="width: 200px" src="/dist/img/TCOA1.gif" alt="brand" />
+                                                <img class="brand-img" style="width: 200px" src="/dist/img/LOGO_OA1.png" alt="brand" />
                                             </div>
                                         </div>
                                         <div class="form-wrap">

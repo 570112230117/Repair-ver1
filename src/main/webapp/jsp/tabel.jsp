@@ -34,9 +34,8 @@
                                                             <th>เลขที่ใบแจ้งซ่อม</th>
                                                             <th>วันที่รับซ่อม</th>
                                                             <th>ชื่อ - สกุล</th>
-                                                            <th>โทรศัพท์</th>
                                                             <th>ชื่ออุปกรณ์</th>
-                                                            <th>ปัญหา</th>
+                                                            <th>อาการเสีย</th>
                                                             <th>ผู้ดำเนินการซ่อม</th>
                                                             <th>สถานะ</th>
                                                             <th></th>
@@ -49,9 +48,8 @@
                                                             <th>เลขที่ใบแจ้งซ่อม</th>
                                                             <th>วันที่รับซ่อม</th>
                                                             <th>ชื่อ - สกุล</th>
-                                                            <th>โทรศัพท์</th>
                                                             <th>ชื่ออุปกรณ์</th>
-                                                            <th>ปัญหา</th>
+                                                            <th>อาการเสีย</th>
                                                             <th>ผู้ดำเนินการซ่อม</th>
                                                             <th>สถานะ</th>
                                                             <th></th>
@@ -67,6 +65,7 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- Footer -->
                 <footer class="footer container-fluid pl-30 pr-30">
                     <div class="row">
@@ -115,18 +114,16 @@
                 }, {
                     "mData": "date"
                 }, {
-                    "mData": "name"
-                }, {
-                    "mData": "phone"
+                    "mData": "",
+                    "mRender": function(data, type, full) {
+                        return '<p>' + full.name + '<br>' + full.phone + '</p>';
+                    }
                 }, {
                     "mData": "device"
                 }, {
                     "mData": "problem"
                 }, {
-                    "mData": "",
-                    "mRender": function(data, type, full) {
-                        return null;
-                    }
+                    "mData": "technician",
                 }, {
                     "mData": "",
                     "mRender": function(data, type, full) {
