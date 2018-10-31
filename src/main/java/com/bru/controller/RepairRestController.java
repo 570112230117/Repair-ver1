@@ -17,6 +17,7 @@ import com.bru.dao.BrandDao;
 import com.bru.dao.CompanyDao;
 import com.bru.dao.CustomerDao;
 import com.bru.dao.DeviceDao;
+import com.bru.dao.HistoryDao;
 import com.bru.dao.MemberDao;
 import com.bru.dao.ProblemDao;
 import com.bru.dao.RepairDao;
@@ -25,6 +26,7 @@ import com.bru.model.BrandBean;
 import com.bru.model.CompanyBean;
 import com.bru.model.CustomerBean;
 import com.bru.model.DeviceBean;
+import com.bru.model.HistoryBean;
 import com.bru.model.MemberBean;
 import com.bru.model.ProblemBean;
 import com.bru.model.RepairBean;
@@ -53,6 +55,8 @@ public class RepairRestController {
 	BrandDao brandDao;
 	@Autowired
 	DeviceDao deviceDao;
+	@Autowired
+	HistoryDao historyDao;
 	// ดรอบดาวประเภทงานซ่อม
 	@RequestMapping(value = "/repairtype")
 	public List<RepairTypeBean> appliances() throws SQLException {
@@ -240,6 +244,108 @@ public class RepairRestController {
 	public TabelallBean Track(@RequestBody TestBean testBean) throws SQLException {
 		TabelallBean bean = new TabelallBean();
 		bean = repairDao.Track(testBean.getA());
+		return bean;
+	}
+//	@RequestMapping(value = "/history")
+//	public HistoryBean history(@RequestBody TestBean testBean) throws SQLException {
+//		HistoryBean bean = new HistoryBean();
+//		bean = historyDao.findById(testBean.getA());
+//		return bean;
+//	}
+	@RequestMapping(value = "/history")
+	public List<HistoryBean> history(@RequestBody TestBean testBean) throws SQLException, ParseException {
+		List<HistoryBean> list = new ArrayList<>();
+		list = historyDao.list(testBean.getA());
+		return list;
+	}
+	@RequestMapping(value = "/COUNTC1")
+	public RepairBean COUNT1() throws SQLException {
+		RepairBean bean = new RepairBean();		
+		bean = repairDao.COUNTC1();	
+		return bean;
+	}
+	@RequestMapping(value = "/COUNTC2")
+	public RepairBean COUNTC2() throws SQLException {
+		RepairBean bean = new RepairBean();		
+		bean = repairDao.COUNTC2();	
+		return bean;
+	}
+	@RequestMapping(value = "/COUNTC3")
+	public RepairBean COUNTC3() throws SQLException {
+		RepairBean bean = new RepairBean();		
+		bean = repairDao.COUNTC3();	
+		return bean;
+	}
+	@RequestMapping(value = "/COUNTC4")
+	public RepairBean COUNTC4() throws SQLException {
+		RepairBean bean = new RepairBean();		
+		bean = repairDao.COUNTC4();	
+		return bean;
+	}
+	@RequestMapping(value = "/countNB")
+	public DeviceBean countNB() throws SQLException {
+		DeviceBean bean = new DeviceBean();		
+		bean = deviceDao.countNB();	
+		return bean;
+	}
+	@RequestMapping(value = "/countCS")
+	public DeviceBean countCS() throws SQLException {
+		DeviceBean bean = new DeviceBean();		
+		bean = deviceDao.countCS();	
+		return bean;
+	}
+	@RequestMapping(value = "/countPT")
+	public DeviceBean countPT() throws SQLException {
+		DeviceBean bean = new DeviceBean();		
+		bean = deviceDao.countPT();	
+		return bean;
+	}
+	@RequestMapping(value = "/countCY")
+	public DeviceBean countCY() throws SQLException {
+		DeviceBean bean = new DeviceBean();		
+		bean = deviceDao.countCY();	
+		return bean;
+	}
+	@RequestMapping(value = "/countMT")
+	public DeviceBean countMT() throws SQLException {
+		DeviceBean bean = new DeviceBean();		
+		bean = deviceDao.countMT();	
+		return bean;
+	}
+	@RequestMapping(value = "/countFT")
+	public DeviceBean countFT() throws SQLException {
+		DeviceBean bean = new DeviceBean();		
+		bean = deviceDao.countFT();	
+		return bean;
+	}
+	@RequestMapping(value = "/countCM")
+	public DeviceBean countCM() throws SQLException {
+		DeviceBean bean = new DeviceBean();		
+		bean = deviceDao.countCM();	
+		return bean;
+	}
+	@RequestMapping(value = "/countSK")
+	public DeviceBean countSK() throws SQLException {
+		DeviceBean bean = new DeviceBean();		
+		bean = deviceDao.countSK();	
+		return bean;
+	}
+	@RequestMapping(value = "/countTN")
+	public DeviceBean countTN() throws SQLException {
+		DeviceBean bean = new DeviceBean();		
+		bean = deviceDao.countTN();	
+		return bean;
+	}
+	@RequestMapping(value = "/countVE")
+	public DeviceBean countVE() throws SQLException {
+		DeviceBean bean = new DeviceBean();		
+		bean = deviceDao.countVE();	
+		return bean;
+	}
+	@RequestMapping(value = "/countS0")
+	public DeviceBean countS0() throws SQLException {
+		DeviceBean bean = new DeviceBean();		
+		bean = deviceDao.countS0();	
 		return bean;
 	}
 	// end

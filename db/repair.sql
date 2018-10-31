@@ -124,14 +124,15 @@ INSERT INTO `customer` (`id`, `name`, `address`, `phone`) VALUES
 	('๙๙1800003', 'บี ', 'ระกา', '(089) 898-9898'),
 	('๙๙1800005', 'ทวีกิจ', 'บุรีรัมย์', '(044) 142-5555'),
 	('๙๙1800006', 'bew', 'บุรีรัมย์', '(555) 555-5555'),
-	('๙๙1800009', 'Amornphet Talubthong', '50/30 ซอย.แสนสุข อ.เมือง จ.บุรีรัมย์ 31000', '(090) 186-9167');
+	('๙๙1800009', 'Amornphet Talubthong', '50/30 ซอย.แสนสุข อ.เมือง จ.บุรีรัมย์ 31000', '(090) 186-9167'),
+	('๙๙1800010', 'สกล กมลรัมย์', 'ประโคนชัย', '(083) 456-4748');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 
 -- Dumping structure for table repair.customer_seq
 CREATE TABLE IF NOT EXISTS `customer_seq` (
   `key` int(5) unsigned zerofill NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`key`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table repair.customer_seq: ~9 rows (approximately)
 /*!40000 ALTER TABLE `customer_seq` DISABLE KEYS */;
@@ -145,7 +146,8 @@ INSERT INTO `customer_seq` (`key`) VALUES
 	(00007),
 	(00008),
 	(00009),
-	(00010);
+	(00010),
+	(00011);
 /*!40000 ALTER TABLE `customer_seq` ENABLE KEYS */;
 
 -- Dumping structure for table repair.cy
@@ -182,12 +184,18 @@ CREATE TABLE IF NOT EXISTS `device` (
   `device_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table repair.device: ~4 rows (approximately)
+-- Dumping data for table repair.device: ~9 rows (approximately)
 /*!40000 ALTER TABLE `device` DISABLE KEYS */;
 INSERT INTO `device` (`device_id`, `device_category`, `brand`, `generation`, `serial_number`, `warranty`, `price`, `cpu`, `memory`, `harddisk`, `graphics`, `display`, `os`, `note`, `custromer_id`, `device_date`) VALUES
 	('ESD-1410019C', 'PT', 'BROTHER', 'DCP-T500W', 'E74707E7H370866', '2Y', 5290, NULL, NULL, NULL, NULL, NULL, NULL, '- - ', '๙๙1800001', '2561-10-28 22:08:54'),
 	('261879987_TH-403168073', 'NB', 'ACER', 'Inspiron 7577-W5675603STH', 'W5675603STH', '2Y-OnSite', 26990, 'Intel Core i7-7700HQ (2.80 GHz, 6 MB L3 Cache, up to 3.80 GHz)', '8 GB DDR4', '1 TB 5400 RPM + 128 GB SSD', 'NVIDIA GeForce GTX 1050Ti (4GB GDDR5)', '15.6 inch (1920x1080) Full HD', '-', '-', '๙๙1800009', '2561-10-29 19:10:03'),
-	('test', 'PT', 'BROTHER', '-', 'xxxxxx', 'xxx', 100, 'xx', 'xxx', 'xxx', 'xxx', 'xxx', 'testxxx', 'testxx', '๙๙1800006', '2561-10-30 17:20:34');
+	('test', 'PT', 'BROTHER', '-', 'xxxxxx', 'xxx', 100, 'xx', 'xxx', 'xxx', 'xxx', 'xxx', 'testxxx', 'testxx', '๙๙1800006', '2561-10-30 17:20:34'),
+	('xxxx', 'CS', 'Acer', 'xxx', 'xxx', 'xx', 109, 'xx', 'xxx', 'xxx', 'xx', 'xxx', 'xxx', 'xxx', '๙๙1800003', '2561-10-31 12:51:32'),
+	('xxx', 'NB', 'ASUS', 'xxx', 'xxx', 'xxx', 19999, 'xx', 'xxx', 'xxx', 'xxx', 'xxx', 'xxx', 'xxx', '๙๙1800003', '2561-10-31 12:53:29'),
+	('gg', 'NB', 'ACER', 'gg', 'gg', 'gg', 19990, 'gg', 'gg', 'gg', 'gg', 'gg', 'gg', 'gg', '๙๙1800001', '2561-10-31 13:29:39'),
+	('NB565456', 'NB', 'ASUS', 'ROG', 'test', '2Y', 23990, 'I7', '12GB', '1TB + SSD 120GB', 'GTX 1050', '-', '-', '--', '๙๙1800010', '2561-11-01 02:31:25'),
+	('', '', '', '', '', '', 0, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '2561-11-01 02:55:34'),
+	('aa', 'NB', 'ACER', 'aa', '', '', 0, '', '', '', '', '', '', '', '๙๙1800005', '2561-11-01 03:17:39');
 /*!40000 ALTER TABLE `device` ENABLE KEYS */;
 
 -- Dumping structure for table repair.ft
@@ -244,7 +252,7 @@ INSERT INTO `mt` (`key`) VALUES
 CREATE TABLE IF NOT EXISTS `nb` (
   `key` int(5) unsigned zerofill NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`key`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table repair.nb: ~40 rows (approximately)
 /*!40000 ALTER TABLE `nb` DISABLE KEYS */;
@@ -295,7 +303,12 @@ INSERT INTO `nb` (`key`) VALUES
 	(00044),
 	(00045),
 	(00046),
-	(00047);
+	(00047),
+	(00048),
+	(00049),
+	(00050),
+	(00051),
+	(00052);
 /*!40000 ALTER TABLE `nb` ENABLE KEYS */;
 
 -- Dumping structure for table repair.problem
@@ -389,22 +402,51 @@ CREATE TABLE IF NOT EXISTS `repair` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table repair.repair: ~3 rows (approximately)
+-- Dumping data for table repair.repair: ~6 rows (approximately)
 /*!40000 ALTER TABLE `repair` DISABLE KEYS */;
 INSERT INTO `repair` (`id`, `customer_id`, `device_id`, `repair_date`, `complete_date`, `problem`, `member_id`, `repair_status`, `spareparts`, `servicecharge`, `sum`, `completion_date`, `technician`, `repair_details`) VALUES
 	('NB1800045', '๙๙1800009', '261879987_TH-403168073', '2561-10-29 19:10:03', '2561-11-05', 'ลงวินโดร์ 10', 'Admin', 'แจ้งซ่อม', 0, 0, 0, NULL, NULL, NULL),
-	('PT1800004', '๙๙1800001', 'ESD-1410019C', '2561-10-28 22:08:54', '2561-11-04', 'test', 'Admin', 'ซ่อมสำเร็จ', 100, 1, 101, '2561-10-29 22:02:39', 'Admin', 'xxxxxx');
+	('NB1800048', '๙๙1800003', 'xxx', '2561-10-31 12:53:29', '2561-11-07', 'จอฟ้าา', 'Admin', 'ซ่อมสำเร็จ', 0, 0, 400, '2561-11-01 02:29:01', 'Admin', 'ดำเนินการซ่อม'),
+	('NB1800049', '๙๙1800001', 'gg', '2561-10-31 13:29:39', '2561-11-07', 'เครื่องแฮงค์', 'Admin', 'อยู่ระหว่างซ่อม', 0, 0, 0, '2561-10-31 13:30:30', 'Admin', 'กำลังซ่อม'),
+	('NB1800050', '๙๙1800010', 'NB565456', '2561-11-01 02:31:25', '2561-11-08', 'เครื่องค้าง', 'Admin', 'ซ่อมสำเร็จ', 0, 400, 400, '2561-11-01 02:34:52', 'Admin', 'ล้างเครื่อง'),
+	('PT1800004', '๙๙1800001', 'ESD-1410019C', '2561-10-28 22:08:54', '2561-11-04', 'test', 'Admin', 'แจ้งซ่อม', 100, 1, 101, '2561-10-29 22:02:39', 'Admin', 'xxxxxx');
 /*!40000 ALTER TABLE `repair` ENABLE KEYS */;
 
--- Dumping structure for table repair.repair_detail
-CREATE TABLE IF NOT EXISTS `repair_detail` (
-  `id` char(50) NOT NULL,
+-- Dumping structure for table repair.repair_history
+CREATE TABLE IF NOT EXISTS `repair_history` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `repair_id` char(50) DEFAULT NULL,
+  `customer_id` char(50) DEFAULT NULL,
+  `device_id` char(50) DEFAULT NULL,
+  `repair_date` datetime DEFAULT NULL,
+  `complete_date` date DEFAULT NULL,
+  `problem` text,
+  `member_id` varchar(50) DEFAULT NULL,
+  `repair_status` varchar(50) DEFAULT NULL,
+  `spareparts` float DEFAULT '0',
+  `servicecharge` float DEFAULT '0',
+  `sum` float DEFAULT '0',
+  `completion` datetime DEFAULT NULL,
+  `technician` varchar(50) DEFAULT '',
+  `repair_details` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
--- Dumping data for table repair.repair_detail: ~0 rows (approximately)
-/*!40000 ALTER TABLE `repair_detail` DISABLE KEYS */;
-/*!40000 ALTER TABLE `repair_detail` ENABLE KEYS */;
+-- Dumping data for table repair.repair_history: ~11 rows (approximately)
+/*!40000 ALTER TABLE `repair_history` DISABLE KEYS */;
+INSERT INTO `repair_history` (`id`, `repair_id`, `customer_id`, `device_id`, `repair_date`, `complete_date`, `problem`, `member_id`, `repair_status`, `spareparts`, `servicecharge`, `sum`, `completion`, `technician`, `repair_details`) VALUES
+	(4, 'NB1800048', '๙๙1800003', 'xxx', '2561-10-31 12:53:29', '2561-11-07', 'จอฟ้าา', 'Admin', 'แจ้งซ่อม', 0, 0, 0, '2561-10-31 12:53:29', ' ', NULL),
+	(5, 'NB1800048', '๙๙1800003', 'xxx', '2561-10-31 12:53:29', '2561-11-07', 'จอฟ้าา', 'Admin', 'อยู่ระหว่างซ่อม', 0, 0, 0, '2561-10-31 13:23:43', 'Admin', ''),
+	(6, 'NB1800048', '๙๙1800003', 'xxx', '2561-10-31 12:53:29', '2561-11-07', 'จอฟ้าา', 'Admin', 'เช็คเครื่องเช็คระบบ 400 บาท', 0, 0, 0, '2561-10-31 13:26:10', 'Admin', ''),
+	(7, 'NB1800048', '๙๙1800003', 'xxx', '2561-10-31 12:53:29', '2561-11-07', 'จอฟ้าา', 'Admin', 'อนุมัติซ่อม', 0, 0, 0, '2561-10-31 13:27:12', 'Admin', 'ดำเนินการซ่อม'),
+	(8, 'NB1800049', '๙๙1800001', 'gg', '2561-10-31 13:29:39', '2561-11-07', 'เครื่องแฮงค์', 'Admin', 'แจ้งซ่อม', 0, 0, 0, '2561-10-31 13:29:39', ' ', NULL),
+	(9, 'NB1800049', '๙๙1800001', 'gg', '2561-10-31 13:29:39', '2561-11-07', 'เครื่องแฮงค์', 'Admin', 'อยู่ระหว่างซ่อม', 0, 0, 0, '2561-10-31 13:30:30', 'Admin', 'กำลังซ่อม'),
+	(10, 'NB1800048', '๙๙1800003', 'xxx', '2561-10-31 12:53:29', '2561-11-07', 'จอฟ้าา', 'Admin', 'เช็คเครื่องเช็คระบบ 400 บาท', 0, 400, 0, '2561-10-31 23:47:44', 'Admin', 'ดำเนินการซ่อม'),
+	(11, 'NB1800048', '๙๙1800003', 'xxx', '2561-10-31 12:53:29', '2561-11-07', 'จอฟ้าา', 'Admin', 'ซ่อมสำเร็จ', 0, 0, 400, '2561-11-01 02:29:01', 'Admin', 'ดำเนินการซ่อม'),
+	(12, 'NB1800050', '๙๙1800010', 'NB565456', '2561-11-01 02:31:25', '2561-11-08', 'เครื่องค้าง', 'Admin', 'แจ้งซ่อม', 0, 0, 0, '2561-11-01 02:31:25', ' ', NULL),
+	(13, 'NB1800050', '๙๙1800010', 'NB565456', '2561-11-01 02:31:25', '2561-11-08', 'เครื่องค้าง', 'Admin', 'อยู่ระหว่างซ่อม', 0, 0, 0, '2561-11-01 02:33:42', 'Admin', ''),
+	(14, 'NB1800050', '๙๙1800010', 'NB565456', '2561-11-01 02:31:25', '2561-11-08', 'เครื่องค้าง', 'Admin', 'ซ่อมสำเร็จ', 0, 400, 400, '2561-11-01 02:34:52', 'Admin', 'ล้างเครื่อง');
+/*!40000 ALTER TABLE `repair_history` ENABLE KEYS */;
 
 -- Dumping structure for table repair.repair_status
 CREATE TABLE IF NOT EXISTS `repair_status` (

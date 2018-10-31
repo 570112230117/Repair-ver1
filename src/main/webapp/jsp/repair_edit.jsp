@@ -11,6 +11,8 @@
                         <jsp:include page="../layout/menu.jsp"></jsp:include>
                         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                         <title>แก้ไขใบแจ้งซ่อม</title>
+                        <!--alerts CSS -->
+                        <link href="vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
                         <% AmnuayBean bean = null;
         bean = (AmnuayBean) request.getSession().getAttribute("repairbean");
         %>
@@ -333,7 +335,9 @@
                                 <!-- /Footer -->
                             </div>
                         </div>
-
+                        <input type="hidden" id="historyrepairDate">
+                        <input type="hidden" id="historymemberId">
+                        <input type="hidden" id="historcompleteDate">
                         <script>
                             function openInNewTab(url) {
                                 var win = window.open('testreport');
@@ -357,22 +361,43 @@
                                     spareparts: $('#input1').val(),
                                     serviceCharge: $('#input2').val(),
                                     sum: $('#show').val(),
+                                    //
+
+                                    customerId: $('#custo').val(),
+                                    deviceId: $('#deviceID').val(),
+                                    repairDate: $('#historyrepairDate').val(),
+                                    memberId: $('#historymemberId').val(),
+                                    completeDate: $('#historcompleteDate').val(),
+
                                 }
                                 console.log(repairBean)
-                                $.ajax({
-                                    type: "POST",
-                                    url: "/updateedit",
-                                    contentType: "application/json; charset=utf-8",
-                                    data: JSON.stringify(repairBean),
-                                    dataType: "json",
-                                    success: function(msg) {
-                                        console.log(msg)
-                                        window.location.href = msg.page;
-                                    },
-                                    error: function() {
-                                        window.location.href = "/tabel";
-                                    }
+                                swal({
+                                    title: "Ajax request example",
+                                    text: "Submit to run ajax request",
+                                    type: "info",
+                                    showCancelButton: true,
+                                    closeOnConfirm: false,
+                                    showLoaderOnConfirm: true
+                                }, function() {
+                                    setTimeout(function() {
+                                        swal("Ajax request finished!");
+                                    }, 2000);
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/updateedit",
+                                        contentType: "application/json; charset=utf-8",
+                                        data: JSON.stringify(repairBean),
+                                        dataType: "json",
+                                        success: function(msg) {
+                                            console.log(msg)
+                                            window.location.href = msg.page;
+                                        },
+                                        error: function() {
+                                            window.location.href = "/tabel";
+                                        }
+                                    });
                                 });
+
                             }
                             $(document).ready(function() {
                                 document.getElementById('idd').value;
@@ -433,7 +458,10 @@
                                         $('#input2').val(msg.serviceCharge);
                                         $('#show').val(msg.sum);
                                         $('#repairdetails').val(msg.repairDetails);
-
+                                        //
+                                        $('#historyrepairDate').val(msg.repairDate);
+                                        $('#historymemberId').val(msg.memberId);
+                                        $('#historcompleteDate').val(msg.completeDate);
                                         console.log(msg)
                                     }
                                 });
@@ -536,6 +564,8 @@
                                 });
                             });
                         </script>
+                        <!-- Sweet-Alert  -->
+                        <script src="vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
                     </body>
 
                     </html>

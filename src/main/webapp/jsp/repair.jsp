@@ -108,7 +108,7 @@
                                                                 <div class="form-wrap ">
                                                                     <div class="form-group">
                                                                         <div class="row">
-                                                                            <div class="col-md-6 col-xs-12">
+                                                                            <div class="col-md-6 col-xs-12" id="error_deviceId">
                                                                                 <label class="control-label mb-10 text-left">รหัสอุปกรณ์</label>
                                                                                 <input type="text " class="form-control " id="deviceId" placeholder="รหัสอุปกรณ์ ">
                                                                             </div>
@@ -124,14 +124,14 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <div class="row">
-                                                                            <div class="col-md-6 col-xs-12">
+                                                                            <div class="col-md-6 col-xs-12" id="error_brand">
                                                                                 <label class="control-label mb-10 text-left">ยี่ห้ออุปกรณ์</label>
                                                                                 <select class="form-control" id="brand">
                                                                                         <option value="">== เลือกยี่ห้ออุปกรณ์ ==</option>
                                                                                         </select>
                                                                             </div>
                                                                             <div class="span1"></div>
-                                                                            <div class="col-md-6 col-xs-12">
+                                                                            <div class="col-md-6 col-xs-12" id="error_generation">
                                                                                 <label class="control-label mb-10 text-left">รุ่นอุปกรณ์</label>
                                                                                 <input type="text" class="form-control" id="generation" placeholder="รุ่นอุปกรณ์">
                                                                             </div>
@@ -421,25 +421,39 @@
 
                                         function test() {
                                             var pass = true;
-                                            if ('== เลือกผู้แจ้ง ==' == $('#name').val()) {
+                                            if ('' == $('#listcustomer').val()) {
                                                 $('#error_name').addClass("has-error has-danger")
                                                 var pass = false;
+                                                console.log("if")
                                             } else {
                                                 $('#error_name').removeClass("has-error has-danger")
+                                                console.log("else")
                                             }
-                                            if ('== กรุณาเลือก ==' == $('#repairtype').val()) {
+                                            if ('' == $('#deviceId').val()) {
+                                                $('#error_deviceId').addClass("has-error has-danger")
+                                                var pass = false;
+                                            } else {
+                                                $('#error_deviceId').removeClass("has-error has-danger")
+                                            }
+                                            if ('' == $('#repairtype').val()) {
                                                 $('#error_repairtype').addClass("has-error has-danger")
                                                 var pass = false;
                                             } else {
                                                 $('#error_repairtype').removeClass("has-error has-danger")
                                             }
-                                            if ('== กรุณาเลือก ==' == $('#problem').val()) {
-                                                $('#error_problem').addClass("has-error has-danger")
+                                            if ('' == $('#brand').val()) {
+                                                $('#error_brand').addClass("has-error has-danger")
                                                 var pass = false;
                                             } else {
-                                                $('#error_problem').removeClass("has-error has-danger")
+                                                $('#error_brand').removeClass("has-error has-danger")
                                             }
-                                            if ('== กรุณาเลือก ==' == $('#repairstatus').val()) {
+                                            if ('' == $('#generation').val()) {
+                                                $('#error_generation').addClass("has-error has-danger")
+                                                var pass = false;
+                                            } else {
+                                                $('#error_generation').removeClass("has-error has-danger")
+                                            }
+                                            if ('' == $('#repairstatus').val()) {
                                                 $('#error_repairstatus').addClass("has-error has-danger")
                                                 var pass = false;
                                             } else {
@@ -450,8 +464,9 @@
                                         }
 
                                         function insertConfirm() {
-                                            // var pass = true;
-                                            // pass = test();
+                                            var pass = true;
+                                            pass = test();
+
                                             var repairBean = {
                                                 id: $('#repairtype').val(),
                                                 customerId: $('#listcustomer').val(),
@@ -465,60 +480,61 @@
                                                 serviceCharge: $('#input2').val(),
                                                 sum: $('#show').val(),
                                             }
-                                            console.log(repairBean)
-                                                // if (pass) {
-                                            $.ajax({
-                                                type: "POST",
-                                                url: "/insertrepair",
-                                                contentType: "application/json; charset=utf-8",
-                                                data: JSON.stringify(repairBean),
-                                                dataType: "json",
-                                                success: function(msg) {
-                                                    console.log(msg)
-                                                    window.location.href = msg.page;
-                                                },
-                                                error: function() {
-                                                    window.location.href = "/tabel";
 
-                                                }
-                                            });
-                                            // }
-                                            var deviceBean = {
-                                                deviceId: $('#deviceId').val(),
-                                                deviceCategory: $('#repairtype').val(),
-                                                brand: $('#brand').val(),
-                                                generation: $('#generation').val(),
-                                                serialnumber: $('#serialnumber').val(),
-                                                warranty: $('#warranty').val(),
-                                                price: $('#price').val(),
-                                                cpu: $('#cpu').val(),
-                                                memory: $('#memory').val(),
-                                                harddisk: $('#harddisk').val(),
-                                                graphics: $('#graphics').val(),
-                                                display: $('#display').val(),
-                                                os: $('#os').val(),
-                                                note: $('#note').val(),
-                                                custromerId: $('#listcustomer').val(),
-                                                deviceDate: $('#repairDate').val(),
+                                            if (pass) {
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: "/insertrepair",
+                                                    contentType: "application/json; charset=utf-8",
+                                                    data: JSON.stringify(repairBean),
+                                                    dataType: "json",
+                                                    success: function(msg) {
+                                                        console.log(msg)
+                                                        window.location.href = msg.page;
+                                                    },
+                                                    error: function() {
+                                                        window.location.href = "/tabel";
 
+                                                    }
+                                                });
                                             }
-                                            console.log(deviceBean)
-                                                // if (pass) {
-                                            $.ajax({
-                                                type: "POST",
-                                                url: "/insertdevice",
-                                                contentType: "application/json; charset=utf-8",
-                                                data: JSON.stringify(deviceBean),
-                                                dataType: "json",
-                                                success: function(msg) {
-                                                    console.log(msg)
-                                                    window.location.href = msg.page;
-                                                },
-                                                error: function() {
-                                                    window.location.href = "/tabel";
-
+                                            //
+                                            var deviceBean = {
+                                                    deviceId: $('#deviceId').val(),
+                                                    deviceCategory: $('#repairtype').val(),
+                                                    brand: $('#brand').val(),
+                                                    generation: $('#generation').val(),
+                                                    serialnumber: $('#serialnumber').val(),
+                                                    warranty: $('#warranty').val(),
+                                                    price: $('#price').val(),
+                                                    cpu: $('#cpu').val(),
+                                                    memory: $('#memory').val(),
+                                                    harddisk: $('#harddisk').val(),
+                                                    graphics: $('#graphics').val(),
+                                                    display: $('#display').val(),
+                                                    os: $('#os').val(),
+                                                    note: $('#note').val(),
+                                                    custromerId: $('#listcustomer').val(),
+                                                    deviceDate: $('#repairDate').val(),
                                                 }
-                                            });
+                                                // console.log(deviceBean)
+                                                //
+                                            if (pass) {
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: "/insertdevice",
+                                                    contentType: "application/json; charset=utf-8",
+                                                    data: JSON.stringify(deviceBean),
+                                                    dataType: "json",
+                                                    success: function(msg) {
+                                                        console.log(msg)
+                                                        window.location.href = msg.page;
+                                                    },
+                                                    error: function() {
+                                                        window.location.href = "/tabel";
+                                                    }
+                                                });
+                                            }
                                         }
                                         $(document).ready(function() {
                                             $.ajax({

@@ -187,6 +187,7 @@ public class RepairController {
 			repairDao.nb(b);
 			repairBean.setSeq(bean.getNbBean());
 			repairDao.insertrepair(repairBean);
+			repairDao.history(repairBean);
 		} else if (repairBean.getId().equals("CS")) {
 			bean = repairDao.cs();
 			int a = Integer.parseInt(bean.getCsBean());
@@ -194,6 +195,7 @@ public class RepairController {
 			repairDao.cs(b);
 			repairBean.setSeq(bean.getCsBean());
 			repairDao.insertrepair(repairBean);
+			repairDao.history(repairBean);
 		} else if (repairBean.getId().equals("PT")) {
 			bean = repairDao.pt();
 			int a = Integer.parseInt(bean.getPtBean());
@@ -201,6 +203,7 @@ public class RepairController {
 			repairDao.pt(b);
 			repairBean.setSeq(bean.getPtBean());
 			repairDao.insertrepair(repairBean);
+			repairDao.history(repairBean);
 		} else if (repairBean.getId().equals("CY")) {
 			bean = repairDao.cy();
 			int a = Integer.parseInt(bean.getCybean());
@@ -208,6 +211,7 @@ public class RepairController {
 			repairDao.cy(b);
 			repairBean.setSeq(bean.getCybean());
 			repairDao.insertrepair(repairBean);
+			repairDao.history(repairBean);
 		} else if (repairBean.getId().equals("MT")) {
 			bean = repairDao.mt();
 			int a = Integer.parseInt(bean.getMtBean());
@@ -215,6 +219,7 @@ public class RepairController {
 			repairDao.mt(b);
 			repairBean.setSeq(bean.getMtBean());
 			repairDao.insertrepair(repairBean);
+			repairDao.history(repairBean);
 		} else if (repairBean.getId().equals("FT")) {
 			bean = repairDao.ft();
 			int a = Integer.parseInt(bean.getFtbean());
@@ -222,6 +227,7 @@ public class RepairController {
 			repairDao.ft(b);
 			repairBean.setSeq(bean.getFtbean());
 			repairDao.insertrepair(repairBean);
+			repairDao.history(repairBean);
 		} else if (repairBean.getId().equals("CM")) {
 			bean = repairDao.cm();
 			int a = Integer.parseInt(bean.getCmbean());
@@ -229,6 +235,7 @@ public class RepairController {
 			repairDao.cm(b);
 			repairBean.setSeq(bean.getCmbean());
 			repairDao.insertrepair(repairBean);
+			repairDao.history(repairBean);
 		} else if (repairBean.getId().equals("SK")) {
 			bean = repairDao.sk();
 			int a = Integer.parseInt(bean.getSkbean());
@@ -236,6 +243,7 @@ public class RepairController {
 			repairDao.sk(b);
 			repairBean.setSeq(bean.getSkbean());
 			repairDao.insertrepair(repairBean);
+			repairDao.history(repairBean);
 		} else if (repairBean.getId().equals("TN")) {
 			bean = repairDao.tn();
 			int a = Integer.parseInt(bean.getTnbean());
@@ -243,6 +251,7 @@ public class RepairController {
 			repairDao.tn(b);
 			repairBean.setSeq(bean.getTnbean());
 			repairDao.insertrepair(repairBean);
+			repairDao.history(repairBean);
 		} else if (repairBean.getId().equals("VE")) {
 			bean = repairDao.ve();
 			int a = Integer.parseInt(bean.getVebean());
@@ -250,6 +259,7 @@ public class RepairController {
 			repairDao.ve(b);
 			repairBean.setSeq(bean.getVebean());
 			repairDao.insertrepair(repairBean);
+			repairDao.history(repairBean);
 		} else if (repairBean.getId().equals("S0")) {
 			bean = repairDao.s0();
 			int a = Integer.parseInt(bean.getS0bean());
@@ -257,9 +267,12 @@ public class RepairController {
 			repairDao.s0(b);
 			repairBean.setSeq(bean.getS0bean());
 			repairDao.insertrepair(repairBean);
+			repairDao.history(repairBean);
 		} else {
 			repairBean.setId("??");
+			repairBean.setSeq("?????");
 			repairDao.insertrepair(repairBean);
+			repairDao.history(repairBean);
 		}
 		Map<String, String> repair = new HashMap<String, String>();
 		return repair;
@@ -267,7 +280,8 @@ public class RepairController {
 	
 	@RequestMapping(path = "/updateedit", method = RequestMethod.POST)
 	public String updateedit(@RequestBody RepairBean repairBean) throws Exception {
-		repairDao.updateedit(repairBean);			
+		repairDao.updateedit(repairBean);
+		repairDao.history1(repairBean);
 		return "tabel";
 	}
 	@RequestMapping(path = "/updatedevice", method = RequestMethod.POST)

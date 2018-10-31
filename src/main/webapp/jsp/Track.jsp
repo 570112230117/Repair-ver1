@@ -129,12 +129,19 @@
 
         <script>
             function check() {
-                // $('#alert').empty();
-                // $('#purchase').empty();
-                // $('#productcode').empty();
-                // $('#productname').empty();
-                // $('#serial').empty();
-                // $('#warranty').empty();
+                $('#id').empty();
+                $('#date').empty();
+                $('#customerID').empty();
+                $('#productname').empty();
+                $('#name').empty();
+                $('#phone').empty();
+                $('#device').empty();
+                $('#problem').empty();
+                $('#technician').empty();
+                $('#status').empty();
+                $('#spareparts').empty();
+                $('#servicecharge').empty();
+                $('#sum').empty();
                 var testBean = {
                     "a": $('#track').val()
                 };

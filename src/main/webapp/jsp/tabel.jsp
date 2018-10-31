@@ -66,6 +66,27 @@
                     </div>
                 </div>
 
+                <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog" style="width: 70%">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">ประวัติการทำรายการ</h4>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-bordered" id="ta">
+
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- Footer -->
                 <footer class="footer container-fluid pl-30 pr-30">
                     <div class="row">
@@ -85,16 +106,37 @@
             var testBean = {
                 "a": $('#xx').val()
             };
-            // $.ajax({
-            //     type: "POST",
-            //     url: "",
-            //     data: JSON.stringify(testBean),
-            //     contentType: "application/json; charset=utf-8",
-            //     dataType: "json",
-            //     success: function(msg) {
-            //         console.log('ทำงานแล้ว')
-            //     }
-            // });
+            console.log(testBean)
+            $('#ta').empty();
+            $.ajax({
+                type: "POST",
+                url: "/history",
+                data: JSON.stringify(testBean),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(msg) {
+                    console.log(msg)
+                    var table = '';
+                    table += '<tr>';
+                    table += '<th class="text-center">วันที่ทำรายการ</th>';
+                    table += '<th class="text-center">สถานะ</th>';
+                    table += '<th class="text-center">รวมค่าบริการ</th>';
+                    table += '<th class="text-center">ผู้ดำเนินการ</th>';
+                    table += '/<tr>';
+                    for (var i = 0; i < msg.length; i++) {
+
+                        table += '<tr class="text-center">';
+                        table += '<td>' + msg[i].completionDate + '</td>';
+                        table += '<td>' + msg[i].repairStatus + '</td>';
+                        table += '<td>' + msg[i].sum + '</td>';
+                        table += '<td>' + msg[i].technician + '</td>';
+                        table += '</tr>';
+
+                    }
+                    $('#ta').append(table);
+
+                }
+            });
         };
 
 
@@ -137,7 +179,7 @@
                 }, {
                     "mData": "",
                     "mRender": function(data, type, full) {
-                        return '<a class="btn btn-info btn-xs"><span class="icon-list"></span></a>';
+                        return '<a onclick="gotoUpdate(' + "'" + full.id + "'" + ')" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal"><span class="icon-list"></span></a>';
                     }
                 }]
             })
