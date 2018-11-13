@@ -10,17 +10,6 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.1/css/all.css' integrity='sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz' crossorigin='anonymous'>
-        <style>
-            html,
-            body,
-            h1,
-            h2,
-            h3,
-            h4,
-            h5 {
-                font-family: "Raleway", sans-serif
-            }
-        </style>
     </head>
 
     <body>
@@ -68,9 +57,22 @@
                             <h4 style="color: white">รอเสนอราคา</h4>
                         </div>
                     </div>
-
                 </div>
-                <br>
+
+                <div class="w3-row-padding w3-margin-bottom">
+                    <div class="w3-quarter">
+                        <div class="w3-container w3-pink  w3-text-white w3-padding-16">
+                            <div class="w3-left"><i class="fa fa-paper-plane w3-xxxlarge"></i></div>
+                            <div class="w3-right">
+                                <h3 style="color: white" id="5"></h3>
+                            </div>
+                            <div class="w3-clear"></div>
+                            <h4 style="color: white">ส่งคืน</h4>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="w3-panel">
                     <div class="w3-row-padding" style="margin:0 -16px">
                         <div class="w3-third" style="margin-top: 3%">
@@ -190,7 +192,15 @@
                             $('#4').append(msg.repairStatus);
                         }
                     });
-                    var int2;
+                    $.ajax({
+                        type: "GET",
+                        url: "/COUNTC5",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function(msg) {
+                            $('#5').append(msg.repairStatus);
+                        }
+                    });
                     $.ajax({
                         type: "GET",
                         url: "/countNB",

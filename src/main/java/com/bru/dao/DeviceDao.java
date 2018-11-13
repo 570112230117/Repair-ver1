@@ -24,24 +24,23 @@ public class DeviceDao {
 		Connection conn = con.openConnect();
 		try {
 			sql.append(
-					" INSERT INTO device (device_id,device_category,brand,generation,serial_number,warranty,price,cpu,memory,harddisk,graphics,display,os,note,custromer_id,device_date) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+					" INSERT INTO device (serial_number,device_category,brand,generation,warranty,price,cpu,memory,harddisk,graphics,display,os,note,custromer_id,device_date) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			prepared = conn.prepareStatement(sql.toString());
-			prepared.setString(1, bean.getDeviceId());
+			prepared.setString(1, bean.getSerialnumber());
 			prepared.setString(2, bean.getDeviceCategory());
 			prepared.setString(3, bean.getBrand());
 			prepared.setString(4, bean.getGeneration());
-			prepared.setString(5, bean.getSerialnumber());
-			prepared.setString(6, bean.getWarranty());
-			prepared.setFloat(7, bean.getPrice());
-			prepared.setString(8, bean.getCpu());
-			prepared.setString(9, bean.getMemory());
-			prepared.setString(10, bean.getHarddisk());
-			prepared.setString(11, bean.getGraphics());
-			prepared.setString(12, bean.getDisplay());
-			prepared.setString(13, bean.getOs());
-			prepared.setString(14, bean.getNote());
-			prepared.setString(15, bean.getCustromerId());
-			prepared.setString(16, bean.getDeviceDate());
+			prepared.setString(5, bean.getWarranty());
+			prepared.setFloat(6, bean.getPrice());
+			prepared.setString(7, bean.getCpu());
+			prepared.setString(8, bean.getMemory());
+			prepared.setString(9, bean.getHarddisk());
+			prepared.setString(10, bean.getGraphics());
+			prepared.setString(11, bean.getDisplay());
+			prepared.setString(12, bean.getOs());
+			prepared.setString(13, bean.getNote());
+			prepared.setString(14, bean.getCustromerId());
+			prepared.setString(15, bean.getDeviceDate());
 			prepared.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -62,17 +61,19 @@ public class DeviceDao {
 
 		try {
 			sql.append(
-					"SELECT d.device_id, d.serial_number ,  CONCAT(\"รหัสลูกค้า : \" , d.custromer_id , \" คุณ : \" , c.name) AS customerName ,  CONCAT(rt.name ,\"  \", d.brand ,\" รุ่น \", d.generation) AS deviceconcat\r\n"
-							+ "FROM device d\r\n" + "INNER JOIN repair_type rt ON d.device_category = rt.initials\r\n"
-							+ "INNER JOIN customer c ON d.custromer_id = c.id;");
+					"SELECT d.id , d.custromer_id , c.name , c.phone ,  d.serial_number , CONCAT(d.device_category , \" ยี่ห้อ \", d.brand , \" รุ่น \"  , d.generation) AS devicename\r\n"
+							+ "FROM device d\r\n" + "INNER JOIN customer c ON d.custromer_id = c.id\r\n"
+							+ "ORDER BY d.id DESC");
 			prepared = conn.prepareStatement(sql.toString());
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
 				bean = new TabelDeviceBean();
-				bean.setId(rs.getString("d.device_id"));
-				bean.setDevice(rs.getString("deviceconcat"));
+				bean.setId(rs.getString("d.id"));
+				bean.setcID(rs.getString("d.custromer_id"));
+				bean.setcName(rs.getString("c.name"));
+				bean.setcPhone(rs.getString("c.phone"));
 				bean.setSerialnumber(rs.getString("d.serial_number"));
-				bean.setCustomer(rs.getString("customerName"));
+				bean.setDeviceName(rs.getString("devicename"));
 
 				list.add(bean);
 			}
@@ -113,6 +114,35 @@ public class DeviceDao {
 		return list;
 	}
 
+	public List<TestDeviceBean> dropdown() throws SQLException {
+		List<TestDeviceBean> list = new ArrayList<>();
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		TestDeviceBean bean = new TestDeviceBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(
+					"SELECT d.id , CONCAT(\"(\" , d.serial_number,\")\", \" - \", d.device_category , \" ยี่ห้อ \" , d.brand , \" รุ่น \" , d.generation) AS name\r\n"
+							+ "FROM device d\r\n" + "ORDER BY d.id DESC");
+			prepared = conn.prepareStatement(sql.toString());
+
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new TestDeviceBean();
+				bean.setId(rs.getInt("d.id"));
+				bean.setName(rs.getString("name"));
+				list.add(bean);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return list;
+	}
+
 	public DeviceBean deviceID(String id) throws SQLException {
 		ConnectDB con = new ConnectDB();
 		PreparedStatement prepared = null;
@@ -120,26 +150,24 @@ public class DeviceDao {
 		DeviceBean bean = new DeviceBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append("SELECT d.* , rt.name\r\n" + "FROM device d\r\n"
-					+ "INNER JOIN repair_type rt ON d.device_category = rt.initials\r\n" + "WHERE device_id = ? ;");
+			sql.append("SELECT * FROM device WHERE id = ?");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, id);
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
-				bean.setDeviceId(rs.getString("d.device_id"));
-				bean.setDeviceCategory(rs.getString("rt.name"));
-				bean.setBrand(rs.getString("d.brand"));
-				bean.setGeneration(rs.getString("d.generation"));
-				bean.setSerialnumber(rs.getString("d.serial_number"));
-				bean.setWarranty(rs.getString("d.warranty"));
-				bean.setPrice(rs.getFloat("d.price"));
-				bean.setCpu(rs.getString("d.cpu"));
-				bean.setMemory(rs.getString("d.memory"));
-				bean.setHarddisk(rs.getString("d.harddisk"));
-				bean.setGraphics(rs.getString("d.graphics"));
-				bean.setDisplay(rs.getString("d.display"));
-				bean.setOs(rs.getString("d.os"));
-				bean.setNote(rs.getString("d.note"));
+				bean.setDeviceCategory(rs.getString("device_category"));
+				bean.setBrand(rs.getString("brand"));
+				bean.setGeneration(rs.getString("generation"));
+				bean.setSerialnumber(rs.getString("serial_number"));
+				bean.setWarranty(rs.getString("warranty"));
+				bean.setPrice(rs.getFloat("price"));
+				bean.setCpu(rs.getString("cpu"));
+				bean.setMemory(rs.getString("memory"));
+				bean.setHarddisk(rs.getString("harddisk"));
+				bean.setGraphics(rs.getString("graphics"));
+				bean.setDisplay(rs.getString("display"));
+				bean.setOs(rs.getString("os"));
+				bean.setNote(rs.getString("note"));
 
 			}
 		} catch (Exception e) {
@@ -159,12 +187,13 @@ public class DeviceDao {
 		DeviceBean bean = new DeviceBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append(" SELECT * FROM device rp WHERE rp.device_id = ? ");
+			sql.append(" SELECT * FROM device rp WHERE rp.id = ? ");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, id);
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
-				bean.setDeviceId(rs.getString("device_id"));
+				bean = new DeviceBean();
+				bean.setId(rs.getInt("id"));
 				bean.setDeviceCategory(rs.getString("device_category"));
 				bean.setBrand(rs.getString("brand"));
 				bean.setGeneration(rs.getString("generation"));
@@ -215,7 +244,7 @@ public class DeviceDao {
 			prepared.setString(12, bean.getOs());
 			prepared.setString(13, bean.getNote());
 			prepared.setString(14, bean.getCustromerId());
-			prepared.setString(15, bean.getDeviceId());
+			// prepared.setString(15, bean.getDeviceId());
 			prepared.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -232,7 +261,8 @@ public class DeviceDao {
 		DeviceBean bean = new DeviceBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append(" SELECT count(d.device_category) as repairSum FROM  device d WHERE d.device_category = 'NB' ");
+			sql.append(
+					" SELECT count(d.device_category) as repairSum FROM  device d WHERE d.device_category = 'NOTEBOOK' ");
 			prepared = conn.prepareStatement(sql.toString());
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
@@ -255,7 +285,8 @@ public class DeviceDao {
 		DeviceBean bean = new DeviceBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append(" SELECT count(d.device_category) as repairSum FROM  device d WHERE d.device_category = 'CS' ");
+			sql.append(
+					" SELECT count(d.device_category) as repairSum FROM  device d WHERE d.device_category = 'COMPUTER' ");
 			prepared = conn.prepareStatement(sql.toString());
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
@@ -278,7 +309,8 @@ public class DeviceDao {
 		DeviceBean bean = new DeviceBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append(" SELECT count(d.device_category) as repairSum FROM  device d WHERE d.device_category = 'PT' ");
+			sql.append(
+					" SELECT count(d.device_category) as repairSum FROM  device d WHERE d.device_category = 'PRINTER' ");
 			prepared = conn.prepareStatement(sql.toString());
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
@@ -301,7 +333,8 @@ public class DeviceDao {
 		DeviceBean bean = new DeviceBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append(" SELECT count(d.device_category) as repairSum FROM  device d WHERE d.device_category = 'CY' ");
+			sql.append(
+					" SELECT count(d.device_category) as repairSum FROM  device d WHERE d.device_category = 'เครื่องถ่ายฯ' ");
 			prepared = conn.prepareStatement(sql.toString());
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
@@ -324,7 +357,8 @@ public class DeviceDao {
 		DeviceBean bean = new DeviceBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append(" SELECT count(d.device_category) as repairSum FROM  device d WHERE d.device_category = 'MT' ");
+			sql.append(
+					" SELECT count(d.device_category) as repairSum FROM  device d WHERE d.device_category = 'MONITER' ");
 			prepared = conn.prepareStatement(sql.toString());
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
@@ -347,7 +381,7 @@ public class DeviceDao {
 		DeviceBean bean = new DeviceBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append(" SELECT count(d.device_category) as repairSum FROM  device d WHERE d.device_category = 'FT' ");
+			sql.append(" SELECT count(d.device_category) as repairSum FROM  device d WHERE d.device_category = 'FAX' ");
 			prepared = conn.prepareStatement(sql.toString());
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
@@ -370,7 +404,8 @@ public class DeviceDao {
 		DeviceBean bean = new DeviceBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append(" SELECT count(d.device_category) as repairSum FROM  device d WHERE d.device_category = 'CM' ");
+			sql.append(
+					" SELECT count(d.device_category) as repairSum FROM  device d WHERE d.device_category = 'กล้อง' ");
 			prepared = conn.prepareStatement(sql.toString());
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
@@ -393,7 +428,8 @@ public class DeviceDao {
 		DeviceBean bean = new DeviceBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append(" SELECT count(d.device_category) as repairSum FROM  device d WHERE d.device_category = 'SK' ");
+			sql.append(
+					" SELECT count(d.device_category) as repairSum FROM  device d WHERE d.device_category = 'ตู้สาขา' ");
 			prepared = conn.prepareStatement(sql.toString());
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
@@ -416,7 +452,8 @@ public class DeviceDao {
 		DeviceBean bean = new DeviceBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append(" SELECT count(d.device_category) as repairSum FROM  device d WHERE d.device_category = 'TN' ");
+			sql.append(
+					" SELECT count(d.device_category) as repairSum FROM  device d WHERE d.device_category = 'โทรศัพท์' ");
 			prepared = conn.prepareStatement(sql.toString());
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
@@ -439,7 +476,8 @@ public class DeviceDao {
 		DeviceBean bean = new DeviceBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append(" SELECT count(d.device_category) as repairSum FROM  device d WHERE d.device_category = 'VE' ");
+			sql.append(
+					" SELECT count(d.device_category) as repairSum FROM  device d WHERE d.device_category = 'เครื่องอื่นๆ' ");
 			prepared = conn.prepareStatement(sql.toString());
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {

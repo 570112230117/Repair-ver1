@@ -49,6 +49,7 @@
                                                         <tr>
                                                             <th>id</th>
                                                             <th>ชื่อสถานะ</th>
+                                                            <th>Role</th>
                                                             <th>แก้ไข</th>
                                                             <th>ลบ</th>
                                                         </tr>
@@ -58,6 +59,7 @@
                                                         <tr>
                                                             <th>id</th>
                                                             <th>ชื่อสถานะ</th>
+                                                            <th>Role</th>
                                                             <th>แก้ไข</th>
                                                             <th>ลบ</th>
                                                         </tr>
@@ -89,6 +91,13 @@
                                         <label class="control-label mb-10">ชื่อสถานะ:</label>
                                         <input type="text" class="form-control" id="n" name="name">
                                     </div>
+                                    <div class="form-group">
+                                        <label class="control-label mb-10">ROLE:</label>
+                                        <select class="form-control" id="r" name="role">
+                                            <option value="พนักงาน">พนักงาน</option>
+                                            <option value="ช่างซ่อม">ช่างซ่อม</option>
+                                            </select>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary">บันทึก</button>
@@ -114,6 +123,13 @@
                                     <div class="form-group">
                                         <label class="control-label mb-10">ชื่อสถานะ:</label>
                                         <input type="text" class="form-control" id="name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label mb-10">ROLE:</label>
+                                        <select class="form-control" id="ROLE">
+                                            <option value="พนักงาน">พนักงาน</option>
+                                            <option value="ช่างซ่อม">ช่างซ่อม</option>
+                                            </select>
                                     </div>
                                 </form>
                             </div>
@@ -143,6 +159,7 @@
             function insertConfirm() {
                 var repairStatusBean = {
                     name: $('#name').val(),
+                    role: $('#ROLE').val(),
                 }
                 $.ajax({
                     type: "POST",
@@ -174,10 +191,10 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function(msg) {
-                        console.log('ทำงานแล้ว')
+                        console.log(msg)
                         $('#i').val(msg.id);
                         $('#n').val(msg.name);
-
+                        $('#r').val(msg.role);
 
                     }
                 });
@@ -221,6 +238,8 @@
                         "mData": "id"
                     }, {
                         "mData": "name"
+                    }, {
+                        "mData": "role"
                     }, {
                         "mData": "",
                         "mRender": function(data, type, full) {

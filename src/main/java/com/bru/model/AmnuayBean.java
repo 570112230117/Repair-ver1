@@ -3,6 +3,7 @@ package com.bru.model;
 public class AmnuayBean {
 
 	private String id;
+	private String repaieID;
 	private String date;
 	private String customer;
 	private String name;
@@ -20,6 +21,13 @@ public class AmnuayBean {
 	private String sum; 
 	private String company;
 	
+	
+	public String getRepaieID() {
+		return repaieID;
+	}
+	public void setRepaieID(String repaieID) {
+		this.repaieID = repaieID;
+	}
 	public String getCustomer() {
 		return customer;
 	}

@@ -1,7 +1,7 @@
 package com.bru.model;
 
 public class DeviceBean {	
-	private String deviceId;
+	private int id;
 	private String deviceCategory;
 	private String brand;
 	private String generation;
@@ -17,12 +17,12 @@ public class DeviceBean {
 	private String note;
 	private String custromerId;
 	private String deviceDate;
-
-	public String getDeviceId() {
-		return deviceId;
+	
+	public int getId() {
+		return id;
 	}
-	public void setDeviceId(String deviceId) {
-		this.deviceId = deviceId;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getDeviceCategory() {
 		return deviceCategory;

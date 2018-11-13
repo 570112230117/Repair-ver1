@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.bru.model.AmnuayBean;
@@ -16,118 +17,13 @@ import com.bru.model.KeyBean;
 import com.bru.model.ProblemBean;
 import com.bru.model.RepairBean;
 import com.bru.model.RepairStatusBean;
-import com.bru.model.RepairTypeBean;
 import com.bru.model.TabelallBean;
-import com.bru.model.TestBean;
 import com.bru.util.ConnectDB;
+
 import java.text.ParseException;
 
 @Repository
 public class RepairDao {
-
-	// ดรอบดาวประเภทงานซ่อม
-	public List<RepairTypeBean> repairtype() throws SQLException {
-		List<RepairTypeBean> list = new ArrayList<>();
-		ConnectDB con = new ConnectDB();
-		PreparedStatement prepared = null;
-		StringBuilder sql = new StringBuilder();
-		RepairTypeBean bean = new RepairTypeBean();
-		Connection conn = con.openConnect();
-
-		try {
-			sql.append(" SELECT * FROM repair_type");
-			prepared = conn.prepareStatement(sql.toString());
-			ResultSet rs = prepared.executeQuery();
-			while (rs.next()) {
-				bean = new RepairTypeBean();
-				bean.setId(rs.getInt("id"));
-				bean.setName(rs.getString("name"));
-				bean.setDevice(rs.getString("device_type_name"));
-				bean.setInitials(rs.getString("initials"));
-				list.add(bean);
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		} finally {
-			conn.close();
-		}
-		return list;
-	}
-
-	// ดรอบดาวปัญหา
-	public List<ProblemBean> problem(TestBean testBean) throws SQLException {
-		List<ProblemBean> list = new ArrayList<>();
-		ConnectDB con = new ConnectDB();
-		PreparedStatement prepared = null;
-		StringBuilder sql = new StringBuilder();
-		ProblemBean bean = new ProblemBean();
-		Connection conn = con.openConnect();
-		try {
-			sql.append(" SELECT * FROM problem WHERE repair_type_initials = ? ");
-			prepared = conn.prepareStatement(sql.toString());
-			prepared.setString(1, testBean.getA());
-			ResultSet rs = prepared.executeQuery();
-			while (rs.next()) {
-				bean = new ProblemBean();
-				bean.setId(rs.getInt("id"));
-				bean.setName(rs.getString("name"));
-				list.add(bean);
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		} finally {
-			conn.close();
-		}
-		return list;
-	}
-
-	public RepairTypeBean findById(String id) throws SQLException {
-		ConnectDB con = new ConnectDB();
-		PreparedStatement prepared = null;
-		StringBuilder sql = new StringBuilder();
-		RepairTypeBean bean = new RepairTypeBean();
-		Connection conn = con.openConnect();
-
-		try {
-			sql.append("SELECT * FROM repair_type WHERE id = ? ");
-			prepared = conn.prepareStatement(sql.toString());
-			prepared.setString(1, id);
-			ResultSet rs = prepared.executeQuery();
-			while (rs.next()) {
-				bean.setId(rs.getInt("id"));
-				bean.setName(rs.getString("name"));
-				bean.setInitials(rs.getString("initials"));
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		} finally {
-			conn.close();
-		}
-		return bean;
-	}
-
-	public void update(RepairTypeBean bean) throws SQLException {
-		ConnectDB con = new ConnectDB();
-		PreparedStatement prepared = null;
-		StringBuilder sql = new StringBuilder();
-		Connection conn = con.openConnect();
-		try {
-			sql.append(" UPDATE repair_type SET  name = ?, initials = ?  WHERE id = ? ");
-			prepared = conn.prepareStatement(sql.toString());
-			prepared.setString(1, bean.getName());
-			prepared.setString(2, bean.getInitials());
-			prepared.setInt(3, bean.getId());
-			prepared.executeUpdate();
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		} finally {
-			conn.close();
-		}
-	}
 
 	// ดรอบดาวปัญหา
 	public List<ProblemBean> problemtable() throws SQLException {
@@ -175,6 +71,39 @@ public class RepairDao {
 				bean = new RepairStatusBean();
 				bean.setId(rs.getString("id"));
 				bean.setName(rs.getString("name"));
+				bean.setRole(rs.getString("role"));
+				list.add(bean);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return list;
+	}
+	
+	// ดรอบดาวสถานะ
+	public List<RepairStatusBean> repairstatus1() throws SQLException {
+		List<RepairStatusBean> list = new ArrayList<>();
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairStatusBean bean = new RepairStatusBean();
+		Connection conn = con.openConnect();
+
+		try {
+			sql.append(" SELECT r.* , m.name\r\n" + 
+					"FROM repair_status r\r\n" + 
+					"INNER JOIN member m ON r.role = m.role\r\n" + 
+					"WHERE r.role = 'พนักงาน'");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairStatusBean();
+				bean.setId(rs.getString("id"));
+				bean.setName(rs.getString("name"));
+				bean.setRole(rs.getString("m.name"));
 				list.add(bean);
 			}
 		} catch (Exception e) {
@@ -201,7 +130,7 @@ public class RepairDao {
 		Connection conn = con.openConnect();
 		try {
 			sql.append(
-					" INSERT INTO repair (id,customer_id,device_id,repair_date,complete_date,problem,member_id,repair_status,spareparts,servicecharge,sum) VALUES (?,?,?,?,?,?,?,?,?,?,?) ");
+					" INSERT INTO repair (repair_id,customer_id,device_id,repair_date,complete_date,problem,member_id,repair_status,job_type,accessories,repair_limit,technicial_note,spareparts,servicecharge,sum) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, bean.getId() + c + bean.getSeq());
 			prepared.setString(2, bean.getCustomerId());
@@ -211,9 +140,13 @@ public class RepairDao {
 			prepared.setString(6, bean.getProblem());
 			prepared.setString(7, bean.getMemberId());
 			prepared.setString(8, bean.getRepairStatus());
-			prepared.setFloat(9, bean.getSpareparts());
-			prepared.setFloat(10, bean.getServiceCharge());
-			prepared.setFloat(11, bean.getSum());
+			prepared.setString(9, bean.getJobType());
+			prepared.setString(10, bean.getAccessories());
+			prepared.setString(11, bean.getRepairLimit());
+			prepared.setString(12, bean.getTechnicialNote());
+			prepared.setString(13, bean.getSpareparts());
+			prepared.setString(14, bean.getServiceCharge());
+			prepared.setString(15, bean.getSum());
 			prepared.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -230,7 +163,7 @@ public class RepairDao {
 		Connection conn = con.openConnect();
 		try {
 			sql.append(
-					" INSERT INTO repair_history (repair_id,customer_id,device_id,repair_date,complete_date,problem,member_id,repair_status,spareparts,servicecharge,sum,completion) VALUES (?,?,?,?,?,?,?,?,?,?,?,?) ");
+					" INSERT INTO repair_history (repair_id,customer_id,device_id,repair_date,complete_date,problem,member_id,repair_status,job_type,accessories,repair_limit,technicial_note,spareparts,servicecharge,sum) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, bean.getId() + c + bean.getSeq());
 			prepared.setString(2, bean.getCustomerId());
@@ -240,10 +173,13 @@ public class RepairDao {
 			prepared.setString(6, bean.getProblem());
 			prepared.setString(7, bean.getMemberId());
 			prepared.setString(8, bean.getRepairStatus());
-			prepared.setFloat(9, bean.getSpareparts());
-			prepared.setFloat(10, bean.getServiceCharge());
-			prepared.setFloat(11, bean.getSum());
-			prepared.setString(12, bean.getRepairDate());
+			prepared.setString(9, bean.getJobType());
+			prepared.setString(10, bean.getAccessories());
+			prepared.setString(11, bean.getRepairLimit());
+			prepared.setString(12, bean.getTechnicialNote());
+			prepared.setString(13, bean.getSpareparts());
+			prepared.setString(14, bean.getServiceCharge());
+			prepared.setString(15, bean.getSum());
 			prepared.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -270,12 +206,12 @@ public class RepairDao {
 			prepared.setString(6, bean.getProblem());
 			prepared.setString(7, bean.getMemberId());
 			prepared.setString(8, bean.getRepairStatus());
-			prepared.setFloat(9, bean.getSpareparts());
-			prepared.setFloat(10, bean.getServiceCharge());
-			prepared.setFloat(11, bean.getSum());
+			prepared.setString(9, bean.getSpareparts());
+			prepared.setString(10, bean.getServiceCharge());
+			prepared.setString(11, bean.getSum());
 			prepared.setString(12, bean.getCompletionDate());
 			prepared.setString(13, bean.getTechnician());
-			prepared.setString(14, bean.getRepairDetails());
+			// prepared.setString(14, bean.getRepairDetails());
 			prepared.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -292,17 +228,16 @@ public class RepairDao {
 		Connection conn = con.openConnect();
 		try {
 			sql.append(
-					" UPDATE repair	SET completion_date = ?, technician = ?, repair_details = ? , repair_status = ? , spareparts = ? , servicecharge = ? , sum = ? , problem = ?   WHERE id = ? ");
+					" UPDATE repair	SET completion_date = ?, technician = ?, technicial_note_detail = ? , repair_status = ? , spareparts = ? , servicecharge = ? , sum = ?    WHERE id = ? ");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, bean.getCompletionDate());
 			prepared.setString(2, bean.getTechnician());
-			prepared.setString(3, bean.getRepairDetails());
+			prepared.setString(3, bean.getTechnicialNoteDetail());
 			prepared.setString(4, bean.getRepairStatus());
-			prepared.setFloat(5, bean.getSpareparts());
-			prepared.setFloat(6, bean.getServiceCharge());
-			prepared.setFloat(7, bean.getSum());
-			prepared.setString(8, bean.getProblem());
-			prepared.setString(9, bean.getId());
+			prepared.setString(5, bean.getSpareparts());
+			prepared.setString(6, bean.getServiceCharge());
+			prepared.setString(7, bean.getSum());
+			prepared.setString(8, bean.getId());
 			prepared.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -322,24 +257,64 @@ public class RepairDao {
 		Connection conn = con.openConnect();
 		try {
 			sql.append(
-					"SELECT r.id , r.repair_date  , c.name , c.phone , r.problem , r.repair_status , r.technician , CONCAT( d.device_id , \" - \" , rt.name ,\"  \", d.brand ,\" รุ่น \", d.generation) AS deviceconcat\r\n"
+					"SELECT  r.id , r.repair_id , r.repair_date ,  CONCAT(\"(\" , r.customer_id , \")\" , \" คุณ \" , c.name) AS customername , c.phone , r.device_id , r.problem , r.technician , rs.name\r\n"
 							+ "FROM repair r \r\n" + "INNER JOIN customer c ON r.customer_id = c.id\r\n"
-							+ "INNER JOIN device d ON r.device_id = d.device_id\r\n"
-							+ "INNER JOIN repair_type rt ON d.device_category = rt.initials;");
+							+ "INNER JOIN repair_status rs ON r.repair_status = rs.id");
 			prepared = conn.prepareStatement(sql.toString());
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
 				bean = new TabelallBean();
+				bean.setId(rs.getInt("r.id"));
 				bean.setDate(rs.getString("r.repair_date"));
 				Date date = dt.parse(bean.getDate());
-				bean.setId(rs.getString("r.id"));
-				bean.setName(rs.getString("c.name"));
+				bean.setReprirId(rs.getString("r.repair_id"));
+				bean.setName(rs.getString("customername"));
 				bean.setDate(dt.format(date));
 				bean.setPhone(rs.getString("c.phone"));
-				bean.setDevice(rs.getString("deviceconcat"));
+				bean.setDevice(rs.getString("r.device_id"));
 				bean.setProblem(rs.getString("r.problem"));
-				bean.setStatus(rs.getString("r.repair_status"));
+				bean.setStatus(rs.getString("rs.name"));
 				bean.setTechnician(rs.getString("r.technician"));
+				list.add(bean);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return list;
+	}
+
+	public List<TabelallBean> listID(String id) throws SQLException, ParseException {
+		SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		List<TabelallBean> list = new ArrayList<>();
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		TabelallBean bean = new TabelallBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(
+					"SELECT r.id , r.repair_id ,  r.repair_date ,CONCAT(\"(\" , r.customer_id , \")\" , \" คุณ \" , c.name) AS customername , c.phone , r.problem , r.technician , r.technicial_note_detail , rs.name\r\n"
+							+ "FROM repair r\r\n" + "INNER JOIN customer c ON r.customer_id = c.id\r\n"
+							+ "INNER JOIN repair_status rs ON r.repair_status = rs.id\r\n" + "WHERE device_id = ?");
+			prepared = conn.prepareStatement(sql.toString());
+			prepared.setString(1, id);
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new TabelallBean();
+				bean.setId(rs.getInt("r.id"));
+				bean.setDate(rs.getString("r.repair_date"));
+				Date date = dt.parse(bean.getDate());
+				bean.setReprirId(rs.getString("r.repair_id"));
+				bean.setName(rs.getString("customername"));
+				bean.setDate(dt.format(date));
+				bean.setPhone(rs.getString("c.phone"));
+				bean.setProblem(rs.getString("r.problem"));
+				bean.setStatus(rs.getString("rs.name"));
+				bean.setTechnician(rs.getString("r.technician"));
+				bean.setTechnicialNoteDetail(rs.getString("r.technicial_note_detail"));
 				list.add(bean);
 			}
 		} catch (Exception e) {
@@ -358,12 +333,13 @@ public class RepairDao {
 		AmnuayBean bean = new AmnuayBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append(" SELECT * FROM repair r WHERE r.id = ? ; ");
+			sql.append(" SELECT * FROM repair r WHERE r.id = ? ");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, id);
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
 				bean.setId(rs.getString("r.id"));
+				bean.setRepaieID(rs.getString("repair_id"));
 				bean.setCustomer(rs.getString("customer_id"));
 				bean.setDevice(rs.getString("device_id"));
 			}
@@ -410,13 +386,18 @@ public class RepairDao {
 		RepairBean bean = new RepairBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append(" SELECT * FROM repair r WHERE r.id = ? ; ");
+			sql.append(" SELECT r.* , rs.name , rt.name\r\n" + 
+					"FROM repair r\r\n" + 
+					"INNER JOIN repair_status rs ON r.repair_status = rs.id\r\n" + 
+					"INNER JOIN request_type rt ON r.job_type = rt.id\r\n" + 
+					"WHERE r.id = ? ");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, id);
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
 
 				bean.setId(rs.getString("id"));
+				bean.setRepairID(rs.getString("repair_id"));
 				bean.setCustomerId(rs.getString("customer_id"));
 				bean.setDeviceId(rs.getString("device_id"));
 				bean.setRepairDate(rs.getString("repair_date"));
@@ -425,13 +406,18 @@ public class RepairDao {
 				bean.setCompleteDate(rs.getDate("complete_date"));
 				bean.setProblem(rs.getString("problem"));
 				bean.setMemberId(rs.getString("member_id"));
-				bean.setRepairStatus(rs.getString("repair_status"));
-				bean.setSpareparts(rs.getFloat("spareparts"));
-				bean.setServiceCharge(rs.getFloat("servicecharge"));
-				bean.setSum(rs.getFloat("sum"));
-				bean.setRepairDetails(rs.getString("repair_details"));
+				bean.setRepairStatusID(rs.getString("repair_status"));
+				bean.setRepairStatus(rs.getString("rs.name"));
+				bean.setSpareparts(rs.getString("spareparts"));
+				bean.setServiceCharge(rs.getString("servicecharge"));
+				bean.setSum(rs.getString("sum"));				
 				bean.setTechnician(rs.getString("technician"));
-
+				bean.setTechnicialNote(rs.getString("technicial_note"));
+				bean.setTechnicialNoteDetail(rs.getString("technicial_note_detail"));
+				bean.setRepairLimit(rs.getString("repair_limit"));
+				bean.setAccessories(rs.getString("accessories"));
+				bean.setJobType(rs.getString("rt.name"));
+				
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -462,7 +448,7 @@ public class RepairDao {
 				bean = new TabelallBean();
 				bean.setDate(rs.getString("r.repair_date"));
 				Date date = dt.parse(bean.getDate());
-				bean.setId(rs.getString("r.id"));
+				// bean.setId(rs.getString("r.id"));
 				bean.setName(rs.getString("c.name"));
 				bean.setDate(dt.format(date));
 				bean.setPhone(rs.getString("c.phone"));
@@ -491,8 +477,8 @@ public class RepairDao {
 		RepairBean bean = new RepairBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append("  SELECT count(repair_status) as repairSum FROM  repair WHERE repair_status = 'แจ้งซ่อม' ");
-			prepared = conn.prepareStatement(sql.toString());			
+			sql.append("  SELECT count(repair_status) as repairSum FROM  repair WHERE repair_status = '01' ");
+			prepared = conn.prepareStatement(sql.toString());
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
 				bean = new RepairBean();
@@ -506,6 +492,7 @@ public class RepairDao {
 		}
 		return bean;
 	}
+
 	public RepairBean COUNTC2() throws SQLException {
 		ConnectDB con = new ConnectDB();
 		PreparedStatement prepared = null;
@@ -513,8 +500,8 @@ public class RepairDao {
 		RepairBean bean = new RepairBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append("  SELECT count(repair_status) as repairSum FROM  repair WHERE repair_status = 'รอตรวจสอบ' ");
-			prepared = conn.prepareStatement(sql.toString());		
+			sql.append("  SELECT count(repair_status) as repairSum FROM  repair WHERE repair_status = '18' ");
+			prepared = conn.prepareStatement(sql.toString());
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
 				bean = new RepairBean();
@@ -528,6 +515,7 @@ public class RepairDao {
 		}
 		return bean;
 	}
+
 	public RepairBean COUNTC3() throws SQLException {
 		ConnectDB con = new ConnectDB();
 		PreparedStatement prepared = null;
@@ -535,8 +523,8 @@ public class RepairDao {
 		RepairBean bean = new RepairBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append("  SELECT count(repair_status) as repairSum FROM  repair WHERE repair_status = 'อยู่ระหว่างซ่อม' ");
-			prepared = conn.prepareStatement(sql.toString());			
+			sql.append("  SELECT count(repair_status) as repairSum FROM  repair WHERE repair_status = '02' ");
+			prepared = conn.prepareStatement(sql.toString());
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
 				bean = new RepairBean();
@@ -550,6 +538,7 @@ public class RepairDao {
 		}
 		return bean;
 	}
+
 	public RepairBean COUNTC4() throws SQLException {
 		ConnectDB con = new ConnectDB();
 		PreparedStatement prepared = null;
@@ -557,8 +546,8 @@ public class RepairDao {
 		RepairBean bean = new RepairBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append("  SELECT count(repair_status) as repairSum FROM  repair WHERE repair_status = 'รอเสนอราคา' ");
-			prepared = conn.prepareStatement(sql.toString());			
+			sql.append("  SELECT count(repair_status) as repairSum FROM  repair WHERE repair_status = '16' ");
+			prepared = conn.prepareStatement(sql.toString());
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
 				bean = new RepairBean();
@@ -572,6 +561,30 @@ public class RepairDao {
 		}
 		return bean;
 	}
+
+	public RepairBean COUNTC5() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairBean bean = new RepairBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append("SELECT count(repair_status) as repairSum FROM  repair WHERE repair_status = '17' ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairBean();
+				bean.setRepairStatus(rs.getString("repairSum"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
 	public KeyBean nb() throws SQLException {
 		ConnectDB con = new ConnectDB();
 		PreparedStatement prepared = null;

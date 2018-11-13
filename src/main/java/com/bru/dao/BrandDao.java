@@ -27,7 +27,7 @@ public class BrandDao {
 		BrandBean bean = new BrandBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append(" SELECT * FROM brand WHERE initials = ? ");
+			sql.append(" SELECT * FROM brand WHERE device_name = ? ");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, testBean.getA());
 			ResultSet rs = prepared.executeQuery();

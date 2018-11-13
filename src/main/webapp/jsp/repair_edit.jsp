@@ -27,8 +27,8 @@
                             <div class="container-fluid">
                                 <div class="row heading-bg">
                                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                                        <h5 class="txt-dark">แก้ไขข้อมูลการซ่อม เลขที่
-                                            <%=bean.getId() %>
+                                        <h5 class="txt-dark">ข้อมูลการซ่อม เลขที่
+                                            <%=bean.getRepaieID() %>
                                         </h5>
                                     </div>
                                     <input type="hidden" id="idd" value="<%=bean.getId() %>">
@@ -38,7 +38,7 @@
                                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                                         <ol class="breadcrumb">
                                             <li><a>ตารางการแจ้งซ่อม</a></li>
-                                            <li class="active"><span>แก้ไขข้อมูลการซ่อม</span></li>
+                                            <li class="active"><span>ข้อมูลการซ่อม</span></li>
                                         </ol>
                                     </div>
                                     <!-- /Breadcrumb -->
@@ -50,6 +50,11 @@
                                             <div class="panel-heading">
                                                 <div class="pull-left">
                                                     <h6 class="panel-title txt-dark" id="had"></h6>
+                                                </div>
+                                                <div class="pull-right">
+                                                    <h6 class="panel-title txt-dark">No.
+                                                        <%=bean.getRepaieID() %>
+                                                    </h6>
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div>
@@ -103,18 +108,15 @@
                                                                             </div>
                                                                             <!--/span-->
                                                                         </div>
-
-                                                                        <div class="seprator-block"></div>
-
+                                                                        <br>
                                                                         <h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-laptop mr-10"></i>รายละเอียดอุปกรณ์</h6>
                                                                         <hr class="light-grey-hr">
                                                                         <div class="row">
                                                                             <div class="col-md-6">
                                                                                 <div class="form-group">
-                                                                                    <label class="control-label col-md-3">รหัสอุปกรณ์:</label>
+                                                                                    <label class="control-label col-md-3">หมายเลขซีเรียล:</label>
                                                                                     <div class="col-md-9">
-                                                                                        <p class="form-control-static" id="deviceid">
-                                                                                        </p>
+                                                                                        <p class="form-control-static" id="deviceserialnumber"></p>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -152,15 +154,6 @@
                                                                         <div class="row">
                                                                             <div class="col-md-6">
                                                                                 <div class="form-group">
-                                                                                    <label class="control-label col-md-3">หมายเลขซีเรียล:</label>
-                                                                                    <div class="col-md-9">
-                                                                                        <p class="form-control-static" id="deviceserialnumber"></p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <!--/span-->
-                                                                            <div class="col-md-6">
-                                                                                <div class="form-group">
                                                                                     <label class="control-label col-md-3">ระยะเวลารับประกัน:</label>
                                                                                     <div class="col-md-9">
                                                                                         <p class="form-control-static" id="devicewarranty"></p>
@@ -168,22 +161,18 @@
                                                                                 </div>
                                                                             </div>
                                                                             <!--/span-->
-                                                                        </div>
-                                                                        <!-- /Row -->
-                                                                        <div class="row">
                                                                             <div class="col-md-6">
                                                                                 <div class="form-group">
                                                                                     <label class="control-label col-md-3">ราคา:</label>
                                                                                     <div class="col-md-3">
                                                                                         <p class="form-control-static" id="deviceprice"></p>
-
                                                                                     </div>
-                                                                                    <div class="col-md-6">
+                                                                                    <!-- <div class="col-md-6">
                                                                                         <p class="form-control-static">บาท</p>
-
-                                                                                    </div>
+                                                                                    </div> -->
                                                                                 </div>
                                                                             </div>
+                                                                            <!--/span-->
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="col-md-6">
@@ -195,30 +184,11 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="seprator-block"></div>
 
+                                                                        <br>
                                                                         <h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-receipt mr-10"></i>รายละเอียดปัญหา</h6>
                                                                         <hr class="light-grey-hr">
-                                                                        <div class="row">
-                                                                            <div class="col-md-6">
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label col-md-3">เลขที่ใบรับซ่อม:</label>
-                                                                                    <div class="col-md-9">
-                                                                                        <p class="form-control-static" id="repairId">
-                                                                                        </p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-6">
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label col-md-3">พนักงานรับเรื่อง:</label>
-                                                                                    <div class="col-md-9">
-                                                                                        <p class="form-control-static" id="repairmemberId">
-                                                                                        </p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
+
                                                                         <div class="row">
                                                                             <div class="col-md-6">
                                                                                 <div class="form-group">
@@ -242,9 +212,59 @@
                                                                         <div class="row">
                                                                             <div class="col-md-6">
                                                                                 <div class="form-group">
+                                                                                    <label class="control-label col-md-3">ประเภทการแจ้ง:</label>
+                                                                                    <div class="col-md-9">
+                                                                                        <p class="form-control-static" id="jobType">
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label col-md-3">พนักงานรับเรื่อง:</label>
+                                                                                    <div class="col-md-9">
+                                                                                        <p class="form-control-static" id="repairmemberId">
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
                                                                                     <label class="control-label col-md-3">อาการเสีย:</label>
                                                                                     <div class="col-md-9">
-                                                                                        <textarea class="form-control" rows="6" id="repairproblem"></textarea>
+                                                                                        <p class="form-control-static" id="repairproblem">
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label col-md-3">อุปกรณ์ที่นำมาด้วย:</label>
+                                                                                    <div class="col-md-9">
+                                                                                        <p class="form-control-static" id="accessories">
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label col-md-3">บันทึก:</label>
+                                                                                    <div class="col-md-9">
+                                                                                        <p class="form-control-static" id="repairnote">
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label col-md-3">ราคาประเมิน:</label>
+                                                                                    <div class="col-md-9">
+                                                                                        <p class="form-control-static" id="repairLimit">
+                                                                                        </p>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -294,21 +314,58 @@
                                                         <div class="form-group">
                                                             <label class="control-label mb-10 text-left">สถานะ:</label>
                                                             <select class="form-control" id="status">                                               
-                                                   
-                                                        </select>
+                                                            </select>
                                                         </div>
-                                                        <div class="form-group">
+                                                        <!-- <div class="form-group">
                                                             <label class="control-label mb-10">ค่าอะไหล่:</label>
-                                                            <input type="number" class="form-control" id="input1" placeholder="0" onkeyup='nStr()' value="" name="spareparts">
+                                                            <input type="number" class="form-control" id="input1" onkeyup='nStr()' value="" name="spareparts">
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label mb-10">ค่าบริการ:</label>
-                                                            <input type="number" class="form-control" id="input2" placeholder="0" onkeyup='nStr()' value="" name="servicecharge">
+                                                            <input type="number" class="form-control" id="input2" onkeyup='nStr()' value="" name="servicecharge">
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label mb-10">รวม:</label>
-                                                            <input type="number" class="form-control" id="show" placeholder="0" value="" name="sum">
+                                                            <input type="number" class="form-control" id="show" value="" name="sum">
+                                                        </div> -->
+
+                                                        <div class="form-group">
+                                                            <div class="row">
+                                                                <div class="col-md-6 col-xs-12">
+                                                                </div>
+                                                                <div class="col-md-6 col-xs-12">
+                                                                    <div class="input-group"> <span class="input-group-addon">ค่าอะไหล่</span>
+                                                                        <input type="number" class="form-control" id="input1" onkeyup='nStr()'>
+                                                                        <span class="input-group-addon">บาท</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
+                                                        <div class="form-group">
+                                                            <div class="row">
+                                                                <div class="col-md-6 col-xs-12">
+                                                                </div>
+                                                                <div class="col-md-6 col-xs-12">
+                                                                    <div class="input-group"> <span class="input-group-addon">ค่าบริการ</span>
+                                                                        <input type="number" class="form-control" id="input2" onkeyup='nStr()'>
+                                                                        <span class="input-group-addon">บาท</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="row">
+                                                                <div class="col-md-6 col-xs-12">
+                                                                </div>
+                                                                <div class="col-md-6 col-xs-12">
+                                                                    <div class="input-group"> <span class="input-group-addon">รวม</span>
+                                                                        <input type="number" class="form-control" id="show">
+                                                                        <span class="input-group-addon">บาท</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -353,10 +410,9 @@
 
                                 var repairBean = {
                                     id: $('#idd').val(),
-                                    problem: $('#repairproblem').val(),
                                     completionDate: $('#datecompletion').val(),
                                     technician: $('#repairmem').val(),
-                                    repairDetails: $('#repairdetails').val(),
+                                    technicialNoteDetail: $('#repairdetails').val(),
                                     repairStatus: $('#status').val(),
                                     spareparts: $('#input1').val(),
                                     serviceCharge: $('#input2').val(),
@@ -408,6 +464,7 @@
                                     "b": $('#deviceID').val(),
                                     "id": $('#idd').val(),
                                 };
+                                console.log(testBean)
                                 $.ajax({
                                     type: "POST",
                                     url: "/CustomerfindById",
@@ -428,7 +485,6 @@
                                     contentType: "application/json; charset=utf-8",
                                     dataType: "json",
                                     success: function(msg) {
-                                        $('#deviceid').append(msg.deviceId);
                                         $('#had').append(msg.deviceCategory);
                                         $('#deviceCategory').append(msg.deviceCategory);
                                         $('#devicebrand').append(msg.brand);
@@ -447,17 +503,21 @@
                                     contentType: "application/json; charset=utf-8",
                                     dataType: "json",
                                     success: function(msg) {
-                                        $('#repairId').append(msg.id);
+                                        $('#repairId').append(msg.repairID);
                                         $('#repairmemberId').append(msg.memberId);
                                         $('#repairrepairDate').append(msg.repairDate);
                                         $('#repaircompleteDate').append(msg.completeDate);
-                                        $('#repairproblem').val(msg.problem);
-                                        // $('#status').html(msg.repairStatus);
-                                        $("#status").append("<option value='" + msg.repairStatus + "'>" + msg.repairStatus + "</option>");
+                                        $('#repairproblem').append(msg.problem);
+                                        // $('#status').val(msg.repairStatus);
+                                        $("#status").append("<option value='" + msg.repairStatusID + "'>" + msg.repairStatus + "</option>");
                                         $('#input1').val(msg.spareparts);
                                         $('#input2').val(msg.serviceCharge);
                                         $('#show').val(msg.sum);
-                                        $('#repairdetails').val(msg.repairDetails);
+                                        $('#repairdetails').val(msg.technicialNoteDetail);
+                                        $('#repairnote').append(msg.technicialNote);
+                                        $('#repairLimit').append(msg.repairLimit);
+                                        $('#accessories').append(msg.accessories);
+                                        $('#jobType').append(msg.jobType);
                                         //
                                         $('#historyrepairDate').val(msg.repairDate);
                                         $('#historymemberId').val(msg.memberId);
@@ -509,7 +569,7 @@
                                     dataType: "json",
                                     success: function(msg) {
                                         for (var i = 0; i < msg.length; i++) {
-                                            $('#status').append('<option value="' + msg[i].name + '">' + msg[i].name + '</option>');
+                                            $('#status').append('<option value="' + msg[i].id + '">' + msg[i].name + '</option>');
                                         }
                                     }
                                 });

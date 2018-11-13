@@ -27,7 +27,38 @@ public class CustomerDao {
 		Connection conn = con.openConnect();
 
 		try {
-			sql.append(" SELECT * FROM customer");
+			sql.append(
+					" SELECT c.id ,  CONCAT(\"(\", c.id , \")\", \" คุณ \", c.name) AS name\r\n" + 
+					"FROM customer c\r\n" + 
+					"ORDER BY c.id  DESC");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new CustomerBean();
+				bean.setId(rs.getString("id"));
+				bean.setName(rs.getString("name"));
+				list.add(bean);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return list;
+	}
+
+	// ดรอบดาวประเภทงานซ่อม
+	public List<CustomerBean> customerTabel() throws SQLException {
+		List<CustomerBean> list = new ArrayList<>();
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		CustomerBean bean = new CustomerBean();
+		Connection conn = con.openConnect();
+
+		try {
+			sql.append("SELECT * FROM customer");
 			prepared = conn.prepareStatement(sql.toString());
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
@@ -46,7 +77,7 @@ public class CustomerDao {
 		}
 		return list;
 	}
-
+	
 	public CustomerBean findById(String id) throws SQLException {
 		ConnectDB con = new ConnectDB();
 		PreparedStatement prepared = null;

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
 import org.springframework.stereotype.Repository;
 
 import com.bru.model.RepairStatusBean;
@@ -19,9 +20,10 @@ public class RepairStatusDao {
 		StringBuilder sql = new StringBuilder();
 		Connection conn = con.openConnect();
 		try {
-			sql.append(" INSERT INTO repair_status (name) VALUES (?);");
+			sql.append(" INSERT INTO repair_status (name,role) VALUES (?,?) ");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, bean.getName());
+			prepared.setString(2, bean.getRole());
 			prepared.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -45,6 +47,7 @@ public class RepairStatusDao {
 			while (rs.next()) {
 				bean.setId(rs.getString("id"));
 				bean.setName(rs.getString("name"));
+				bean.setRole(rs.getString("role"));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -61,10 +64,11 @@ public class RepairStatusDao {
 		StringBuilder sql = new StringBuilder();
 		Connection conn = con.openConnect();
 		try {
-			sql.append(" UPDATE repair_status SET  name = ? WHERE id = ? ");
+			sql.append(" UPDATE repair_status SET  name = ? , role = ? WHERE id = ? ");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, bean.getName());
-			prepared.setString(2, bean.getId());
+			prepared.setString(2, bean.getRole());
+			prepared.setString(3, bean.getId());
 			prepared.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -94,5 +98,6 @@ public class RepairStatusDao {
 	} // end method delete
 	
 	
+
 	// end
 }

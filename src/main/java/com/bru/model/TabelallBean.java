@@ -2,7 +2,8 @@ package com.bru.model;
 
 public class TabelallBean {	
 	
-	private String id;
+	private int id;
+	private String reprirId;
 	private String name;
 	private String date;
 	private String phone;
@@ -14,18 +15,25 @@ public class TabelallBean {
 	private String spareparts;
 	private String servicecharge;
 	private String sum;
-	public String getId() {
+	private String technicialNoteDetail;
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
+	}
+	public String getReprirId() {
+		return reprirId;
+	}
+	public void setReprirId(String reprirId) {
+		this.reprirId = reprirId;
 	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
-	}	
+	}
 	public String getDate() {
 		return date;
 	}
@@ -85,6 +93,12 @@ public class TabelallBean {
 	}
 	public void setSum(String sum) {
 		this.sum = sum;
+	}
+	public String getTechnicialNoteDetail() {
+		return technicialNoteDetail;
+	}
+	public void setTechnicialNoteDetail(String technicialNoteDetail) {
+		this.technicialNoteDetail = technicialNoteDetail;
 	}
 	
 	

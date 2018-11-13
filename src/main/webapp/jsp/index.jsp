@@ -23,7 +23,7 @@
                     <br><br>
                     <div class="col-md-6">
                         <button onclick="window.location.href='/track'" class="btn" style="padding:20px;font-size:20px;background-color: rgb(209, 65, 65);
-                    color: #ffffff;width: 80%;"><i class="fas fa-toolbox"></i> ติดตามการซ่อม/Track</button>
+                    color: #ffffff;width: 80%;"><i class="fas fa-toolbox"></i> ติดตามการซ่อม/Track Repair</button>
                     </div>
                     <div class="col-md-6">
                         <button onclick="window.location.href='/login'" class="btn" style="padding:20px;font-size:20px;background-color: #5951c7;

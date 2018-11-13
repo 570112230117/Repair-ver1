@@ -38,7 +38,7 @@
                                         </a>
                                     </div>
                                     <div class="mb-30">
-                                        <h3 class="text-center txt-dark mb-10">ติดตามการซ่อม/Track</h3>
+                                        <h3 class="text-center txt-dark mb-10">ติดตามการซ่อม/Track Repair</h3>
                                     </div>
                                     <div class="form-wrap">
                                         <div class="form-group">

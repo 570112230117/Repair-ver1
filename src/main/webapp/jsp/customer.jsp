@@ -151,7 +151,7 @@
         <script>
             $(document).ready(function() {
                 var table = $('#datable_1').DataTable({
-                    "sAjaxSource": "/listcustomer",
+                    "sAjaxSource": "/customerTabel",
                     "sAjaxDataProp": "",
                     "order": [
                         [0, "desc"]

@@ -112,4 +112,8 @@ public class HelloController {
 	public String track() {
 		return "Track";
 	}
+	@RequestMapping(path = "/PageJobType", method = RequestMethod.GET)
+	public String JobType() {
+		return "JobType";
+	}
 }

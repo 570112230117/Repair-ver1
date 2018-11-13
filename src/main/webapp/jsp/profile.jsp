@@ -45,10 +45,10 @@ bean = (MemberBean) request.getSession().getAttribute("login");
                                                 </div>
                                             </div>
                                             <h5 class="block mt-10 mb-5 weight-500 capitalize-font txt-primary">
-                                                <%=bean.getName() %>
+                                                <label id="n"></label>
                                             </h5>
                                             <h6 class="block capitalize-font pb-20">ตำแหน่ง :
-                                                <%=bean.getRole() %>
+                                                <label id="r"></label>
                                             </h6>
                                         </div>
                                         <div class="social-info">
@@ -74,7 +74,7 @@ bean = (MemberBean) request.getSession().getAttribute("login");
                                                                                             <div class="form-body overflow-hide">
                                                                                                 <input type="hidden" id="id" name="id">
                                                                                                 <div class="form-group">
-                                                                                                    <label class="control-label mb-10" for="exampleInputuname_1">ชื่อ - สกุล</label>
+                                                                                                    <label class="control-label mb-10">ชื่อ - สกุล</label>
                                                                                                     <div class="input-group">
                                                                                                         <div class="input-group-addon"><i class="icon-user"></i></div>
                                                                                                         <input type="text" class="form-control" id="name" name="name">
@@ -222,9 +222,11 @@ bean = (MemberBean) request.getSession().getAttribute("login");
                         $('#email').val(msg.email);
                         $('#password').val(msg.password);
                         $('#name').val(msg.name);
+                        $('#n').append(msg.name);
                         $('#phone').val(msg.phone);
                         $('#address').val(msg.address);
                         $('#role').val(msg.role);
+                        $('#r').append(msg.role);
                         $('#joiningDate').val(msg.joiningDate);
                         if (msg.gender == "ชาย") {
                             document.getElementById('r1').checked = true;

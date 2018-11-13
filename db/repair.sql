@@ -33,13 +33,13 @@ INSERT INTO `brand` (`id`, `name`, `device_name`, `initials`) VALUES
 	(3, 'DELL', 'NOTEBOOK', 'NB'),
 	(4, 'HP', 'NOTEBOOK', 'NB'),
 	(5, 'LENOVO', 'NOTEBOOK', 'NB'),
-	(6, 'Acer', 'CASE', 'CS'),
-	(7, 'Asus', 'CASE', 'CS'),
-	(8, 'Dell', 'CASE', 'CS'),
-	(9, 'Hp', 'CASE', 'CS'),
-	(10, 'Lenovo', 'CASE', 'CS'),
-	(11, 'Intel', 'CASE', 'CS'),
-	(12, 'Alienware', 'CASE', 'CS'),
+	(6, 'Acer', 'COMPUTER', 'CS'),
+	(7, 'Asus', 'COMPUTER', 'CS'),
+	(8, 'Dell', 'COMPUTER', 'CS'),
+	(9, 'Hp', 'COMPUTER', 'CS'),
+	(10, 'Lenovo', 'COMPUTER', 'CS'),
+	(11, 'Intel', 'COMPUTER', 'CS'),
+	(12, 'Alienware', 'COMPUTER', 'CS'),
 	(13, 'BROTHER', 'PRINTER', 'PT'),
 	(14, 'CANON', 'PRINTER', 'PT'),
 	(15, 'DOUBLE-A', 'PRINTER', 'PT'),
@@ -70,12 +70,13 @@ INSERT INTO `brand` (`id`, `name`, `device_name`, `initials`) VALUES
 CREATE TABLE IF NOT EXISTS `cm` (
   `key` int(5) unsigned zerofill NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`key`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Dumping data for table repair.cm: ~1 rows (approximately)
+-- Dumping data for table repair.cm: ~2 rows (approximately)
 /*!40000 ALTER TABLE `cm` DISABLE KEYS */;
 INSERT INTO `cm` (`key`) VALUES
-	(00001);
+	(00001),
+	(00002);
 /*!40000 ALTER TABLE `cm` ENABLE KEYS */;
 
 -- Dumping structure for table repair.company
@@ -125,14 +126,15 @@ INSERT INTO `customer` (`id`, `name`, `address`, `phone`) VALUES
 	('๙๙1800005', 'ทวีกิจ', 'บุรีรัมย์', '(044) 142-5555'),
 	('๙๙1800006', 'bew', 'บุรีรัมย์', '(555) 555-5555'),
 	('๙๙1800009', 'Amornphet Talubthong', '50/30 ซอย.แสนสุข อ.เมือง จ.บุรีรัมย์ 31000', '(090) 186-9167'),
-	('๙๙1800010', 'สกล กมลรัมย์', 'ประโคนชัย', '(083) 456-4748');
+	('๙๙1800010', 'สกล กมลรัมย์', 'ประโคนชัย', '(083) 456-4748'),
+	('๙๙1800011', 'มนัส กลีบม่วง', 'บ้านหนองขอน', '(089) 234-8985');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 
 -- Dumping structure for table repair.customer_seq
 CREATE TABLE IF NOT EXISTS `customer_seq` (
   `key` int(5) unsigned zerofill NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`key`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table repair.customer_seq: ~9 rows (approximately)
 /*!40000 ALTER TABLE `customer_seq` DISABLE KEYS */;
@@ -147,7 +149,8 @@ INSERT INTO `customer_seq` (`key`) VALUES
 	(00008),
 	(00009),
 	(00010),
-	(00011);
+	(00011),
+	(00012);
 /*!40000 ALTER TABLE `customer_seq` ENABLE KEYS */;
 
 -- Dumping structure for table repair.cy
@@ -166,11 +169,11 @@ INSERT INTO `cy` (`key`) VALUES
 
 -- Dumping structure for table repair.device
 CREATE TABLE IF NOT EXISTS `device` (
-  `device_id` char(50) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `serial_number` varchar(50) DEFAULT NULL,
   `device_category` varchar(50) DEFAULT NULL,
   `brand` varchar(50) DEFAULT NULL,
   `generation` varchar(50) DEFAULT NULL,
-  `serial_number` varchar(50) DEFAULT NULL,
   `warranty` varchar(50) DEFAULT NULL,
   `price` float DEFAULT NULL,
   `cpu` text,
@@ -181,22 +184,39 @@ CREATE TABLE IF NOT EXISTS `device` (
   `os` text,
   `note` varchar(50) DEFAULT NULL,
   `custromer_id` varchar(50) DEFAULT NULL,
-  `device_date` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `device_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Dumping data for table repair.device: ~9 rows (approximately)
+-- Dumping data for table repair.device: ~2 rows (approximately)
 /*!40000 ALTER TABLE `device` DISABLE KEYS */;
-INSERT INTO `device` (`device_id`, `device_category`, `brand`, `generation`, `serial_number`, `warranty`, `price`, `cpu`, `memory`, `harddisk`, `graphics`, `display`, `os`, `note`, `custromer_id`, `device_date`) VALUES
-	('ESD-1410019C', 'PT', 'BROTHER', 'DCP-T500W', 'E74707E7H370866', '2Y', 5290, NULL, NULL, NULL, NULL, NULL, NULL, '- - ', '๙๙1800001', '2561-10-28 22:08:54'),
-	('261879987_TH-403168073', 'NB', 'ACER', 'Inspiron 7577-W5675603STH', 'W5675603STH', '2Y-OnSite', 26990, 'Intel Core i7-7700HQ (2.80 GHz, 6 MB L3 Cache, up to 3.80 GHz)', '8 GB DDR4', '1 TB 5400 RPM + 128 GB SSD', 'NVIDIA GeForce GTX 1050Ti (4GB GDDR5)', '15.6 inch (1920x1080) Full HD', '-', '-', '๙๙1800009', '2561-10-29 19:10:03'),
-	('test', 'PT', 'BROTHER', '-', 'xxxxxx', 'xxx', 100, 'xx', 'xxx', 'xxx', 'xxx', 'xxx', 'testxxx', 'testxx', '๙๙1800006', '2561-10-30 17:20:34'),
-	('xxxx', 'CS', 'Acer', 'xxx', 'xxx', 'xx', 109, 'xx', 'xxx', 'xxx', 'xx', 'xxx', 'xxx', 'xxx', '๙๙1800003', '2561-10-31 12:51:32'),
-	('xxx', 'NB', 'ASUS', 'xxx', 'xxx', 'xxx', 19999, 'xx', 'xxx', 'xxx', 'xxx', 'xxx', 'xxx', 'xxx', '๙๙1800003', '2561-10-31 12:53:29'),
-	('gg', 'NB', 'ACER', 'gg', 'gg', 'gg', 19990, 'gg', 'gg', 'gg', 'gg', 'gg', 'gg', 'gg', '๙๙1800001', '2561-10-31 13:29:39'),
-	('NB565456', 'NB', 'ASUS', 'ROG', 'test', '2Y', 23990, 'I7', '12GB', '1TB + SSD 120GB', 'GTX 1050', '-', '-', '--', '๙๙1800010', '2561-11-01 02:31:25'),
-	('', '', '', '', '', '', 0, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '2561-11-01 02:55:34'),
-	('aa', 'NB', 'ACER', 'aa', '', '', 0, '', '', '', '', '', '', '', '๙๙1800005', '2561-11-01 03:17:39');
+INSERT INTO `device` (`id`, `serial_number`, `device_category`, `brand`, `generation`, `warranty`, `price`, `cpu`, `memory`, `harddisk`, `graphics`, `display`, `os`, `note`, `custromer_id`, `device_date`) VALUES
+	(1, 'E74707E7H370866', 'PRINTER', 'BROTHER', 'DCP-T500W', '2Y', 5290, NULL, NULL, NULL, NULL, NULL, NULL, '- - ', '๙๙1800001', '2018-11-09 23:52:20'),
+	(2, 'W5675603STH', 'NOTEBOOK', 'ACER', 'Inspiron 7577', '2Y-OnSite', 26990, 'Intel Core i7-7700HQ (2.80 GHz, 6 MB L3 Cache, up to 3.80 GHz)', '8 GB DDR4', '1 TB 5400 RPM + 128 GB SSD', 'NVIDIA GeForce GTX 1050Ti (4GB GDDR5)', '15.6 inch (1920x1080) Full HD', '-', '-', '๙๙1800009', '2018-11-09 23:52:20');
 /*!40000 ALTER TABLE `device` ENABLE KEYS */;
+
+-- Dumping structure for table repair.device_category
+CREATE TABLE IF NOT EXISTS `device_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `initials` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+-- Dumping data for table repair.device_category: ~10 rows (approximately)
+/*!40000 ALTER TABLE `device_category` DISABLE KEYS */;
+INSERT INTO `device_category` (`id`, `name`, `initials`) VALUES
+	(1, 'NOTEBOOK', 'NB'),
+	(2, 'COMPUTER', 'CS'),
+	(3, 'PRINTER', 'PT'),
+	(4, 'เครื่องถ่ายฯ', 'CY'),
+	(5, 'MONITER', 'MT'),
+	(6, 'FAX', 'FT'),
+	(7, 'กล้อง', 'CM'),
+	(8, 'ตู้สาขา', 'SK'),
+	(9, 'โทรศัพท์', 'TN'),
+	(10, 'เครื่องอื่นๆ', 'VE');
+/*!40000 ALTER TABLE `device_category` ENABLE KEYS */;
 
 -- Dumping structure for table repair.ft
 CREATE TABLE IF NOT EXISTS `ft` (
@@ -209,6 +229,22 @@ CREATE TABLE IF NOT EXISTS `ft` (
 INSERT INTO `ft` (`key`) VALUES
 	(00001);
 /*!40000 ALTER TABLE `ft` ENABLE KEYS */;
+
+-- Dumping structure for table repair.job_type
+CREATE TABLE IF NOT EXISTS `job_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- Dumping data for table repair.job_type: ~4 rows (approximately)
+/*!40000 ALTER TABLE `job_type` DISABLE KEYS */;
+INSERT INTO `job_type` (`id`, `name`) VALUES
+	(1, 'ปัญหาโปรแกรม'),
+	(2, 'ปัญหาอุปกรณ์'),
+	(3, 'ปัญหาระบบเครือข่าย'),
+	(4, 'ปัญหา / งาน อื่น ๆ');
+/*!40000 ALTER TABLE `job_type` ENABLE KEYS */;
 
 -- Dumping structure for table repair.member
 CREATE TABLE IF NOT EXISTS `member` (
@@ -252,7 +288,7 @@ INSERT INTO `mt` (`key`) VALUES
 CREATE TABLE IF NOT EXISTS `nb` (
   `key` int(5) unsigned zerofill NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`key`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table repair.nb: ~40 rows (approximately)
 /*!40000 ALTER TABLE `nb` DISABLE KEYS */;
@@ -308,7 +344,12 @@ INSERT INTO `nb` (`key`) VALUES
 	(00049),
 	(00050),
 	(00051),
-	(00052);
+	(00052),
+	(00053),
+	(00054),
+	(00055),
+	(00056),
+	(00057);
 /*!40000 ALTER TABLE `nb` ENABLE KEYS */;
 
 -- Dumping structure for table repair.problem
@@ -331,14 +372,14 @@ INSERT INTO `problem` (`id`, `name`, `repair_type_name`, `repair_type_initials`)
 	(6, 'เครื่องแฮงค์', 'NOTEBOOK', 'NB'),
 	(7, 'Disk 100%', 'NOTEBOOK', 'NB'),
 	(8, 'อื่นๆ', 'NOTEBOOK', 'NB'),
-	(9, 'ลงวินโดว์ 10', 'CASE', 'CS'),
-	(10, 'ลงวินโดว์ 8', 'CASE', 'CS'),
-	(11, 'ลงวินโดว์ 7', 'CASE', 'CS'),
-	(12, 'ลงวินโดว์ xp', 'CASE', 'CS'),
-	(13, 'เครื่องค้าง', 'CASE', 'CS'),
-	(14, 'เครื่องค้าง', 'CASE', 'CS'),
-	(15, 'Disk 100%', 'CASE', 'CS'),
-	(16, 'อื่นๆ', 'CASE', 'CS'),
+	(9, 'ลงวินโดว์ 10', 'COMPUTER', 'CS'),
+	(10, 'ลงวินโดว์ 8', 'COMPUTER', 'CS'),
+	(11, 'ลงวินโดว์ 7', 'COMPUTER', 'CS'),
+	(12, 'ลงวินโดว์ xp', 'COMPUTER', 'CS'),
+	(13, 'เครื่องค้าง', 'COMPUTER', 'CS'),
+	(14, 'เครื่องค้าง', 'COMPUTER', 'CS'),
+	(15, 'Disk 100%', 'COMPUTER', 'CS'),
+	(16, 'อื่นๆ', 'COMPUTER', 'CS'),
 	(17, 'ตัวหนังสือที่หายไปบนผืนกระดาษ', 'PRINTER', 'PT'),
 	(18, 'สั่งพิมพ์ได้แต่ดันกลายเป็นเส้นๆ', 'PRINTER', 'PT'),
 	(19, 'มีจุดไข่ปลาที่ขอบกระดาษด้านบนและล่าง', 'PRINTER', 'PT'),
@@ -371,134 +412,140 @@ INSERT INTO `problem` (`id`, `name`, `repair_type_name`, `repair_type_initials`)
 CREATE TABLE IF NOT EXISTS `pt` (
   `key` int(5) unsigned zerofill NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`key`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
--- Dumping data for table repair.pt: ~1 rows (approximately)
+-- Dumping data for table repair.pt: ~7 rows (approximately)
 /*!40000 ALTER TABLE `pt` DISABLE KEYS */;
 INSERT INTO `pt` (`key`) VALUES
 	(00001),
 	(00002),
 	(00003),
 	(00004),
-	(00005);
+	(00005),
+	(00006),
+	(00007);
 /*!40000 ALTER TABLE `pt` ENABLE KEYS */;
 
 -- Dumping structure for table repair.repair
 CREATE TABLE IF NOT EXISTS `repair` (
-  `id` char(50) NOT NULL,
-  `customer_id` char(50) DEFAULT NULL,
-  `device_id` char(50) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `repair_id` char(9) DEFAULT NULL,
+  `customer_id` char(9) DEFAULT NULL,
+  `device_id` int(11) DEFAULT NULL,
   `repair_date` datetime DEFAULT NULL,
   `complete_date` date DEFAULT NULL,
-  `problem` text,
+  `problem` longtext,
   `member_id` varchar(50) DEFAULT NULL,
-  `repair_status` varchar(50) DEFAULT NULL,
-  `spareparts` float DEFAULT '0',
-  `servicecharge` float DEFAULT '0',
-  `sum` float DEFAULT '0',
+  `repair_status` int(2) unsigned zerofill DEFAULT NULL,
+  `spareparts` varchar(50) DEFAULT NULL,
+  `servicecharge` varchar(50) DEFAULT NULL,
+  `sum` varchar(50) DEFAULT NULL,
   `completion_date` datetime DEFAULT NULL,
-  `technician` varchar(50) DEFAULT NULL,
-  `repair_details` text,
+  `technician` varchar(50) DEFAULT '',
+  `technicial_note` text,
+  `technicial_note_detail` text,
+  `repair_limit` varchar(50) DEFAULT NULL,
+  `job_type` int(2) DEFAULT NULL,
+  `accessories` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Dumping data for table repair.repair: ~6 rows (approximately)
+-- Dumping data for table repair.repair: ~4 rows (approximately)
 /*!40000 ALTER TABLE `repair` DISABLE KEYS */;
-INSERT INTO `repair` (`id`, `customer_id`, `device_id`, `repair_date`, `complete_date`, `problem`, `member_id`, `repair_status`, `spareparts`, `servicecharge`, `sum`, `completion_date`, `technician`, `repair_details`) VALUES
-	('NB1800045', '๙๙1800009', '261879987_TH-403168073', '2561-10-29 19:10:03', '2561-11-05', 'ลงวินโดร์ 10', 'Admin', 'แจ้งซ่อม', 0, 0, 0, NULL, NULL, NULL),
-	('NB1800048', '๙๙1800003', 'xxx', '2561-10-31 12:53:29', '2561-11-07', 'จอฟ้าา', 'Admin', 'ซ่อมสำเร็จ', 0, 0, 400, '2561-11-01 02:29:01', 'Admin', 'ดำเนินการซ่อม'),
-	('NB1800049', '๙๙1800001', 'gg', '2561-10-31 13:29:39', '2561-11-07', 'เครื่องแฮงค์', 'Admin', 'อยู่ระหว่างซ่อม', 0, 0, 0, '2561-10-31 13:30:30', 'Admin', 'กำลังซ่อม'),
-	('NB1800050', '๙๙1800010', 'NB565456', '2561-11-01 02:31:25', '2561-11-08', 'เครื่องค้าง', 'Admin', 'ซ่อมสำเร็จ', 0, 400, 400, '2561-11-01 02:34:52', 'Admin', 'ล้างเครื่อง'),
-	('PT1800004', '๙๙1800001', 'ESD-1410019C', '2561-10-28 22:08:54', '2561-11-04', 'test', 'Admin', 'แจ้งซ่อม', 100, 1, 101, '2561-10-29 22:02:39', 'Admin', 'xxxxxx');
+INSERT INTO `repair` (`id`, `repair_id`, `customer_id`, `device_id`, `repair_date`, `complete_date`, `problem`, `member_id`, `repair_status`, `spareparts`, `servicecharge`, `sum`, `completion_date`, `technician`, `technicial_note`, `technicial_note_detail`, `repair_limit`, `job_type`, `accessories`) VALUES
+	(1, 'PT1800006', '๙๙1800011', 1, '2561-11-11 03:39:09', '2561-11-18', 'xxx', 'Admin', 01, '300', '200', '500', NULL, '', 'xxx', '', '5000', 7, 'สายไฟ'),
+	(2, 'PT1800007', '๙๙1800011', 1, '2018-11-12 04:56:08', '2018-11-19', 'zzz', 'Admin', 17, NULL, NULL, NULL, NULL, '', NULL, 'ลบzzzออก ก็หายแล้ว', NULL, 7, 'สายไฟ'),
+	(3, 'NB1800055', '๙๙1800011', 2, '2561-11-13 03:19:12', '2561-11-20', 'ลงวินโดร์ 10', 'Admin', 17, '4454', '300', '4754', '2561-11-14 00:27:16', 'Admin', '', 'ลงเสร็จแล้ว มารับได้เลย', '300', 1, 'สายดะ แร็พเตอร์'),
+	(4, 'NB1800056', '๙๙1800011', 2, '2561-11-13 04:07:01', '2561-11-20', 'ลงโปรแกรม', 'Admin', 03, '', '', '', NULL, '', '', NULL, '', 4, '');
 /*!40000 ALTER TABLE `repair` ENABLE KEYS */;
 
 -- Dumping structure for table repair.repair_history
 CREATE TABLE IF NOT EXISTS `repair_history` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `repair_id` char(50) DEFAULT NULL,
-  `customer_id` char(50) DEFAULT NULL,
-  `device_id` char(50) DEFAULT NULL,
+  `repair_id` char(9) DEFAULT NULL,
+  `customer_id` char(9) DEFAULT NULL,
+  `device_id` int(11) DEFAULT NULL,
   `repair_date` datetime DEFAULT NULL,
   `complete_date` date DEFAULT NULL,
-  `problem` text,
+  `problem` longtext,
   `member_id` varchar(50) DEFAULT NULL,
-  `repair_status` varchar(50) DEFAULT NULL,
-  `spareparts` float DEFAULT '0',
-  `servicecharge` float DEFAULT '0',
-  `sum` float DEFAULT '0',
-  `completion` datetime DEFAULT NULL,
+  `repair_status` int(2) unsigned zerofill DEFAULT NULL,
+  `spareparts` varchar(50) DEFAULT NULL,
+  `servicecharge` varchar(50) DEFAULT NULL,
+  `sum` varchar(50) DEFAULT NULL,
+  `completion_date` datetime DEFAULT NULL,
   `technician` varchar(50) DEFAULT '',
-  `repair_details` text,
+  `technicial_note` text,
+  `technicial_note_detail` text,
+  `repair_limit` varchar(50) DEFAULT NULL,
+  `job_type` int(2) DEFAULT NULL,
+  `accessories` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Dumping data for table repair.repair_history: ~11 rows (approximately)
+-- Dumping data for table repair.repair_history: ~0 rows (approximately)
 /*!40000 ALTER TABLE `repair_history` DISABLE KEYS */;
-INSERT INTO `repair_history` (`id`, `repair_id`, `customer_id`, `device_id`, `repair_date`, `complete_date`, `problem`, `member_id`, `repair_status`, `spareparts`, `servicecharge`, `sum`, `completion`, `technician`, `repair_details`) VALUES
-	(4, 'NB1800048', '๙๙1800003', 'xxx', '2561-10-31 12:53:29', '2561-11-07', 'จอฟ้าา', 'Admin', 'แจ้งซ่อม', 0, 0, 0, '2561-10-31 12:53:29', ' ', NULL),
-	(5, 'NB1800048', '๙๙1800003', 'xxx', '2561-10-31 12:53:29', '2561-11-07', 'จอฟ้าา', 'Admin', 'อยู่ระหว่างซ่อม', 0, 0, 0, '2561-10-31 13:23:43', 'Admin', ''),
-	(6, 'NB1800048', '๙๙1800003', 'xxx', '2561-10-31 12:53:29', '2561-11-07', 'จอฟ้าา', 'Admin', 'เช็คเครื่องเช็คระบบ 400 บาท', 0, 0, 0, '2561-10-31 13:26:10', 'Admin', ''),
-	(7, 'NB1800048', '๙๙1800003', 'xxx', '2561-10-31 12:53:29', '2561-11-07', 'จอฟ้าา', 'Admin', 'อนุมัติซ่อม', 0, 0, 0, '2561-10-31 13:27:12', 'Admin', 'ดำเนินการซ่อม'),
-	(8, 'NB1800049', '๙๙1800001', 'gg', '2561-10-31 13:29:39', '2561-11-07', 'เครื่องแฮงค์', 'Admin', 'แจ้งซ่อม', 0, 0, 0, '2561-10-31 13:29:39', ' ', NULL),
-	(9, 'NB1800049', '๙๙1800001', 'gg', '2561-10-31 13:29:39', '2561-11-07', 'เครื่องแฮงค์', 'Admin', 'อยู่ระหว่างซ่อม', 0, 0, 0, '2561-10-31 13:30:30', 'Admin', 'กำลังซ่อม'),
-	(10, 'NB1800048', '๙๙1800003', 'xxx', '2561-10-31 12:53:29', '2561-11-07', 'จอฟ้าา', 'Admin', 'เช็คเครื่องเช็คระบบ 400 บาท', 0, 400, 0, '2561-10-31 23:47:44', 'Admin', 'ดำเนินการซ่อม'),
-	(11, 'NB1800048', '๙๙1800003', 'xxx', '2561-10-31 12:53:29', '2561-11-07', 'จอฟ้าา', 'Admin', 'ซ่อมสำเร็จ', 0, 0, 400, '2561-11-01 02:29:01', 'Admin', 'ดำเนินการซ่อม'),
-	(12, 'NB1800050', '๙๙1800010', 'NB565456', '2561-11-01 02:31:25', '2561-11-08', 'เครื่องค้าง', 'Admin', 'แจ้งซ่อม', 0, 0, 0, '2561-11-01 02:31:25', ' ', NULL),
-	(13, 'NB1800050', '๙๙1800010', 'NB565456', '2561-11-01 02:31:25', '2561-11-08', 'เครื่องค้าง', 'Admin', 'อยู่ระหว่างซ่อม', 0, 0, 0, '2561-11-01 02:33:42', 'Admin', ''),
-	(14, 'NB1800050', '๙๙1800010', 'NB565456', '2561-11-01 02:31:25', '2561-11-08', 'เครื่องค้าง', 'Admin', 'ซ่อมสำเร็จ', 0, 400, 400, '2561-11-01 02:34:52', 'Admin', 'ล้างเครื่อง');
+INSERT INTO `repair_history` (`id`, `repair_id`, `customer_id`, `device_id`, `repair_date`, `complete_date`, `problem`, `member_id`, `repair_status`, `spareparts`, `servicecharge`, `sum`, `completion_date`, `technician`, `technicial_note`, `technicial_note_detail`, `repair_limit`, `job_type`, `accessories`) VALUES
+	(1, 'PT1800006', '๙๙1800011', 1, '2561-11-11 03:39:09', '2561-11-18', 'xxx', 'Admin', 01, '300', '200', '500', NULL, '', 'xxx', NULL, '5000', 1, 'xx'),
+	(2, 'NB1800056', '๙๙1800011', 2, '2561-11-13 04:07:01', '2561-11-20', 'ลงโปรแกรม', 'Admin', 03, '', '', '', NULL, '', '', NULL, '', 4, '');
 /*!40000 ALTER TABLE `repair_history` ENABLE KEYS */;
 
 -- Dumping structure for table repair.repair_status
 CREATE TABLE IF NOT EXISTS `repair_status` (
   `id` int(2) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
+  `role` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
--- Dumping data for table repair.repair_status: ~14 rows (approximately)
+-- Dumping data for table repair.repair_status: ~18 rows (approximately)
 /*!40000 ALTER TABLE `repair_status` DISABLE KEYS */;
-INSERT INTO `repair_status` (`id`, `name`) VALUES
-	(01, 'แจ้งซ่อม'),
-	(02, 'อยู่ระหว่างซ่อม'),
-	(03, 'เช็คเครื่องเช็คระบบ 400 บาท'),
-	(04, 'รอลูกค้าอนุมัติซ่อม'),
-	(05, 'ลูกค้ารับแล้ว'),
-	(06, 'อนุมัติซ่อม'),
-	(07, 'ยกเลิกรายการซ่อม'),
-	(08, 'รออะไหล่'),
-	(09, 'อะไหล่ส่งศูนย์'),
-	(11, 'รอมัดจำ'),
-	(12, 'ซ่อมไม่ได้'),
-	(13, 'ซ่อมสำเร็จ'),
-	(14, 'ส่งอุปกรณ์ / เคลม'),
-	(15, 'ส่งซ่อม'),
-	(16, 'รอเสนอราคา');
+INSERT INTO `repair_status` (`id`, `name`, `role`) VALUES
+	(01, 'แจ้งซ่อม', 'พนักงาน'),
+	(02, 'อยู่ระหว่างซ่อม', 'พนักงาน'),
+	(03, 'รอลูกค้าอนุมัติซ่อม', 'พนักงาน'),
+	(04, 'รอมัดจำ', 'พนักงาน'),
+	(05, 'ลูกค้ารับแล้ว', 'พนักงาน'),
+	(06, 'อนุมัติซ่อม', 'พนักงาน'),
+	(07, 'ยกเลิกรายการซ่อม', 'พนักงาน'),
+	(08, 'รออะไหล่', 'ช่างซ่อม'),
+	(09, 'อะไหล่ส่งศูนย์', 'ช่างซ่อม'),
+	(11, 'ปัญหาอื่น ๆ', 'พนักงาน'),
+	(12, 'ซ่อมไม่ได้', 'ช่างซ่อม'),
+	(13, 'ซ่อมสำเร็จ', 'ช่างซ่อม'),
+	(14, 'ส่งอุปกรณ์ / เคลม', 'ช่างซ่อม'),
+	(15, 'ส่งซ่อม', 'ช่างซ่อม'),
+	(16, 'รอเสนอราคา', 'ช่างซ่อม'),
+	(17, 'ส่งคืน', 'ช่างซ่อม'),
+	(18, 'รอตรวจสอบ', 'ช่างซ่อม'),
+	(19, 'test สถานะ', 'ช่างซ่อม');
 /*!40000 ALTER TABLE `repair_status` ENABLE KEYS */;
 
--- Dumping structure for table repair.repair_type
-CREATE TABLE IF NOT EXISTS `repair_type` (
+-- Dumping structure for table repair.request_type
+CREATE TABLE IF NOT EXISTS `request_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
-  `device_type_name` varchar(50) DEFAULT NULL,
-  `initials` varchar(50) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `job_type` varchar(50) DEFAULT NULL,
+  `job_type_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
--- Dumping data for table repair.repair_type: ~11 rows (approximately)
-/*!40000 ALTER TABLE `repair_type` DISABLE KEYS */;
-INSERT INTO `repair_type` (`id`, `name`, `device_type_name`, `initials`) VALUES
-	(1, 'NOTEBOOK', 'NOTEBOOK', 'NB'),
-	(2, 'CASE', 'CASE', 'CS'),
-	(3, 'PRINTER', 'PRINTER', 'PT'),
-	(4, 'เครื่องถ่ายฯ', 'เครื่องถ่ายฯ', 'CY'),
-	(5, 'MONITER', 'MONITER', 'MT'),
-	(6, 'FAX', 'FAX', 'FT'),
-	(7, 'กล้อง', 'กล้อง', 'CM'),
-	(8, 'ตู้สาขา', 'ตู้สาขา', 'SK'),
-	(9, 'โทรศัพท์', 'โทรศัพท์', 'TN'),
-	(10, 'เครื่องอื่นๆ', 'เครื่องอื่นๆ', 'VE'),
-	(11, 'ส่งซ่อม', 'ส่งซ่อม', 'S0');
-/*!40000 ALTER TABLE `repair_type` ENABLE KEYS */;
+-- Dumping data for table repair.request_type: ~12 rows (approximately)
+/*!40000 ALTER TABLE `request_type` DISABLE KEYS */;
+INSERT INTO `request_type` (`id`, `name`, `job_type`, `job_type_id`) VALUES
+	(1, 'แจ้งปัญหาใช้งานระบบปฏิบัติการ Windows/Mac OS', 'ปัญหาโปรแกรม', 1),
+	(2, 'แจ้งปัญหาใช้งานโปรแกรม MS Office ไม่ได้', 'ปัญหาโปรแกรม', 1),
+	(3, 'แจ้งปัญหาเข้าใข้งาน Email ไม่ได้', 'ปัญหาโปรแกรม', 1),
+	(4, 'แจ้งขอติดตั้งโปรแกรมใหม่ Install New Program', 'ปัญหาโปรแกรม', 1),
+	(5, 'แจ้งปัญหาการใช้งานโปรแกรมอื่น ๆ', 'ปัญหาโปรแกรม', 1),
+	(6, 'แจ้งปัญหาเครื่อง Computer / Notebook', 'ปัญหาอุปกรณ์', 2),
+	(7, 'แจ้งปัญหาเครื่อง Printer / Scanner', 'ปัญหาอุปกรณ์', 2),
+	(8, 'แจ้งปัญหาอุปกรณ์ เครือข่าย ใช้งานไม่ได้', 'ปัญหาอุปกรณ์', 2),
+	(9, 'แจ้งปัญหาอุปกรณ์ อื่น ๆ', 'ปัญหาอุปกรณ์', 2),
+	(10, 'แจ้งปัญหาไม่สามารถใช้งาน Internet ได้', 'ปัญหาระบบเครือข่าย', 3),
+	(11, 'แจ้งปัญหาไม่สามารถเข้าใช้งาน Server ระบบภายในบริษัท', 'ปัญหาระบบเครือข่าย', 3),
+	(12, 'แจ้งปัญหา / งานซ่อม เรื่อง อื่น ๆ', 'ปัญหา / งาน อื่น ๆ', 4);
+/*!40000 ALTER TABLE `request_type` ENABLE KEYS */;
 
 -- Dumping structure for table repair.s0
 CREATE TABLE IF NOT EXISTS `s0` (

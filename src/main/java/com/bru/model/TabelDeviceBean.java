@@ -3,9 +3,11 @@ package com.bru.model;
 public class TabelDeviceBean {
 
 	private String id;
-	private String device;
+	private String cID;
+	private String cName;
+	private String cPhone;
 	private String serialnumber;
-	private String customer;
+	private String deviceName;
 	
 	public String getId() {
 		return id;
@@ -13,11 +15,23 @@ public class TabelDeviceBean {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getDevice() {
-		return device;
+	public String getcID() {
+		return cID;
 	}
-	public void setDevice(String device) {
-		this.device = device;
+	public void setcID(String cID) {
+		this.cID = cID;
+	}
+	public String getcName() {
+		return cName;
+	}
+	public void setcName(String cName) {
+		this.cName = cName;
+	}
+	public String getcPhone() {
+		return cPhone;
+	}
+	public void setcPhone(String cPhone) {
+		this.cPhone = cPhone;
 	}
 	public String getSerialnumber() {
 		return serialnumber;
@@ -25,11 +39,13 @@ public class TabelDeviceBean {
 	public void setSerialnumber(String serialnumber) {
 		this.serialnumber = serialnumber;
 	}
-	public String getCustomer() {
-		return customer;
+	public String getDeviceName() {
+		return deviceName;
 	}
-	public void setCustomer(String customer) {
-		this.customer = customer;
+	public void setDeviceName(String deviceName) {
+		this.deviceName = deviceName;
 	}
+	
+
 	
 }
