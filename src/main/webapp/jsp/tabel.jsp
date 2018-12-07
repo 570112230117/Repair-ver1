@@ -31,25 +31,27 @@
                                                     <!-- Header Table -->
                                                     <thead>
                                                         <tr>
+                                                            <th></th>
                                                             <th>วันที่แจ้งซ่อม</th>
-                                                            <th>ชื่อลูกค้า</th>
+                                                            <th>ชื่อผู้แจ้ง</th>
                                                             <th>ชื่ออุปกรณ์</th>
                                                             <th>อาการเสีย</th>
                                                             <th>ผู้ดำเนินการซ่อม</th>
                                                             <th>สถานะ</th>
-                                                            <th></th>
+                                                            <th>แก้ไข</th>
                                                         </tr>
                                                     </thead>
                                                     <!-- Footer Table -->
                                                     <tfoot>
                                                         <tr>
+                                                            <th></th>
                                                             <th>วันที่แจ้งซ่อม</th>
-                                                            <th>ชื่อลูกค้า</th>
+                                                            <th>ชื่อผู้แจ้ง</th>
                                                             <th>ชื่ออุปกรณ์</th>
                                                             <th>อาการเสีย</th>
                                                             <th>ผู้ดำเนินการซ่อม</th>
                                                             <th>สถานะ</th>
-                                                            <th></th>
+                                                            <th>แก้ไข</th>
                                                         </tr>
                                                     </tfoot>
                                                 </table>
@@ -128,7 +130,7 @@
                                                         <table id="w1" class="table table-striped table-bordered detail-view">
                                                             <tbody>
                                                                 <tr>
-                                                                    <th>ผู้ใช้งานอุปกรณ์</th>
+                                                                    <th>ผู้ครอบครองอุปกรณ์</th>
                                                                     <td width="60%" id="custromerId"></td>
                                                                 </tr>
                                                                 <tr>
@@ -216,7 +218,7 @@
                 </div>
                 <!-- Modal -->
                 <div id="myModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog" style="width: 70%">
+                    <div class="modal-dialog modal-lg">
 
                         <!-- Modal content-->
                         <div class="modal-content">
@@ -225,9 +227,29 @@
                                 <h4 class="modal-title">ประวัติการทำรายการ</h4>
                             </div>
                             <div class="modal-body">
-                                <table class="table table-bordered" id="ta">
-
+                                <table class="table report-table" width="100%" id="taa">
+                                    <thead>
+                                        <!-- <tr>
+                                            <th>วันที่ทำรายการ</th>
+                                            <th>สถานะ</th>
+                                            <th>รวมค่าบริการ</th>
+                                            <th>ผู้ดำเนินการ</th>
+                                            <th>รายละเอียด</th>
+                                        </tr> -->
+                                    </thead>
+                                    <tbody>
+                                        <!-- <tr>
+                                            <td>No. PT1800006<br>2561-11-11 03:39:09</td>
+                                            <td>รอตรวจสอบ</td>
+                                            <td>300</td>
+                                            <td>ผู้ดูแลระบบ2</td>
+                                            <th>xxx</th>
+                                        </tr> -->
+                                    </tbody>
                                 </table>
+                                <!-- <table class="table table-bordered" id="ta">
+
+                                </table> -->
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
@@ -263,7 +285,7 @@
                 success: function(msg) {
                     console.log(msg)
                     $('#deviceDate').text(msg.deviceDate);
-                    $('#custromerId').text(msg.custromerId);
+                    $('#custromerId').text("(" + msg.custromerId + ") คุณ " + msg.custromerName);
                     $('#deviceCategory').text(msg.deviceCategory);
                     $('#brand').text(msg.brand);
                     $('#generation').text(msg.generation);
@@ -292,7 +314,7 @@
                     var table = '';
                     table += '<tr>';
                     table += '<th>วันที่แจ้งซ่อม</th>';
-                    table += '<th class="text-left">ชื่อลูกค้า</th>';
+                    table += '<th class="text-left">ชื่อผู้แจ้ง</th>';
                     table += '<th>อาการเสีย</th>';
                     table += '<th>ผู้ดำเนินการซ่อม</th>';
                     table += '<th>รายละเอียดการซ่อม</th>';
@@ -302,9 +324,22 @@
                         table += '<tr>';
                         table += '<td>No. ' + msg[i].reprirId + '<br>' + msg[i].date + '</td>';
                         table += '<td>' + msg[i].name + '<br>' + msg[i].phone + '</td>';
-                        table += '<td>' + msg[i].problem + '</td>';
+                        if (msg[i].problem == null) {
+                            table += '<td>' + msg[i].other + '</td>';
+                        } else if (msg[i].other == null) {
+                            table += '<td>' + msg[i].problem + '</td>'
+                        } else {
+                            table += '<td>' + msg[i].problem + " " + msg[i].other + '</td>'
+                        } // table += '<td>' + msg[i].problem + '</td>';
+
                         table += '<td>' + msg[i].technician + '</td>';
-                        table += '<td>' + msg[i].technicialNoteDetail + '</td>';
+                        if (msg[i].technicialNoteDetail == null) {
+
+                            table += '<td></td>';
+                        } else {
+                            table += '<td>' + msg[i].technicialNoteDetail + '</td>';
+                        }
+
                         table += '<td width="10%">' + msg[i].status + '</td>';
                         table += '</tr>';
                     }
@@ -312,50 +347,13 @@
                 }
             });
         };
-
-        // function gotoUpdate(id) {
-        //     document.getElementById("xx").value = id;
-        //     var testBean = {
-        //         "a": $('#xx').val()
-        //     };
-        //     console.log(testBean)
-        //     $('#ta').empty();
-        //     $.ajax({
-        //         type: "POST",
-        //         url: "/history",
-        //         data: JSON.stringify(testBean),
-        //         contentType: "application/json; charset=utf-8",
-        //         dataType: "json",
-        //         success: function(msg) {
-        //             console.log(msg)
-        //             var table = '';
-        //             table += '<tr>';
-        //             table += '<th class="text-center">วันที่ทำรายการ</th>';
-        //             table += '<th class="text-center">สถานะ</th>';
-        //             table += '<th class="text-center">รวมค่าบริการ</th>';
-        //             table += '<th class="text-center">ผู้ดำเนินการ</th>';
-        //             table += '/<tr>';
-        //             for (var i = 0; i < msg.length; i++) {
-
-        //                 table += '<tr class="text-center">';
-        //                 table += '<td>' + msg[i].completionDate + '</td>';
-        //                 table += '<td>' + msg[i].repairStatus + '</td>';
-        //                 table += '<td>' + msg[i].sum + '</td>';
-        //                 table += '<td>' + msg[i].technician + '</td>';
-        //                 table += '</tr>';
-
-        //             }
-        //             $('#ta').append(table);
-
-        //         }
-        //     });
-        // };
-
-
         $(document).ready(function() {
             var table = $('#datable_1').DataTable({
                 "sAjaxSource": "/repairtabel",
                 "sAjaxDataProp": "",
+                "order": [
+                    [0, "DESC"]
+                ],
                 // dom: 'Bfrtip',
                 // buttons: [
                 //     'copy', 'csv', 'excel', 'pdf', 'print'
@@ -363,7 +361,12 @@
                 "aoColumns": [{
                     "mData": "",
                     "mRender": function(data, type, full) {
-                        return '<p>' + "No. " + full.reprirId + "" + '<br>' + full.date + '</p>';
+                        return '<input type="hidden"  value="' + full.id + '">';
+                    }
+                }, {
+                    "mData": "",
+                    "mRender": function(data, type, full) {
+                        return '<p class="text-primary">' + "No. " + full.reprirId + "" + '</p><p>' + full.date + '</p>';
                     }
                 }, {
                     "mData": "",
@@ -376,13 +379,32 @@
                         return '<a onclick="gotodevice(' + full.device + ')" data-toggle="modal" data-target="#modaldevice"><img src="dist/img/if_computer.png" width="40" height="40"></a>';
                     }
                 }, {
-                    "mData": "problem"
+                    "mData": "",
+                    "mRender": function(data, type, full) {
+                        if (full.problem == null) {
+                            return '<p>' + full.other + '</p>';
+                        } else if (full.other == null) {
+                            return '<p>' + full.problem + '</p>';
+                        } else {
+                            return '<p>' + full.problem + '<br>' + full.other + '</p>';
+                        }
+                    }
                 }, {
                     "mData": "technician",
                 }, {
                     "mData": "",
                     "mRender": function(data, type, full) {
-                        return '<span class="label label-default">' + full.status + '</span>';
+                        if (full.status == 'แจ้งซ่อม') {
+                            return '<span class="label label-danger">' + full.status + '</span>';
+                        } else if (full.status == 'รอตรวจสอบ') {
+                            return '<span class="label label-warning">' + full.status + '</span>';
+                        } else if (full.status == 'ส่งคืนสินค้าแล้ว') {
+                            return '<span class="label label-success">' + full.status + '</span>';
+                        } else if (full.status == 'ซ่อมไม่ได้') {
+                            return '<span class="label label-danger">' + full.status + '</span>';
+                        } else {
+                            return '<span class="label label-default">' + full.status + '</span>';
+                        }
                     }
                 }, {
                     "mData": "",

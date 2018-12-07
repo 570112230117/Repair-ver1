@@ -98,10 +98,6 @@
                                             <option value="">== เลือกหมวดหมู่อุปกรณ์ ==</option>
                                             </select>
                                     </div>
-                                    <div class="form-group">
-                                        <!-- <label class="control-label mb-10">ชื่อย่อ:</label> -->
-                                        <input type="hidden" class="form-control" id="in" name="initials">
-                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary">บันทึก</button>
@@ -129,13 +125,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label mb-10">หมวดหมู่อุปกรณ์:</label>
-                                    <select class="form-control" id="repairtype">
+                                    <select class="form-control" id="Devicecategory">
                                         <option value="">== เลือกหมวดหมู่อุปกรณ์ ==</option>
                                         </select>
-                                </div>
-                                <div class="form-group">
-                                    <!-- <label class="control-label mb-10">ชื่อย่อ:</label> -->
-                                    <input type="hidden" class="form-control" id="aaaa">
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -164,9 +156,9 @@
             function insertConfirm() {
                 var brandBean = {
                     name: $('#name').val(),
-                    device: $('#repairtype').val(),
-                    initials: $('#aaaa').val(),
+                    device: $('#Devicecategory').val(),
                 }
+                console.log(brandBean)
                 $.ajax({
                     type: "POST",
                     url: "/insertbrand",
@@ -262,37 +254,12 @@
 
                 $.ajax({
                     type: "GET",
-                    url: "/repairtype",
+                    url: "/Devicecategory",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function(msg) {
                         for (var i = 0; i < msg.length; i++) {
-                            $('#repairtype').append('<option value="' + msg[i].name + '">' + msg[i].name + '</option>');
-                        }
-                    }
-                });
-                $('#repairtype').change(function() {
-                    var testBean = {
-                        "a": $('#repairtype').val()
-                    };
-                    $.ajax({
-                        type: "POST",
-                        url: "/brandname",
-                        data: JSON.stringify(testBean),
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        success: function(msg) {
-                            $('#aaaa').val(msg.initials);
-                        }
-                    });
-                });
-                $.ajax({
-                    type: "GET",
-                    url: "/repairtype",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function(msg) {
-                        for (var i = 0; i < msg.length; i++) {
+                            $('#Devicecategory').append('<option value="' + msg[i].name + '">' + msg[i].name + '</option>');
                             $('#t').append('<option value="' + msg[i].name + '">' + msg[i].name + '</option>');
                         }
                     }

@@ -5,8 +5,6 @@ public class BrandBean {
 	private int id;
 	private String name;
 	private String device;
-	private String initials;
-
 	
 	public int getId() {
 		return id;
@@ -25,14 +23,5 @@ public class BrandBean {
 	}
 	public void setDevice(String device) {
 		this.device = device;
-	}
-
-	public String getInitials() {
-		return initials;
-	}
-	public void setInitials(String initials) {
-		this.initials = initials;
-	}
-	
-	
+	}	
 }

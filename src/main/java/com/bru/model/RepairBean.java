@@ -10,6 +10,7 @@ public class RepairBean {
 	private String repairDate;
 	private Date completeDate;
 	private String problem;
+	private String other;
 	private String memberId;
 	private String repairStatusID;
 	private String repairStatus;
@@ -19,6 +20,7 @@ public class RepairBean {
 	private String completionDate;
 	private String technician;
 	private String technicialNote;
+	private String jobTypeID;
 	private String jobType;
 	private String accessories;
 	private String repairLimit;
@@ -150,6 +152,18 @@ public class RepairBean {
 	}
 	public void setRepairStatusID(String repairStatusID) {
 		this.repairStatusID = repairStatusID;
+	}
+	public String getJobTypeID() {
+		return jobTypeID;
+	}
+	public void setJobTypeID(String jobTypeID) {
+		this.jobTypeID = jobTypeID;
+	}
+	public String getOther() {
+		return other;
+	}
+	public void setOther(String other) {
+		this.other = other;
 	}
 	
 }

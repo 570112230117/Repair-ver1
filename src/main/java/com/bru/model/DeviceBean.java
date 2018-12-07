@@ -16,8 +16,11 @@ public class DeviceBean {
 	private String os;
 	private String note;
 	private String custromerId;
+	private String custromerName;
 	private String deviceDate;
 	
+	private String strId;
+	private String name;
 	public int getId() {
 		return id;
 	}
@@ -114,6 +117,24 @@ public class DeviceBean {
 	}
 	public void setDeviceDate(String deviceDate) {
 		this.deviceDate = deviceDate;
+	}
+	public String getStrId() {
+		return strId;
+	}
+	public void setStrId(String strId) {
+		this.strId = strId;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getCustromerName() {
+		return custromerName;
+	}
+	public void setCustromerName(String custromerName) {
+		this.custromerName = custromerName;
 	}
 	
 }

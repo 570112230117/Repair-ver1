@@ -53,6 +53,33 @@
                             </div>
                         </div>
                         <br>
+                        <br>
+                        <div class="container">
+                            <h4 id="repairID"></h4>
+                            <div class="table-responsive">
+                                <table class="table mb-0" id="tabelhistory">
+                                    <!-- <thead>
+                                        <tr>
+                                            <th>วันที่ทำรายการ</th>
+                                            <th>สถานะ</th>
+                                            <th>รายละเอียด</th>
+                                            <th>รวมค่าบริการ</th>
+                                            <th>ผู้ดำเนินการ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>2561-11-22 15:13:22</td>
+                                            <td>แจ้งซ่อม</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><span class="label label-danger">Admin</span> </td>
+                                        </tr>
+                                    </tbody> -->
+                                </table>
+                            </div>
+                        </div>
+
                         <!-- <hr class="light-grey-hr"> -->
                         <div class="row">
                             <div class="col-md-6">
@@ -128,49 +155,137 @@
         <!-- /#wrapper -->
 
         <script>
+            // function check() {
+            //     $('#id').empty();
+            //     $('#date').empty();
+            //     $('#customerID').empty();
+            //     $('#productname').empty();
+            //     $('#name').empty();
+            //     $('#phone').empty();
+            //     $('#device').empty();
+            //     $('#problem').empty();
+            //     $('#technician').empty();
+            //     $('#status').empty();
+            //     $('#spareparts').empty();
+            //     $('#servicecharge').empty();
+            //     $('#sum').empty();
+            //     var testBean = {
+            //         "a": $('#track').val()
+            //     };
+            //     console.log(testBean)
+            //     $.ajax({
+            //         type: "POST",
+            //         url: "/Track",
+            //         contentType: "application/json; charset=utf-8",
+            //         data: JSON.stringify(testBean),
+            //         dataType: "json",
+            //         success: function(msg) {
+            //             console.log(msg)
+            //             if (msg.id != null) {
+            //                 $('#').append('');
+            //                 $('#id').append('<label class="col-sm-4 control-label">เลขที่ใบรับซ่อม:</label><label class=" control-label">' + msg.id + '</label>');
+            //                 $('#date').append('<label class="col-sm-4 control-label">วันที่ / เวลารับ:</label><label class=" control-label">' + msg.date + '</label>');
+            //                 $('#customerID').append('<label class="col-sm-4 control-label">รหัสลูกค้า:</label><label class=" control-label">' + msg.customerID + '</label>');
+            //                 $('#name').append('<label class="col-sm-4 control-label">ชื่อลูกค้า:</label><label class=" control-label">' + msg.name + '</label>');
+            //                 $('#phone').append('<label class="col-sm-4 control-label">เบอร์โทรศัพท์:</label><label class=" control-label">' + msg.phone + '</label>');
+            //                 $('#device').append('<label class="col-sm-4 control-label">ชื่ออุปกรณ์:</label><label class=" control-label">' + msg.device + '</label>');
+            //                 $('#problem').append('<label class="col-sm-4 control-label">อาการเสีย:</label><label class=" control-label">' + msg.problem + '</label>');
+            //                 $('#technician').append(' <label class="col-sm-4 control-label">ช่างที่แก้ไข:</label><label class=" control-label">' + msg.technician + '</label>');
+            //                 $('#status').append(' <label class="col-sm-4 control-label">สถานะ:</label><label class=" control-label">' + msg.status + '</label>');
+            //                 $('#spareparts').append('<label class="col-sm-4 control-label">ค่าอะไหล่:</label><label class="control-label">' + msg.spareparts + '</label>');
+            //                 $('#servicecharge').append('<label class="col-sm-4 control-label">ค่าบริการ:</label><label class="control-label">' + msg.servicecharge + '</label>');
+            //                 $('#sum').append('<label class="col-sm-4 control-label">รวม:</label><label class="control-label">' + msg.sum + '</label>');
+            //             } else if (msg.id == null) {
+            //                 swal("ไม่มีข้อมูล!")
+            //             }
+            //         }
+            //     });
+            // }
+
             function check() {
-                $('#id').empty();
-                $('#date').empty();
-                $('#customerID').empty();
-                $('#productname').empty();
-                $('#name').empty();
-                $('#phone').empty();
-                $('#device').empty();
-                $('#problem').empty();
-                $('#technician').empty();
-                $('#status').empty();
-                $('#spareparts').empty();
-                $('#servicecharge').empty();
-                $('#sum').empty();
                 var testBean = {
-                    "a": $('#track').val()
+                    "repairId": $('#track').val()
                 };
-                console.log(testBean)
+                $('#tabelhistory').empty();
+                $('#repairID').empty();
                 $.ajax({
                     type: "POST",
-                    url: "/Track",
-                    contentType: "application/json; charset=utf-8",
+                    url: "/history",
                     data: JSON.stringify(testBean),
+                    contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function(msg) {
                         console.log(msg)
-                        if (msg.id != null) {
-                            $('#').append('');
-                            $('#id').append('<label class="col-sm-4 control-label">เลขที่ใบรับซ่อม:</label><label class=" control-label">' + msg.id + '</label>');
-                            $('#date').append('<label class="col-sm-4 control-label">วันที่ / เวลารับ:</label><label class=" control-label">' + msg.date + '</label>');
-                            $('#customerID').append('<label class="col-sm-4 control-label">รหัสลูกค้า:</label><label class=" control-label">' + msg.customerID + '</label>');
-                            $('#name').append('<label class="col-sm-4 control-label">ชื่อลูกค้า:</label><label class=" control-label">' + msg.name + '</label>');
-                            $('#phone').append('<label class="col-sm-4 control-label">เบอร์โทรศัพท์:</label><label class=" control-label">' + msg.phone + '</label>');
-                            $('#device').append('<label class="col-sm-4 control-label">ชื่ออุปกรณ์:</label><label class=" control-label">' + msg.device + '</label>');
-                            $('#problem').append('<label class="col-sm-4 control-label">อาการเสีย:</label><label class=" control-label">' + msg.problem + '</label>');
-                            $('#technician').append(' <label class="col-sm-4 control-label">ช่างที่แก้ไข:</label><label class=" control-label">' + msg.technician + '</label>');
-                            $('#status').append(' <label class="col-sm-4 control-label">สถานะ:</label><label class=" control-label">' + msg.status + '</label>');
-                            $('#spareparts').append('<label class="col-sm-4 control-label">ค่าอะไหล่:</label><label class="control-label">' + msg.spareparts + '</label>');
-                            $('#servicecharge').append('<label class="col-sm-4 control-label">ค่าบริการ:</label><label class="control-label">' + msg.servicecharge + '</label>');
-                            $('#sum').append('<label class="col-sm-4 control-label">รวม:</label><label class="control-label">' + msg.sum + '</label>');
-                        } else if (msg.id == null) {
+                        if (msg.length != 0) {
+                            console.log('มีข้อมูล')
+                            $('#repairID').text('เลขที่ใบรับซ่อม : ' + msg[0].repairId)
+                            var table = '';
+                            table += '<thead>';
+                            table += '<tr>';
+                            table += '<th>วันที่ทำรายการ</th>';
+                            table += '<th>สถานะ</th>';
+                            table += '<th>รายละเอียด</th>';
+                            table += '<th>รวมค่าบริการ</th>';
+                            table += '<th>ผู้ดำเนินการ</th>';
+                            table += '/<tr>';
+                            table += '</thead>';
+                            var B = 0;
+                            var sum1;
+                            var summ;
+                            for (var i = 0; i < msg.length; i++) {
+                                summ = msg[i].sum;
+                                if (summ == null) {
+                                    summ = 0;
+                                }
+                                sum1 = parseInt(summ)
+                                B = B + sum1;
+                                table += '<tbody>';
+                                if (i == 0) {
+                                    table += '<tr class="warning">';
+                                } else {
+                                    table += '<tr>';
+                                }
+                                table += '<td>' + msg[i].completionDate + '</td>';
+                                table += '<td><span class="label label-default">' + msg[i].repairStatus + '</span></td>';
+                                if (msg[i].repairDetails == null) {
+                                    table += '<td></td>';
+                                } else {
+                                    table += '<td>' + msg[i].repairDetails + '</td>';
+                                }
+                                if (msg[i].sum == null) {
+                                    table += '<td></td>';
+                                } else {
+                                    table += '<td>' + msg[i].sum + '</td>';
+                                }
+                                if (msg[i].technician == 'Admin') {
+                                    table += '<td><span class="label label-danger">' + msg[i].technician + '</span></td>';
+                                } else {
+                                    table += '<td><span class="label label-success">' + msg[i].technician + '</span></td>';
+                                }
+
+                                table += '</tr>';
+                                table += '</tbody>';
+                            }
+                            table += '<thead>';
+                            table += '<tr>';
+                            table += '<th>' + "No. " + msg[0].repairId + '</th>';
+                            table += '<th>จำนวนเงินรวมทั้งสิ้น</th>';
+                            table += '<th></th>';
+                            if (B == 0) {
+                                B = "";
+                            }
+                            table += '<th>' + B + '</th>';
+                            table += '<th>บาท</th>';
+                            table += '<th></th>';
+                            table += '/<tr>';
+                            table += '</thead>';
+                            $('#tabelhistory').append(table);
+                        } else {
+                            console.log('ไม่มีข้อมูล')
                             swal("ไม่มีข้อมูล!")
                         }
+
+
                     }
                 });
             }

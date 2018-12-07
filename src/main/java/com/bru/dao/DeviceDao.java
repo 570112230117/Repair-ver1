@@ -17,6 +17,29 @@ import com.bru.util.ConnectDB;
 @Repository
 public class DeviceDao {
 
+	public DeviceBean countDevice() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		DeviceBean bean = new DeviceBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(id) as cu FROM device ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new DeviceBean();
+				bean.setId(rs.getInt("cu"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
 	public void insertdevice(DeviceBean bean) throws SQLException {
 		ConnectDB con = new ConnectDB();
 		PreparedStatement prepared = null;
@@ -124,7 +147,7 @@ public class DeviceDao {
 		try {
 			sql.append(
 					"SELECT d.id , CONCAT(\"(\" , d.serial_number,\")\", \" - \", d.device_category , \" ยี่ห้อ \" , d.brand , \" รุ่น \" , d.generation) AS name\r\n"
-							+ "FROM device d\r\n" + "ORDER BY d.id DESC");
+							+ "FROM device d \r\n" + "ORDER BY d.id DESC");
 			prepared = conn.prepareStatement(sql.toString());
 
 			ResultSet rs = prepared.executeQuery();
@@ -150,25 +173,52 @@ public class DeviceDao {
 		DeviceBean bean = new DeviceBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append("SELECT * FROM device WHERE id = ?");
+			sql.append(
+					"SELECT d.* , c.name FROM device d INNER JOIN customer c ON d.custromer_id = c.id WHERE d.id = ?");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, id);
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
-				bean.setDeviceCategory(rs.getString("device_category"));
-				bean.setBrand(rs.getString("brand"));
-				bean.setGeneration(rs.getString("generation"));
-				bean.setSerialnumber(rs.getString("serial_number"));
-				bean.setWarranty(rs.getString("warranty"));
-				bean.setPrice(rs.getFloat("price"));
-				bean.setCpu(rs.getString("cpu"));
-				bean.setMemory(rs.getString("memory"));
-				bean.setHarddisk(rs.getString("harddisk"));
-				bean.setGraphics(rs.getString("graphics"));
-				bean.setDisplay(rs.getString("display"));
-				bean.setOs(rs.getString("os"));
-				bean.setNote(rs.getString("note"));
+				bean.setDeviceCategory(rs.getString("d.device_category"));
+				bean.setBrand(rs.getString("d.brand"));
+				bean.setGeneration(rs.getString("d.generation"));
+				bean.setSerialnumber(rs.getString("d.serial_number"));
+				bean.setWarranty(rs.getString("d.warranty"));
+				bean.setPrice(rs.getFloat("d.price"));
+				bean.setCpu(rs.getString("d.cpu"));
+				bean.setMemory(rs.getString("d.memory"));
+				bean.setHarddisk(rs.getString("d.harddisk"));
+				bean.setGraphics(rs.getString("d.graphics"));
+				bean.setDisplay(rs.getString("d.display"));
+				bean.setOs(rs.getString("d.os"));
+				bean.setNote(rs.getString("d.note"));
+				bean.setCustromerId(rs.getString("d.custromer_id"));
+				bean.setName(rs.getString("c.name"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
 
+	public DeviceBean Occupier(String id) throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		DeviceBean bean = new DeviceBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append("SELECT d.custromer_id , c.name\r\n" + "FROM device d\r\n"
+					+ "INNER JOIN customer c ON d.custromer_id = c.id\r\n" + "WHERE d.id = ?");
+			prepared = conn.prepareStatement(sql.toString());
+			prepared.setString(1, id);
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean.setStrId(rs.getString("d.custromer_id"));
+				bean.setName(rs.getString("c.name"));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -187,28 +237,30 @@ public class DeviceDao {
 		DeviceBean bean = new DeviceBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append(" SELECT * FROM device rp WHERE rp.id = ? ");
+			sql.append(
+					" SELECT rp.* , c.name FROM device rp INNER JOIN customer c ON rp.custromer_id = c.id WHERE rp.id = ?");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, id);
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
 				bean = new DeviceBean();
-				bean.setId(rs.getInt("id"));
-				bean.setDeviceCategory(rs.getString("device_category"));
-				bean.setBrand(rs.getString("brand"));
-				bean.setGeneration(rs.getString("generation"));
-				bean.setSerialnumber(rs.getString("serial_number"));
-				bean.setWarranty(rs.getString("warranty"));
-				bean.setPrice(rs.getFloat("price"));
-				bean.setCpu(rs.getString("cpu"));
-				bean.setMemory(rs.getString("memory"));
-				bean.setHarddisk(rs.getString("harddisk"));
-				bean.setGraphics(rs.getString("graphics"));
-				bean.setDisplay(rs.getString("display"));
-				bean.setOs(rs.getString("os"));
-				bean.setNote(rs.getString("note"));
-				bean.setCustromerId(rs.getString("custromer_id"));
-				bean.setDeviceDate(rs.getString("device_date"));
+				bean.setId(rs.getInt("rp.id"));
+				bean.setDeviceCategory(rs.getString("rp.device_category"));
+				bean.setBrand(rs.getString("rp.brand"));
+				bean.setGeneration(rs.getString("rp.generation"));
+				bean.setSerialnumber(rs.getString("rp.serial_number"));
+				bean.setWarranty(rs.getString("rp.warranty"));
+				bean.setPrice(rs.getFloat("rp.price"));
+				bean.setCpu(rs.getString("rp.cpu"));
+				bean.setMemory(rs.getString("rp.memory"));
+				bean.setHarddisk(rs.getString("rp.harddisk"));
+				bean.setGraphics(rs.getString("rp.graphics"));
+				bean.setDisplay(rs.getString("rp.display"));
+				bean.setOs(rs.getString("rp.os"));
+				bean.setNote(rs.getString("rp.note"));
+				bean.setCustromerId(rs.getString("rp.custromer_id"));
+				bean.setCustromerName(rs.getString("c.name"));
+				bean.setDeviceDate(rs.getString("rp.device_date"));
 				Date date = dt.parse(bean.getDeviceDate());
 				bean.setDeviceDate(dt.format(date));
 			}
@@ -228,7 +280,7 @@ public class DeviceDao {
 		Connection conn = con.openConnect();
 		try {
 			sql.append(
-					" UPDATE device	SET device_category = ?, brand = ?, generation = ? , serial_number = ? , warranty = ? , price = ? , cpu = ? , memory = ? , harddisk = ? , graphics = ? , display = ? , os = ? , note = ? , custromer_id = ?  WHERE device_id = ? ");
+					" UPDATE device	SET device_category = ?, brand = ?, generation = ? , serial_number = ? , warranty = ? , price = ? , cpu = ? , memory = ? , harddisk = ? , graphics = ? , display = ? , os = ? , note = ? , custromer_id = ?  WHERE id = ? ");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, bean.getDeviceCategory());
 			prepared.setString(2, bean.getBrand());
@@ -244,7 +296,7 @@ public class DeviceDao {
 			prepared.setString(12, bean.getOs());
 			prepared.setString(13, bean.getNote());
 			prepared.setString(14, bean.getCustromerId());
-			// prepared.setString(15, bean.getDeviceId());
+			prepared.setInt(15, bean.getId());
 			prepared.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception

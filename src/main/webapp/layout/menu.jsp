@@ -17,8 +17,8 @@
                     <div class="mobile-only-brand pull-left">
                         <div class="nav-header pull-left">
                             <div class="logo-wrap" style="text-align: center">
-                                <a href="/tabel">
-                                    <img class="brand-img" style="width: 80px" src="/dist/img/TCOA1.gif" alt="brand" />
+                                <a href="/Dashboard">
+                                    <img class="brand-img" style="width: 80px" src="/dist/img/logosmall.png" alt="brand" />
                                 </a>
                             </div>
                         </div>
@@ -215,12 +215,12 @@
                                 <div class="clearfix"></div>
                             </a>
                         </li> -->
-                        <li>
+                        <!-- <li>
                             <a href="/company">
                                 <div class="pull-left"><i class="zmdi zmdi-mail-send mr-20"></i><span class="right-nav-text">อุปกรณ์ส่งซ่อม</span></div>
                                 <div class="clearfix"></div>
                             </a>
-                        </li>
+                        </li> -->
                         <li>
                             <%if(bean.getRole().equals("admin")){
                                     %>
@@ -238,6 +238,13 @@
                             <i class="zmdi zmdi-more"></i>
                         </li>
                         <li>
+                            <a href="">
+                                <div class="pull-left"><i class="zmdi zmdi-google-pages mr-20"></i><span class="right-nav-text">คู่มือการใช้งานระบบ</span></div>
+                                <div class="clearfix"></div>
+                            </a>
+
+                        </li>
+                        <!-- <li>
                             <a href="javascript:void(0);" data-toggle="collapse" data-target="#pages_dr">
                                 <div class="pull-left"><i class="zmdi zmdi-google-pages mr-20"></i><span class="right-nav-text">ข้อมูลเกี่ยวกับระบบ</span></div>
                                 <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
@@ -247,11 +254,9 @@
                                 <li>
                                     <a href="">เกี่ยวกับระบบแจ้งซ่อม</a>
                                 </li>
-                                <li>
-                                    <a href="">คู่มือการใช้งานระบบ</a>
-                                </li>
+
                             </ul>
-                        </li>
+                        </li> -->
 
                     </ul>
                 </div>
@@ -272,9 +277,9 @@
                                                             <i class="glyphicon glyphicon-pencil"></i> ตั้งค่าปัญหา
                                                         </div>
                                                     </a>
-                                                    <a href="/PageJobType">
+                                                    <a href="/repairtype">
                                                         <div class="sl-item unread-message">
-                                                            <i class="glyphicon glyphicon-move"></i> ประเภทงานซ่อม
+                                                            <i class="glyphicon glyphicon-move"></i> ตั้งค่าประเภทการแจ้งซ่อม
                                                         </div>
                                                     </a>
                                                     <a href="/repairsettingtype">

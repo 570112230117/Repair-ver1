@@ -45,7 +45,6 @@
                                                         <tr>
                                                             <th>รหัส</th>
                                                             <th>ชื่อ</th>
-                                                            <th>ชื่อประเภท</th>
                                                             <th>ชื่อย่อ</th>
                                                             <th>แก้ไข</th>
 
@@ -56,7 +55,6 @@
                                                         <tr>
                                                             <th>รหัส</th>
                                                             <th>ชื่อ</th>
-                                                            <th>ชื่อประเภท</th>
                                                             <th>ชื่อย่อ</th>
                                                             <th>แก้ไข</th>
 
@@ -140,7 +138,7 @@
 
             $(document).ready(function() {
                 var table = $('#datable_1').DataTable({
-                    "sAjaxSource": "/repairtype",
+                    "sAjaxSource": "/Devicecategory",
                     "sAjaxDataProp": "",
                     "order": [
                         [0, "asc"]
@@ -149,8 +147,6 @@
                         "mData": "id"
                     }, {
                         "mData": "name"
-                    }, {
-                        "mData": "device"
                     }, {
                         "mData": "initials"
                     }, {

@@ -3,9 +3,7 @@ package com.bru.controller;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,28 +11,27 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.bru.dao.BrandDao;
 import com.bru.dao.CompanyDao;
 import com.bru.dao.CustomerDao;
 import com.bru.dao.DeviceDao;
-import com.bru.dao.JobTypeDao;
+import com.bru.dao.HistoryDao;
 import com.bru.dao.MemberDao;
 import com.bru.dao.ProblemDao;
 import com.bru.dao.RepairDao;
 import com.bru.dao.RepairStatusDao;
-import com.bru.dao.RequestTypeDao;
+import com.bru.dao.RepairTypeDao;
 import com.bru.model.AmnuayBean;
 import com.bru.model.BrandBean;
 import com.bru.model.CompanyBean;
 import com.bru.model.CustomerBean;
 import com.bru.model.DeviceBean;
-import com.bru.model.JobTypeBean;
+import com.bru.model.HistoryBean;
 import com.bru.model.KeyBean;
 import com.bru.model.ProblemBean;
 import com.bru.model.RepairBean;
 import com.bru.model.RepairStatusBean;
-import com.bru.model.RequestTypeBean;
+import com.bru.model.RepairTypeBean;
 
 @Controller
 public class RepairController {
@@ -55,9 +52,10 @@ public class RepairController {
 	@Autowired
 	BrandDao brandDao;
 	@Autowired
-	JobTypeDao jobTypeDao;
+	RepairTypeDao repairTypeDao;
 	@Autowired
-	RequestTypeDao requestTypeDao;
+	HistoryDao historyDao;
+
 	// insert
 	@RequestMapping(value = "/insertcutromer")
 	public String insertrepair(@RequestBody CustomerBean customerBean) throws Exception {
@@ -103,7 +101,6 @@ public class RepairController {
 		return "repairstatus";
 	}
 
-	// insert
 	@RequestMapping(value = "/insertproblem")
 	public String insertproblem(@RequestBody ProblemBean problemBean) throws Exception {
 		problemDao.insert(problemBean);
@@ -122,11 +119,11 @@ public class RepairController {
 		return "repairsetting";
 	}
 
-//	@RequestMapping(path = "/updatetype", method = RequestMethod.POST)
-//	public String updatetype(RepairTypeBean repairTypeBean) throws SQLException {
-//		repairDao.update(repairTypeBean);
-//		return "repairsettingtype";
-//	}
+	// @RequestMapping(path = "/updatetype", method = RequestMethod.POST)
+	// public String updatetype(RepairTypeBean repairTypeBean) throws SQLException {
+	// repairDao.update(repairTypeBean);
+	// return "repairsettingtype";
+	// }
 
 	@RequestMapping(path = "/{values}", method = RequestMethod.GET)
 	public String edit(@PathVariable("values") String values, HttpServletRequest request, Model model)
@@ -279,7 +276,7 @@ public class RepairController {
 	@RequestMapping(path = "/updateedit", method = RequestMethod.POST)
 	public String updateedit(@RequestBody RepairBean repairBean) throws Exception {
 		repairDao.updateedit(repairBean);
-//		repairDao.history1(repairBean);
+		repairDao.history1(repairBean);
 		return "tabel";
 	}
 
@@ -288,36 +285,75 @@ public class RepairController {
 		deviceDao.updatedevice(deviceBean);
 		return "tabeldevice";
 	}
+
+	// // insert
+	// @RequestMapping(value = "/insertJob")
+	// public String insertJob(@RequestBody JobTypeBean jobTypeBean) throws
+	// Exception {
+	// jobTypeDao.insertJob(jobTypeBean);
+	// return "JobType";
+	// }
+	// @RequestMapping(path = "/updatejob", method = RequestMethod.POST)
+	// public String updateJob(JobTypeBean job) throws Exception {
+	// jobTypeDao.update(job);
+	// return "JobType";
+	// }
+	// @RequestMapping(path = "/deleteJob/{id}", method = RequestMethod.DELETE)
+	// public String deleteJob(@PathVariable String id) throws SQLException {
+	// jobTypeDao.delete(id);
+	// return "JobType";
+	// }
 	// insert
-	@RequestMapping(value = "/insertJob")
-	public String insertJob(@RequestBody JobTypeBean jobTypeBean) throws Exception {
-		jobTypeDao.insertJob(jobTypeBean);
-		return "JobType";
+	// @RequestMapping(value = "/insertRequest")
+	// public String insertRequest(@RequestBody RequestTypeBean requestTypeBean)
+	// throws Exception {
+	// requestTypeDao.insertRequest(requestTypeBean);
+	// return "JobType";
+	// }
+	// @RequestMapping(path = "/updateRequest", method = RequestMethod.POST)
+	// public String updateRequest(RequestTypeBean bean) throws Exception {
+	// requestTypeDao.update(bean);
+	// return "JobType";
+	// }
+	// @RequestMapping(path = "/deleteRequest/{id}", method = RequestMethod.DELETE)
+	// public String deleteRequest(@PathVariable String id) throws SQLException {
+	// requestTypeDao.delete(id);
+	// return "JobType";
+	// }
+	@RequestMapping(path = "/insertRepairTypeBean", method = RequestMethod.POST)
+	public String insertRepairTypeBean(@RequestBody RepairTypeBean bean) throws Exception {
+		repairTypeDao.insertRepairTypeBean(bean);
+		return "repair";
 	}
-	@RequestMapping(path = "/updatejob", method = RequestMethod.POST)
-	public String updateJob(JobTypeBean job) throws Exception {
-		jobTypeDao.update(job);		
-		return "JobType";
+
+	@RequestMapping(value = "/insertproblemrepair")
+	public String insertproblemrepair(@RequestBody ProblemBean problemBean) throws Exception {
+		problemDao.insert(problemBean);
+		return "repair";
 	}
-	@RequestMapping(path = "/deleteJob/{id}", method = RequestMethod.DELETE)
-	public String deleteJob(@PathVariable String id) throws SQLException {
-		jobTypeDao.delete(id);
-		return "JobType";
+
+	@RequestMapping(path = "/updateHistory")
+	public String updateHistory(@RequestBody HistoryBean bean) throws Exception {
+		historyDao.update(bean);
+		return "repair_edit";
 	}
-	// insert
-	@RequestMapping(value = "/insertRequest")
-	public String insertRequest(@RequestBody RequestTypeBean requestTypeBean) throws Exception {
-		requestTypeDao.insertRequest(requestTypeBean);
-		return "JobType";
+
+	@RequestMapping(path = "/deletehistory/{id}", method = RequestMethod.DELETE)
+	public String deletehistory(@PathVariable String id) throws SQLException {
+		historyDao.delete(id);
+		return "repair_edit";
 	}
-	@RequestMapping(path = "/updateRequest", method = RequestMethod.POST)
-	public String updateRequest(RequestTypeBean bean) throws Exception {
-		requestTypeDao.update(bean);		
-		return "JobType";
+
+	@RequestMapping(path = "/updaterepairtype", method = RequestMethod.POST)
+	public String updaterepairtype(RepairTypeBean bean) throws Exception {
+		repairTypeDao.update(bean);
+		return "repairtype";
 	}
-	@RequestMapping(path = "/deleteRequest/{id}", method = RequestMethod.DELETE)
-	public String deleteRequest(@PathVariable String id) throws SQLException {
-		requestTypeDao.delete(id);
-		return "JobType";
+
+	@RequestMapping(path = "/deleterepairtype/{id}", method = RequestMethod.DELETE)
+	public String deleterepairtype(@PathVariable String id) throws SQLException {
+		repairTypeDao.delete(id);
+		return "repairtype";
 	}
+
 }

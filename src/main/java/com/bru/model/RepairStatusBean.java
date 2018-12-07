@@ -3,8 +3,7 @@ package com.bru.model;
 public class RepairStatusBean {
 
 	private String id;
-	private String name;
-	private String role;
+	private String name;	
 	public String getId() {
 		return id;
 	}
@@ -19,14 +18,6 @@ public class RepairStatusBean {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
 	}
 
 }

@@ -51,7 +51,6 @@
                                                             <th>รหัส</th>
                                                             <th>ชื่อปัญหา</th>
                                                             <th>หมวดหมู่อุปกรณ์</th>
-                                                            <!-- <th>ชื่อย่อประเภทงานซ่อม</th> -->
                                                             <th>แก้ไข</th>
                                                             <th>ลบ</th>
                                                         </tr>
@@ -62,7 +61,6 @@
                                                             <th>รหัส</th>
                                                             <th>ชื่อปัญหา</th>
                                                             <th>หมวดหมู่อุปกรณ์</th>
-                                                            <!-- <th>ชื่อย่อประเภทงานซ่อม</th> -->
                                                             <th>แก้ไข</th>
                                                             <th>ลบ</th>
                                                         </tr>
@@ -87,7 +85,7 @@
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h4 class="modal-title">แก้ไขพนักงาน</h4>
                             </div>
-                            <form name="updateproblem" action="/updateproblem" method="POST">
+                            <form action="/updateproblem" name="updateproblem" method="POST">
                                 <div class="modal-body">
                                     <input type="hidden" name="id" id="aa">
                                     <div class="form-group">
@@ -97,17 +95,11 @@
                                     <div class="form-group">
                                         <div class="form-group">
                                             <label class="control-label mb-10">หมวดหมู่อุปกรณ์:</label>
-                                            <select class="form-control" id="repairtype" name="typeName">
-                                                        <option>== กรุณาเลือก ==</option>
-                                                        
-                                                    </select>
+                                            <select class="form-control" id="re" name="deviceCategoryId">
+                                            <option value="">== กรุณาเลือก ==</option>                                                        
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <!-- <label class="control-label mb-10">ชื่อย่อประเภทงานซ่อม:</label> -->
-                                        <input type="hidden" class="form-control" id="n" name="typeInitials">
-                                    </div>
-
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary">บันทึก</button>
@@ -117,9 +109,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
                 <!-- Modal -->
                 <div id="Modal" class="modal fade" role="dialog">
                     <div class="modal-dialog">
@@ -131,26 +120,20 @@
                                 <h4 class="modal-title">เพิ่มปัญหา</h4>
                             </div>
                             <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                        <input type="hidden" class="form-control" id="id">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label mb-10">ชื่อปัญหา:</label>
-                                        <input type="text" class="form-control" id="name" placeholder="ชื่อปัญหา">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label mb-10">หมวดหมู่อุปกรณ์:</label>
-                                        <select class="form-control" id="r">
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" id="id">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label mb-10">ชื่อปัญหา:</label>
+                                    <input type="text" class="form-control" id="name" placeholder="ชื่อปัญหา">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label mb-10">หมวดหมู่อุปกรณ์:</label>
+                                    <select class="form-control" id="r">
                                             <option>== กรุณาเลือก ==</option>
                                             
                                         </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <!-- <label class="control-label mb-10">ชื่อย่อประเภทงานซ่อม:</label> -->
-                                        <input type="hidden" class="form-control" id="aaa" disabled>
-                                    </div>
-                                </form>
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary" onclick="insertConfirm()">บันทึก</button>
@@ -177,11 +160,10 @@
         <script>
             function insertConfirm() {
                 var problemBean = {
-                    id: $('#id').val(),
                     name: $('#name').val(),
-                    typeName: $('#r').val(),
-                    typeInitials: $('#aaa').val(),
+                    deviceCategoryId: $('#r').val(),
                 }
+                console.log(problemBean)
                 $.ajax({
                     type: "POST",
                     url: "/insertproblem",
@@ -205,6 +187,7 @@
                 var testBean = {
                     "a": $('#xx').val()
                 };
+                console.log(testBean)
                 $.ajax({
                     type: "POST",
                     url: "/problemid",
@@ -215,9 +198,7 @@
                         console.log(msg)
                         $('#aa').val(msg.id);
                         $('#bb').val(msg.name);
-                        $('#repairtype').val(msg.typeName);
-                        $('#n').val(msg.typeInitials);
-
+                        $('#re').val(msg.deviceCategoryId);
                     }
                 });
             };
@@ -252,62 +233,15 @@
             $(document).ready(function() {
                 $.ajax({
                     type: "GET",
-                    url: "/repairtype",
+                    url: "/Devicecategory",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function(msg) {
                         for (var i = 0; i < msg.length; i++) {
-                            $('#r').append('<option value="' + msg[i].name + '">' + msg[i].name + '</option>');
+                            $('#r').append('<option value="' + msg[i].id + '">' + msg[i].name + '</option>');
+                            $('#re').append('<option value="' + msg[i].id + '">' + msg[i].name + '</option>');
                         }
                     }
-                });
-
-                $('#r').change(function() {
-                    var testBean = {
-                        "a": $('#r').val()
-                    };
-                    $.ajax({
-                        type: "POST",
-                        url: "/initials",
-                        data: JSON.stringify(testBean),
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        success: function(msg) {
-                            $('#aaa').val(msg.typeInitials);
-                            console.log(msg)
-                        }
-                    });
-                });
-            });
-
-            $(document).ready(function() {
-                $.ajax({
-                    type: "GET",
-                    url: "/repairtype",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function(msg) {
-                        for (var i = 0; i < msg.length; i++) {
-                            $('#repairtype').append('<option value="' + msg[i].name + '">' + msg[i].name + '</option>');
-                        }
-                    }
-                });
-
-                $('#repairtype').change(function() {
-                    var testBean = {
-                        "a": $('#repairtype').val()
-                    };
-                    $.ajax({
-                        type: "POST",
-                        url: "/initials",
-                        data: JSON.stringify(testBean),
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        success: function(msg) {
-                            $('#n').val(msg.typeInitials);
-
-                        }
-                    });
                 });
             });
         </script>
@@ -325,7 +259,7 @@
                     }, {
                         "mData": "name"
                     }, {
-                        "mData": "typeName"
+                        "mData": "deviceCategoryId"
                     }, {
                         "mData": "",
                         "mRender": function(data, type, full) {

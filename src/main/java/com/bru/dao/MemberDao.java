@@ -1,16 +1,12 @@
 package com.bru.dao;
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import java.util.ArrayList;
-
 import java.util.List;
 import org.springframework.stereotype.Repository;
-
 import com.bru.model.MemberBean;
 import com.bru.model.TestBean;
 import com.bru.util.ConnectDB;
@@ -18,6 +14,30 @@ import com.bru.util.ConnectDB;
 @Repository
 public class MemberDao {
 
+	public MemberBean countMember() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		MemberBean bean = new MemberBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(id) as cu FROM member ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new MemberBean();
+				bean.setId(rs.getString("cu"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+	
+	
 	String a;
 
 	public MemberBean login(String email, String password) throws SQLException {

@@ -27,7 +27,7 @@ public class BrandDao {
 		BrandBean bean = new BrandBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append(" SELECT * FROM brand WHERE device_name = ? ");
+			sql.append(" SELECT * FROM brand WHERE device_category_name = ? ");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, testBean.getA());
 			ResultSet rs = prepared.executeQuery();
@@ -35,8 +35,7 @@ public class BrandDao {
 				bean = new BrandBean();
 				bean.setId(rs.getInt("id"));
 				bean.setName(rs.getString("name"));
-				bean.setInitials(rs.getString("initials"));
-				bean.setDevice(rs.getString("device_name"));
+				bean.setDevice(rs.getString("device_category_name"));
 				list.add(bean);
 			}
 		} catch (Exception e) {
@@ -55,7 +54,7 @@ public class BrandDao {
 		BrandBean bean = new BrandBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append(" SELECT * FROM brand WHERE device_name = ? ");
+			sql.append(" SELECT * FROM brand WHERE device_category_name = ? ");
 			prepared = conn.prepareStatement(sql.toString());	
 			prepared.setString(1, id);
 			ResultSet rs = prepared.executeQuery();
@@ -63,8 +62,7 @@ public class BrandDao {
 				bean = new BrandBean();
 				bean.setId(rs.getInt("id"));
 				bean.setName(rs.getString("name"));
-				bean.setInitials(rs.getString("initials"));
-				bean.setDevice(rs.getString("device_name"));
+				bean.setDevice(rs.getString("device_category_name"));
 			
 			}
 		} catch (Exception e) {
@@ -90,8 +88,8 @@ public class BrandDao {
 				bean = new BrandBean();
 				bean.setId(rs.getInt("id"));
 				bean.setName(rs.getString("name"));
-				bean.setInitials(rs.getString("initials"));
-				bean.setDevice(rs.getString("device_name"));
+//				bean.setInitials(rs.getString("initials"));
+				bean.setDevice(rs.getString("device_category_name"));
 				list.add(bean);
 			}
 		} catch (Exception e) {
@@ -116,8 +114,7 @@ public class BrandDao {
 			while (rs.next()) {
 				bean.setId(rs.getInt("id"));
 				bean.setName(rs.getString("name"));
-				bean.setInitials(rs.getString("initials"));
-				bean.setDevice(rs.getString("device_name"));
+				bean.setDevice(rs.getString("device_category_name"));
 				
 			}
 		} catch (Exception e) {
@@ -134,11 +131,10 @@ public class BrandDao {
 		StringBuilder sql = new StringBuilder();
 		Connection conn = con.openConnect();
 		try {
-			sql.append(" INSERT INTO brand (name,device_name,initials) VALUES (?,?,?) ");
+			sql.append(" INSERT INTO brand (name,device_category_name) VALUES (?,?) ");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, bean.getName());
 			prepared.setString(2, bean.getDevice());
-			prepared.setString(3, bean.getInitials());
 			prepared.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -153,12 +149,11 @@ public class BrandDao {
 		StringBuilder sql = new StringBuilder();
 		Connection conn = con.openConnect();
 		try {
-			sql.append(" UPDATE brand SET  name = ? , device_name = ?, initials = ? WHERE id = ? ");
+			sql.append(" UPDATE brand SET  name = ? , device_category_name = ? WHERE id = ? ");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, bean.getName());
 			prepared.setString(2, bean.getDevice());
-			prepared.setString(3, bean.getInitials());
-			prepared.setInt(4, bean.getId());
+			prepared.setInt(3, bean.getId());
 			prepared.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception

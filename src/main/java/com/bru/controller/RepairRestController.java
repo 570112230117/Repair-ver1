@@ -15,24 +15,22 @@ import com.bru.dao.CustomerDao;
 import com.bru.dao.DeviceCategoryDao;
 import com.bru.dao.DeviceDao;
 import com.bru.dao.HistoryDao;
-import com.bru.dao.JobTypeDao;
 import com.bru.dao.MemberDao;
 import com.bru.dao.ProblemDao;
 import com.bru.dao.RepairDao;
 import com.bru.dao.RepairStatusDao;
-import com.bru.dao.RequestTypeDao;
+import com.bru.dao.RepairTypeDao;
 import com.bru.model.BrandBean;
 import com.bru.model.CompanyBean;
 import com.bru.model.CustomerBean;
 import com.bru.model.DeviceBean;
 import com.bru.model.DeviceCategoryBean;
 import com.bru.model.HistoryBean;
-import com.bru.model.JobTypeBean;
 import com.bru.model.MemberBean;
 import com.bru.model.ProblemBean;
 import com.bru.model.RepairBean;
 import com.bru.model.RepairStatusBean;
-import com.bru.model.RequestTypeBean;
+import com.bru.model.RepairTypeBean;
 import com.bru.model.TabelDeviceBean;
 import com.bru.model.TabelallBean;
 import com.bru.model.TestBean;
@@ -59,11 +57,10 @@ public class RepairRestController {
 	@Autowired
 	HistoryDao historyDao;
 	@Autowired
-	JobTypeDao jobTypeDao;
-	@Autowired
-	RequestTypeDao requestTypeDao;
-	@Autowired
 	DeviceCategoryDao deviceCategoryDao;
+	@Autowired
+	RepairTypeDao repairTypeDao;
+
 	// ดรอบดาวประเภทงานซ่อม
 	@RequestMapping(value = "/Devicecategory")
 	public List<DeviceCategoryBean> appliances() throws SQLException {
@@ -71,41 +68,36 @@ public class RepairRestController {
 		list = deviceCategoryDao.Devicecategory();
 		return list;
 	}
+
 	@RequestMapping(value = "/category")
 	public DeviceCategoryBean category(@RequestBody TestBean testBean) throws SQLException {
 		DeviceCategoryBean bean = new DeviceCategoryBean();
 		bean = deviceCategoryDao.findById(testBean.getA());
 		return bean;
 	}
-	
+
 	// ดรอบดาวสถานะ
 	@RequestMapping(value = "/repairstatus")
 	public List<RepairStatusBean> repairstatus() throws SQLException {
 		List<RepairStatusBean> list = new ArrayList<>();
-		list = repairDao.repairstatus();
-		return list;
-	}
-	// ดรอบดาวสถานะ
-	@RequestMapping(value = "/repairstatuspersonnel")
-	public List<RepairStatusBean> repairstatuspersonnel() throws SQLException {
-		List<RepairStatusBean> list = new ArrayList<>();
-		list = repairDao.repairstatus1();
+		list = repairStatusDao.repairstatus();
 		return list;
 	}
 
 	// ดรอบดาวประเภทงานซ่อม
-//	@RequestMapping(value = "/problemm")
-//	public RepairTypeBean problemm(@RequestBody TestBean testBean) throws SQLException {
-//		RepairTypeBean bean = new RepairTypeBean();
-//		bean = repairDao.findById(testBean.getA());
-//		return bean;
-//	}
+	// @RequestMapping(value = "/problemm")
+	// public RepairTypeBean problemm(@RequestBody TestBean testBean) throws
+	// SQLException {
+	// RepairTypeBean bean = new RepairTypeBean();
+	// bean = repairDao.findById(testBean.getA());
+	// return bean;
+	// }
 
 	// ดรอบดาวประเภทงานซ่อม
 	@RequestMapping(value = "/problemtabel")
 	public List<ProblemBean> problemtabel() throws SQLException {
 		List<ProblemBean> list = new ArrayList<>();
-		list = repairDao.problemtable();
+		list = problemDao.problemtable();
 		return list;
 	}
 
@@ -147,13 +139,6 @@ public class RepairRestController {
 		return bean;
 	}
 
-	@RequestMapping(value = "/initials")
-	public ProblemBean initials(@RequestBody TestBean testBean) throws SQLException {
-		ProblemBean bean = new ProblemBean();
-		bean = problemDao.findById(testBean.getA());
-		return bean;
-	}
-
 	@RequestMapping(value = "/problemid")
 	public ProblemBean problemid(@RequestBody TestBean testBean) throws SQLException {
 		ProblemBean bean = new ProblemBean();
@@ -192,6 +177,7 @@ public class RepairRestController {
 		list = repairDao.listID(testBean.getA());
 		return list;
 	}
+
 	// ดรอบดาวบริษัทส่งซ่อม
 	@RequestMapping(value = "/companyDrop")
 	public List<CompanyBean> company() throws SQLException {
@@ -288,7 +274,7 @@ public class RepairRestController {
 	@RequestMapping(value = "/history")
 	public List<HistoryBean> history(@RequestBody TestBean testBean) throws SQLException, ParseException {
 		List<HistoryBean> list = new ArrayList<>();
-		list = historyDao.list(testBean.getA());
+		list = historyDao.list(testBean.getRepairId());
 		return list;
 	}
 
@@ -319,7 +305,7 @@ public class RepairRestController {
 		bean = repairDao.COUNTC4();
 		return bean;
 	}
-	
+
 	@RequestMapping(value = "/COUNTC5")
 	public RepairBean COUNTC5() throws SQLException {
 		RepairBean bean = new RepairBean();
@@ -327,6 +313,61 @@ public class RepairRestController {
 		return bean;
 	}
 
+	@RequestMapping(value = "/COUNTC6")
+	public RepairBean COUNTC6() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.COUNTC6();
+		return bean;
+	}
+
+	@RequestMapping(value = "/COUNTC7")
+	public RepairBean COUNTC7() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.COUNTC7();
+		return bean;
+	}
+
+	@RequestMapping(value = "/COUNTC8")
+	public RepairBean COUNTC8() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.COUNTC8();
+		return bean;
+	}
+
+	@RequestMapping(value = "/countCustomer")
+	public CustomerBean countCustomer() throws SQLException {
+		CustomerBean bean = new CustomerBean();
+		bean = customerDao.countCustomer();
+		return bean;
+	}
+
+	@RequestMapping(value = "/countMember")
+	public MemberBean countMember() throws SQLException {
+		MemberBean bean = new MemberBean();
+		bean = memberDao.countMember();
+		return bean;
+	}
+
+	@RequestMapping(value = "/countRepair")
+	public RepairBean countRepair() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.countRepair();
+		return bean;
+	}
+
+	@RequestMapping(value = "/countDevice")
+	public DeviceBean countDevice() throws SQLException {
+		DeviceBean bean = new DeviceBean();
+		bean = deviceDao.countDevice();
+		return bean;
+	}
+
+	@RequestMapping(value = "/sumRepair")
+	public RepairBean sumRepair() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.sumRepair();
+		return bean;
+	}
 	@RequestMapping(value = "/countNB")
 	public DeviceBean countNB() throws SQLException {
 		DeviceBean bean = new DeviceBean();
@@ -403,48 +444,100 @@ public class RepairRestController {
 		bean = deviceDao.countS0();
 		return bean;
 	}
-	
-	@RequestMapping(value = "/JobType")
-	public List<JobTypeBean> JobType() throws SQLException {
-		List<JobTypeBean> list = new ArrayList<>();
-		list = jobTypeDao.Joblist();
-		return list;
-	}
-	@RequestMapping(value = "/JoblistTabel")
-	public List<JobTypeBean> JoblistTabel() throws SQLException {
-		List<JobTypeBean> list = new ArrayList<>();
-		list = jobTypeDao.JoblistTabel();
-		return list;
-	}
-	
-	@RequestMapping(value = "/RequestTabel")
-	public List<RequestTypeBean> RequestTabel() throws SQLException {
-		List<RequestTypeBean> list = new ArrayList<>();
-		list = requestTypeDao.RequestTabel();
-		return list;
-	}
-	@RequestMapping(value = "/JobId")
-	public JobTypeBean JobId(@RequestBody TestBean testBean) throws SQLException {
-		JobTypeBean bean = new JobTypeBean();
-		bean = jobTypeDao.findById(testBean.getA());
-		return bean;
-	}
-	@RequestMapping(value = "/RequesfindById")
-	public RequestTypeBean RequesfindById(@RequestBody TestBean testBean) throws SQLException {
-		RequestTypeBean bean = new RequestTypeBean();
-		bean = requestTypeDao.findById(testBean.getA());
-		return bean;
-	}
-	@RequestMapping(value = "/RequesId")
-	public RequestTypeBean RequesId(@RequestBody TestBean testBean) throws SQLException {
-		RequestTypeBean bean = new RequestTypeBean();
-		bean = requestTypeDao.ById(testBean.getA());
-		return bean;
-	}
+
+	// @RequestMapping(value = "/JobType")
+	// public List<JobTypeBean> JobType() throws SQLException {
+	// List<JobTypeBean> list = new ArrayList<>();
+	// list = jobTypeDao.Joblist();
+	// return list;
+	// }
+
+	// @RequestMapping(value = "/JoblistTabel")
+	// public List<JobTypeBean> JoblistTabel() throws SQLException {
+	// List<JobTypeBean> list = new ArrayList<>();
+	// list = jobTypeDao.JoblistTabel();
+	// return list;
+	// }
+
+	// @RequestMapping(value = "/RequestTabel")
+	// public List<RequestTypeBean> RequestTabel() throws SQLException {
+	// List<RequestTypeBean> list = new ArrayList<>();
+	// list = requestTypeDao.RequestTabel();
+	// return list;
+	// }
+
+	// @RequestMapping(value = "/JobId")
+	// public JobTypeBean JobId(@RequestBody TestBean testBean) throws SQLException
+	// {
+	// JobTypeBean bean = new JobTypeBean();
+	// bean = jobTypeDao.findById(testBean.getA());
+	// return bean;
+	// }
+
+	// @RequestMapping(value = "/RequesfindById")
+	// public RequestTypeBean RequesfindById(@RequestBody TestBean testBean) throws
+	// SQLException {
+	// RequestTypeBean bean = new RequestTypeBean();
+	// bean = requestTypeDao.findById(testBean.getA());
+	// return bean;
+	// }
+
+	// @RequestMapping(value = "/RequesId")
+	// public RequestTypeBean RequesId(@RequestBody TestBean testBean) throws
+	// SQLException {
+	// RequestTypeBean bean = new RequestTypeBean();
+	// bean = requestTypeDao.ById(testBean.getA());
+	// return bean;
+	// }
+
 	@RequestMapping(value = "/deviceropdown")
 	public List<TestDeviceBean> deviceropdown() throws SQLException {
 		List<TestDeviceBean> list = new ArrayList<>();
 		list = deviceDao.dropdown();
+		return list;
+	}
+
+	@RequestMapping(value = "/RepairTypeDrop")
+	public List<RepairTypeBean> RepairType() throws SQLException {
+		List<RepairTypeBean> list = new ArrayList<>();
+		list = repairTypeDao.RepairType();
+		return list;
+	}
+
+	@RequestMapping(value = "/findByIdlist")
+	public List<ProblemBean> findByIdlist(@RequestBody TestBean testBean) throws SQLException {
+		List<ProblemBean> list = new ArrayList<>();
+		list = problemDao.findByIdlist(testBean.getA());
+		return list;
+	}
+
+	@RequestMapping(value = "/Occupier")
+	public DeviceBean Occupier(@RequestBody TestBean testBean) throws SQLException {
+		DeviceBean bean = new DeviceBean();
+		bean = deviceDao.Occupier(testBean.getA());
+		return bean;
+	}
+
+	@RequestMapping(value = "/RepairTypeID")
+	public RepairTypeBean RepairTypeID(@RequestBody TestBean testBean) throws SQLException {
+		RepairTypeBean bean = new RepairTypeBean();
+		bean = repairTypeDao.findById(testBean.getA());
+		return bean;
+	}
+
+	@RequestMapping(value = "/editHistory")
+	public HistoryBean editHistory(@RequestBody TestBean testBean) throws SQLException {
+		HistoryBean bean = new HistoryBean();
+		bean = historyDao.findByIdlist(testBean.getA());
+		System.out.println(testBean.getA());
+		return bean;
+	}
+
+	@RequestMapping(value = "/countType")
+	public List<RepairTypeBean> countType(@RequestBody TestBean testBean) throws SQLException {
+		List<RepairTypeBean> list = new ArrayList<>();
+		list = repairTypeDao.testcountType(testBean.getA());
+		// list.
 		return list;
 	}
 	// end

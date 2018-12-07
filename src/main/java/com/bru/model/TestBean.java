@@ -11,7 +11,7 @@ public class TestBean {
 	private String c2; 
 	private String c3;
 	private String c4;
-	
+	private String repairId;
 	public String getA() {
 		return a;
 	}
@@ -74,6 +74,14 @@ public class TestBean {
 
 	public void setC4(String c4) {
 		this.c4 = c4;
+	}
+
+	public String getRepairId() {
+		return repairId;
+	}
+
+	public void setRepairId(String repairId) {
+		this.repairId = repairId;
 	}
 	
 	

@@ -1,4 +1,5 @@
 package com.bru.controller;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -91,29 +92,28 @@ public class HelloController {
 		return "customer";
 	}
 
-	@RequestMapping(path = "/company", method = RequestMethod.GET)
-	public String company() {
-		return "company";
-	}
-
 	@RequestMapping(path = "/brandsetting", method = RequestMethod.GET)
 	public String brandsetting() {
 		return "brandsetting";
 	}
+
 	@RequestMapping(path = "/testreport", method = RequestMethod.GET)
 	public String testreport() {
 		return null;
 	}
+
 	@RequestMapping(path = "/reportreceipt", method = RequestMethod.GET)
 	public String reportreceipt() {
 		return null;
 	}
+
 	@RequestMapping(path = "/track", method = RequestMethod.GET)
 	public String track() {
 		return "Track";
 	}
-	@RequestMapping(path = "/PageJobType", method = RequestMethod.GET)
-	public String JobType() {
-		return "JobType";
+
+	@RequestMapping(path = "/repairtype", method = RequestMethod.GET)
+	public String repairtype() {
+		return "repairtype";
 	}
 }

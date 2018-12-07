@@ -8,15 +8,37 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import org.springframework.stereotype.Repository;
-
 import com.bru.model.CustomerBean;
 import com.bru.model.KeyBean;
 import com.bru.util.ConnectDB;
 
 @Repository
 public class CustomerDao {
+	
+	public CustomerBean countCustomer() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		CustomerBean bean = new CustomerBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(id) as cu FROM customer ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new CustomerBean();
+				bean.setId(rs.getString("cu"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+	
 	// ดรอบดาวประเภทงานซ่อม
 	public List<CustomerBean> customer() throws SQLException {
 		List<CustomerBean> list = new ArrayList<>();

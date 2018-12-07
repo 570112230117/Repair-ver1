@@ -9,6 +9,7 @@ public class TabelallBean {
 	private String phone;
 	private String device;
 	private String problem;
+	private String other;
 	private String status;
 	private String technician;
 	private String customerID;
@@ -99,6 +100,12 @@ public class TabelallBean {
 	}
 	public void setTechnicialNoteDetail(String technicialNoteDetail) {
 		this.technicialNoteDetail = technicialNoteDetail;
+	}
+	public String getOther() {
+		return other;
+	}
+	public void setOther(String other) {
+		this.other = other;
 	}
 	
 	
