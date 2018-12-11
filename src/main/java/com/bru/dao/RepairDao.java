@@ -590,7 +590,7 @@ public class RepairDao {
 		}
 		return bean;
 	}
-	
+
 	public RepairBean sumRepair() throws SQLException {
 		ConnectDB con = new ConnectDB();
 		PreparedStatement prepared = null;
@@ -603,7 +603,569 @@ public class RepairDao {
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
 				bean = new RepairBean();
-				bean.setSum(rs.getString("sum"));				
+				bean.setSum(rs.getString("sum"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
+	public RepairBean chartNOTEBOOK() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairBean bean = new RepairBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(d.device_category) as count_device_category\r\n" + "FROM repair r\r\n"
+					+ "INNER JOIN device d ON r.device_id = d.id\r\n" + "WHERE d.device_category = 'NOTEBOOK' ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairBean();
+				bean.setDeviceId(rs.getString("count_device_category"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
+	public RepairBean chartCOMPUTER() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairBean bean = new RepairBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(d.device_category) as count_device_category\r\n" + "FROM repair r\r\n"
+					+ "INNER JOIN device d ON r.device_id = d.id\r\n" + "WHERE d.device_category = 'COMPUTER' ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairBean();
+				bean.setDeviceId(rs.getString("count_device_category"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
+	public RepairBean chartPRINTER() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairBean bean = new RepairBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(d.device_category) as count_device_category\r\n" + "FROM repair r\r\n"
+					+ "INNER JOIN device d ON r.device_id = d.id\r\n" + "WHERE d.device_category = 'PRINTER' ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairBean();
+				bean.setDeviceId(rs.getString("count_device_category"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
+	public RepairBean chartThai1() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairBean bean = new RepairBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(d.device_category) as count_device_category\r\n" + "FROM repair r\r\n"
+					+ "INNER JOIN device d ON r.device_id = d.id\r\n" + "WHERE d.device_category = 'เครื่องถ่ายฯ' ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairBean();
+				bean.setDeviceId(rs.getString("count_device_category"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
+	public RepairBean chartMONITER() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairBean bean = new RepairBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(d.device_category) as count_device_category\r\n" + "FROM repair r\r\n"
+					+ "INNER JOIN device d ON r.device_id = d.id\r\n" + "WHERE d.device_category = 'MONITER'");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairBean();
+				bean.setDeviceId(rs.getString("count_device_category"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
+	public RepairBean chartFAX() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairBean bean = new RepairBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(d.device_category) as count_device_category\r\n" + "FROM repair r\r\n"
+					+ "INNER JOIN device d ON r.device_id = d.id\r\n" + "WHERE d.device_category = 'FAX' ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairBean();
+				bean.setDeviceId(rs.getString("count_device_category"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
+	public RepairBean chartThai2() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairBean bean = new RepairBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(d.device_category) as count_device_category\r\n" + "FROM repair r\r\n"
+					+ "INNER JOIN device d ON r.device_id = d.id\r\n" + "WHERE d.device_category = 'กล้อง' ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairBean();
+				bean.setDeviceId(rs.getString("count_device_category"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
+	public RepairBean chartThai3() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairBean bean = new RepairBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(d.device_category) as count_device_category\r\n" + "FROM repair r\r\n"
+					+ "INNER JOIN device d ON r.device_id = d.id\r\n" + "WHERE d.device_category = 'ตู้สาขา' ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairBean();
+				bean.setDeviceId(rs.getString("count_device_category"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
+	public RepairBean chartThai4() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairBean bean = new RepairBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(d.device_category) as count_device_category\r\n" + "FROM repair r\r\n"
+					+ "INNER JOIN device d ON r.device_id = d.id\r\n" + "WHERE d.device_category = 'โทรศัพท์' ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairBean();
+				bean.setDeviceId(rs.getString("count_device_category"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
+	public RepairBean chartThai5() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairBean bean = new RepairBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(d.device_category) as count_device_category\r\n" + "FROM repair r\r\n"
+					+ "INNER JOIN device d ON r.device_id = d.id\r\n" + "WHERE d.device_category = 'เครื่องอื่นๆ' ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairBean();
+				bean.setDeviceId(rs.getString("count_device_category"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
+	public RepairBean repairType1() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairBean bean = new RepairBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(r.id)  AS countType FROM repair r WHERE r.job_type = 1 ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairBean();
+				bean.setJobTypeID(rs.getString("countType"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
+	public RepairBean repairType2() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairBean bean = new RepairBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(r.id) AS countType FROM repair r WHERE r.job_type = 2 ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairBean();
+				bean.setJobTypeID(rs.getString("countType"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
+	public RepairBean repairType3() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairBean bean = new RepairBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(r.id) AS countType FROM repair r WHERE r.job_type = 3 ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairBean();
+				bean.setJobTypeID(rs.getString("countType"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
+	public RepairBean repairType4() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairBean bean = new RepairBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(r.id) AS countType FROM repair r WHERE r.job_type = 4 ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairBean();
+				bean.setJobTypeID(rs.getString("countType"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
+	public RepairBean repairType5() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairBean bean = new RepairBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(r.id) AS countType FROM repair r WHERE r.job_type = 5 ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairBean();
+				bean.setJobTypeID(rs.getString("countType"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
+	public RepairBean repairType6() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairBean bean = new RepairBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(r.id) AS countType FROM repair r WHERE r.job_type = 6 ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairBean();
+				bean.setJobTypeID(rs.getString("countType"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
+	public RepairBean repairType7() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairBean bean = new RepairBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(r.id) AS countType FROM repair r WHERE r.job_type = 7 ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairBean();
+				bean.setJobTypeID(rs.getString("countType"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
+	public RepairBean repairType8() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairBean bean = new RepairBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(r.id) AS countType FROM repair r WHERE r.job_type = 8 ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairBean();
+				bean.setJobTypeID(rs.getString("countType"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
+	public RepairBean repairType9() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairBean bean = new RepairBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(r.id) AS countType FROM repair r WHERE r.job_type = 9 ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairBean();
+				bean.setJobTypeID(rs.getString("countType"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
+	public RepairBean repairType10() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairBean bean = new RepairBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(r.id) AS countType FROM repair r WHERE r.job_type = 10 ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairBean();
+				bean.setJobTypeID(rs.getString("countType"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
+	public RepairBean repairType11() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairBean bean = new RepairBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(r.id) AS countType FROM repair r WHERE r.job_type = 11 ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairBean();
+				bean.setJobTypeID(rs.getString("countType"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
+	public RepairBean repairType12() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairBean bean = new RepairBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(r.id) AS countType FROM repair r WHERE r.job_type = 12 ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairBean();
+				bean.setJobTypeID(rs.getString("countType"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
+	public RepairBean repairType13() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairBean bean = new RepairBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(r.id) AS countType FROM repair r WHERE r.job_type = 13 ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairBean();
+				bean.setJobTypeID(rs.getString("countType"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+		return bean;
+	}
+
+	public RepairBean repairType17() throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		RepairBean bean = new RepairBean();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(" SELECT COUNT(r.id) AS countType FROM repair r WHERE r.job_type = 17 ");
+			prepared = conn.prepareStatement(sql.toString());
+			ResultSet rs = prepared.executeQuery();
+			while (rs.next()) {
+				bean = new RepairBean();
+				bean.setJobTypeID(rs.getString("countType"));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

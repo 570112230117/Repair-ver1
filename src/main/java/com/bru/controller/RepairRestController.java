@@ -368,6 +368,175 @@ public class RepairRestController {
 		bean = repairDao.sumRepair();
 		return bean;
 	}
+
+	@RequestMapping(value = "/chartNOTEBOOK")
+	public RepairBean chartNOTEBOOK() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.chartNOTEBOOK();
+		return bean;
+	}
+
+	@RequestMapping(value = "/chartCOMPUTER")
+	public RepairBean chartCOMPUTER() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.chartCOMPUTER();
+		return bean;
+	}
+
+	@RequestMapping(value = "/chartPRINTER")
+	public RepairBean chartPRINTER() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.chartPRINTER();
+		return bean;
+	}
+
+	@RequestMapping(value = "/chartThai1")
+	public RepairBean chartThai1() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.chartThai1();
+		return bean;
+	}
+
+	@RequestMapping(value = "/chartMONITER")
+	public RepairBean chartMONITER() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.chartMONITER();
+		return bean;
+	}
+
+	@RequestMapping(value = "/chartFAX")
+	public RepairBean chartFAX() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.chartFAX();
+		return bean;
+	}
+
+	@RequestMapping(value = "/chartThai2")
+	public RepairBean chartThai2() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.chartThai2();
+		return bean;
+	}
+
+	@RequestMapping(value = "/chartThai3")
+	public RepairBean chartThai3() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.chartThai3();
+		return bean;
+	}
+
+	@RequestMapping(value = "/chartThai4")
+	public RepairBean chartThai4() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.chartThai4();
+		return bean;
+	}
+
+	@RequestMapping(value = "/chartThai5")
+	public RepairBean chartThai5() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.chartThai5();
+		return bean;
+	}
+
+	@RequestMapping(value = "/repairType1")
+	public RepairBean repairType1() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.repairType1();
+		return bean;
+	}
+
+	@RequestMapping(value = "/repairType2")
+	public RepairBean repairType2() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.repairType2();
+		return bean;
+	}
+
+	@RequestMapping(value = "/repairType3")
+	public RepairBean repairType3() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.repairType3();
+		return bean;
+	}
+
+	@RequestMapping(value = "/repairType4")
+	public RepairBean repairType4() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.repairType4();
+		return bean;
+	}
+
+	@RequestMapping(value = "/repairType5")
+	public RepairBean repairType5() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.repairType5();
+		return bean;
+	}
+
+	@RequestMapping(value = "/repairType6")
+	public RepairBean repairType6() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.repairType6();
+		return bean;
+	}
+
+	@RequestMapping(value = "/repairType7")
+	public RepairBean repairType7() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.repairType7();
+		return bean;
+	}
+
+	@RequestMapping(value = "/repairType8")
+	public RepairBean repairType8() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.repairType8();
+		return bean;
+	}
+
+	@RequestMapping(value = "/repairType9")
+	public RepairBean repairType9() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.repairType9();
+		return bean;
+	}
+
+	@RequestMapping(value = "/repairType10")
+	public RepairBean repairType10() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.repairType10();
+		return bean;
+	}
+
+	@RequestMapping(value = "/repairType11")
+	public RepairBean repairType11() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.repairType11();
+		return bean;
+	}
+
+	@RequestMapping(value = "/repairType12")
+	public RepairBean repairType12() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.repairType12();
+		return bean;
+	}
+
+	@RequestMapping(value = "/repairType13")
+	public RepairBean repairType13() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.repairType13();
+		return bean;
+	}
+
+	@RequestMapping(value = "/repairType17")
+	public RepairBean repairType17() throws SQLException {
+		RepairBean bean = new RepairBean();
+		bean = repairDao.repairType17();
+		return bean;
+	}
+
 	@RequestMapping(value = "/countNB")
 	public DeviceBean countNB() throws SQLException {
 		DeviceBean bean = new DeviceBean();
@@ -438,12 +607,7 @@ public class RepairRestController {
 		return bean;
 	}
 
-	@RequestMapping(value = "/countS0")
-	public DeviceBean countS0() throws SQLException {
-		DeviceBean bean = new DeviceBean();
-		bean = deviceDao.countS0();
-		return bean;
-	}
+
 
 	// @RequestMapping(value = "/JobType")
 	// public List<JobTypeBean> JobType() throws SQLException {

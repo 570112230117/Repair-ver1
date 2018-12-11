@@ -545,27 +545,5 @@ public class DeviceDao {
 		return bean;
 	}
 
-	public DeviceBean countS0() throws SQLException {
-		ConnectDB con = new ConnectDB();
-		PreparedStatement prepared = null;
-		StringBuilder sql = new StringBuilder();
-		DeviceBean bean = new DeviceBean();
-		Connection conn = con.openConnect();
-		try {
-			sql.append(" SELECT count(d.device_category) as repairSum FROM  device d WHERE d.device_category = 'S0' ");
-			prepared = conn.prepareStatement(sql.toString());
-			ResultSet rs = prepared.executeQuery();
-			while (rs.next()) {
-				bean = new DeviceBean();
-				bean.setDeviceCategory(rs.getString("repairSum"));
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		} finally {
-			conn.close();
-		}
-		return bean;
-	}
 	//
 }

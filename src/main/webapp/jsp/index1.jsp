@@ -455,7 +455,7 @@
                             </div>
                             <div class="panel-heading">
                                 <div class="pull-left">
-                                    <h6 class="panel-title txt-dark">อุปกรณ์ทั้งหมด แยกตาม หมวดหมู่อุปกรณ์</h6>
+                                    <h6 class="panel-title txt-dark">อุปกรณ์ทั้งหมดแยกตามหมวดหมู่อุปกรณ์</h6>
                                 </div>
                                 <div class="pull-right">
                                     <a href="#" class="pull-left inline-block refresh mr-15">
@@ -493,28 +493,149 @@
         </div>
 
 
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script type="text/javascript">
+        <script src="https://www.gstatic.com/charts/loader.js"></script>
+        <script>
+            var chartNOTEBOOK;
+            var chartCOMPUTER;
+            var chartPRINTER;
+            var chartThai1;
+            var chartMONITER;
+            var chartFAX;
+            var chartThai2;
+            var chartThai3;
+            var chartThai4;
+            var chartThai5;
+
+            $.ajax({
+                type: "GET",
+                url: "/chartNOTEBOOK",
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                async: false,
+                success: function(msg) {
+                    chartNOTEBOOK = msg.deviceId;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/chartCOMPUTER",
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                async: false,
+                success: function(msg) {
+                    chartCOMPUTER = msg.deviceId;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/chartPRINTER",
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                async: false,
+                success: function(msg) {
+                    chartPRINTER = msg.deviceId;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/chartThai1",
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                async: false,
+                success: function(msg) {
+                    chartThai1 = msg.deviceId;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/chartMONITER",
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                async: false,
+                success: function(msg) {
+                    chartMONITER = msg.deviceId;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/chartFAX",
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                async: false,
+                success: function(msg) {
+                    chartFAX = msg.deviceId;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/chartThai2",
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                async: false,
+                success: function(msg) {
+                    chartThai2 = msg.deviceId;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/chartThai3",
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                async: false,
+                success: function(msg) {
+                    chartThai3 = msg.deviceId;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/chartThai4",
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                async: false,
+                success: function(msg) {
+                    chartThai4 = msg.deviceId;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/chartThai5",
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                async: false,
+                success: function(msg) {
+                    chartThai5 = msg.deviceId;
+                }
+            });
             google.charts.load("current", {
                 packages: ['corechart']
             });
             google.charts.setOnLoadCallback(drawChart);
+            var nb = parseInt(chartNOTEBOOK);
+            var com = parseInt(chartCOMPUTER);
+            var pr = parseInt(chartPRINTER);
+            var ct1 = parseInt(chartThai1);
+            var mo = parseInt(chartMONITER);
+            var fax = parseInt(chartFAX);
+            var ct2 = parseInt(chartThai2);
+            var ct3 = parseInt(chartThai3);
+            var ct4 = parseInt(chartThai4);
+            var ct5 = parseInt(chartThai5);
 
             function drawChart() {
                 var data = google.visualization.arrayToDataTable([
                     ["Element", "Density", {
                         role: "style"
                     }],
-                    ["NOTEBOOK", 20, "#4d4dff"],
-                    ["COMPUTER", 10, "#ff3300"],
-                    ["PRINTER", 19, "#ff9900"],
-                    ["เครื่องถ่ายฯ", 1, "#ff0066"],
-                    ["MONITER", 1, "#3366ff"],
-                    ["FAX", 1, "#cc00ff"],
-                    ["กล้อง", 1, "#cc0000"],
-                    ["ตู้สาขา", 2, "#00ffff"],
-                    ["โทรศัพท์", 1, "#009933"],
-                    ["เครื่องอื่นๆ", 19, "#ff66ff"],
+                    ["NOTEBOOK", nb, "#4d4dff"],
+                    ["COMPUTER", com, "#ff3300"],
+                    ["PRINTER", pr, "#ff9900"],
+                    ["เครื่องถ่ายฯ", ct1, "#ff0066"],
+                    ["MONITER", mo, "#3366ff"],
+                    ["FAX", fax, "#cc00ff"],
+                    ["กล้อง", ct2, "#cc0000"],
+                    ["ตู้สาขา", ct3, "#00ffff"],
+                    ["โทรศัพท์", ct4, "#009933"],
+                    ["เครื่องอื่นๆ", ct5, "#ff66ff"],
                 ]);
 
                 var view = new google.visualization.DataView(data);
@@ -544,33 +665,201 @@
         </script>
 
 
-        <script type="text/javascript">
+        <script>
+            var repairType1;
+            var repairType2;
+            var repairType3;
+            var repairType4;
+            var repairType5;
+            var repairType6;
+            var repairType7;
+            var repairType8;
+            var repairType9;
+            var repairType10;
+            var repairType11;
+            var repairType12;
+            var repairType13;
+            var repairType17;
+            $.ajax({
+                type: "GET",
+                url: "/repairType1",
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                async: false,
+                success: function(msg) {
+                    repairType1 = msg.jobTypeID;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/repairType2",
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                async: false,
+                success: function(msg) {
+                    repairType2 = msg.jobTypeID;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/repairType3",
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                async: false,
+                success: function(msg) {
+                    repairType3 = msg.jobTypeID;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/repairType4",
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                async: false,
+                success: function(msg) {
+                    repairType4 = msg.jobTypeID;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/repairType5",
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                async: false,
+                success: function(msg) {
+                    repairType5 = msg.jobTypeID;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/repairType6",
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                async: false,
+                success: function(msg) {
+                    repairType6 = msg.jobTypeID;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/repairType7",
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                async: false,
+                success: function(msg) {
+                    repairType7 = msg.jobTypeID;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/repairType8",
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                async: false,
+                success: function(msg) {
+                    repairType8 = msg.jobTypeID;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/repairType9",
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                async: false,
+                success: function(msg) {
+                    repairType9 = msg.jobTypeID;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/repairType10",
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                async: false,
+                success: function(msg) {
+                    repairType10 = msg.jobTypeID;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/repairType11",
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                async: false,
+                success: function(msg) {
+                    repairType11 = msg.jobTypeID;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/repairType12",
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                async: false,
+                success: function(msg) {
+                    repairType12 = msg.jobTypeID;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/repairType13",
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                async: false,
+                success: function(msg) {
+                    repairType13 = msg.jobTypeID;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/repairType17",
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                async: false,
+                success: function(msg) {
+                    repairType17 = msg.jobTypeID;
+                }
+            });
+
             google.charts.load("current", {
                 packages: ["corechart"]
             });
             google.charts.setOnLoadCallback(drawChart);
-            // var xxx = '';
+            var nb = parseInt(repairType1);
+            var pc = parseInt(repairType2);
+            var pr = parseInt(repairType3);
+            var In = parseInt(repairType4);
+            var Dot = parseInt(repairType5);
+            var Scanner = parseInt(repairType6);
+            var UPS = parseInt(repairType7);
+            var Internet = parseInt(repairType8);
+            var Network = parseInt(repairType9);
+            var Computer = parseInt(repairType10);
+            var mo = parseInt(repairType11);
+            var DVD = parseInt(repairType12);
+            var HDD = parseInt(repairType13);
+            var ot = parseInt(repairType17);
 
             function drawChart() {
                 var data = google.visualization.arrayToDataTable([
                     ['Task', 'Hours per Day'],
-                    ['เครื่องคอมพิวเตอร์Notebook', 3],
-                    ['เครื่องคอมพิวเตอร์PC', 1],
-                    ['เครื่องพิมพ์เลเซอร์Laser Printer', 2],
-                    ['เครื่องพิมพ์แบบพ่นหมึก(Inkjet)', 1],
-                    ['เครื่องพิมพ์ดอทเมทริกซ์(Dot matrix)', 0],
-                    ['เครื่องสแกนเนอร์(Scanner)', 0],
-                    ['เครื่องสำรองไฟ(UPS)', 0],
-                    ['อินเทอร์เน็ต(Internet)', 0],
-                    ['ระบบเครือข่าย (Network)', 0],
-                    ['ไวรัสคอมพิวเตอร์(Virus Computer)', 2],
-                    ['จอคอมพิวเตอร์', 0],
-                    ['DVD-RW', 0],
-                    ['External HDD', 0],
-                    ['อื่นๆ', 2],
+                    ['เครื่องคอมพิวเตอร์Notebook', nb],
+                    ['เครื่องคอมพิวเตอร์PC', pc],
+                    ['เครื่องพิมพ์เลเซอร์Laser Printer', pr],
+                    ['เครื่องพิมพ์แบบพ่นหมึก(Inkjet)', In],
+                    ['เครื่องพิมพ์ดอทเมทริกซ์(Dot matrix)', Dot],
+                    ['เครื่องสแกนเนอร์(Scanner)', Scanner],
+                    ['เครื่องสำรองไฟ(UPS)', UPS],
+                    ['อินเทอร์เน็ต(Internet)', Internet],
+                    ['ระบบเครือข่าย (Network)', Network],
+                    ['ไวรัสคอมพิวเตอร์(Virus Computer)', Computer],
+                    ['จอคอมพิวเตอร์', mo],
+                    ['DVD-RW', DVD],
+                    ['External HDD', HDD],
+                    ['อื่นๆ', ot],
                 ]);
                 var options = {
-                    title: "คลิกเพื่อดูรายละเอียดอาการเสีย",
+                    title: "คลิกเพื่อดูรายละเอียดสถิติอาการเสีย",
                     // is3D: true,
                 };
                 var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
@@ -640,7 +929,7 @@
                                 var options = {
                                     legend: 'none',
                                     pieSliceText: 'label',
-                                    title: 'อาการเสีย',
+                                    title: 'สถิติอาการเสีย: ' + a,
                                     pieStartAngle: 100,
                                 };
                                 var chart = new google.visualization.PieChart(document.getElementById('piechartxxx'));
@@ -652,25 +941,148 @@
             }
         </script>
 
-        <script type="text/javascript">
+        <script>
+            var countNB;
+            var countCS;
+            var countPT;
+            var countCY;
+            var countMT;
+            var countFT;
+            var countCM;
+            var countSK;
+            var countTN;
+            var countVE;
+
+            $.ajax({
+                type: "GET",
+                url: "/countNB",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function(msg) {
+                    countNB = msg.deviceCategory;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/countCS",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function(msg) {
+                    countCS = msg.deviceCategory;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/countPT",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function(msg) {
+                    countPT = msg.deviceCategory;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/countCY",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function(msg) {
+                    countCY = msg.deviceCategory;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/countMT",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function(msg) {
+                    countMT = msg.deviceCategory;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/countFT",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function(msg) {
+                    countFT = msg.deviceCategory;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/countCM",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function(msg) {
+                    countCM = msg.deviceCategory;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/countSK",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function(msg) {
+                    countSK = msg.deviceCategory;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/countTN",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function(msg) {
+                    countTN = msg.deviceCategory;
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/countVE",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function(msg) {
+                    countVE = msg.deviceCategory;
+                }
+            });
+
             google.charts.load("current", {
                 packages: ["corechart"]
             });
             google.charts.setOnLoadCallback(drawChart);
+            var nb = parseInt(countNB);
+            var cs = parseInt(countCS);
+            var pt = parseInt(countPT);
+            var cy = parseInt(countCY);
+            var mt = parseInt(countMT);
+            var ft = parseInt(countFT);
+            var cm = parseInt(countCM);
+            var sk = parseInt(countSK);
+            var tn = parseInt(countTN);
+            var ve = parseInt(countVE);
+
 
             function drawChart() {
                 var data = google.visualization.arrayToDataTable([
                     ['Language', 'Speakers (in millions)'],
-                    ['NOTEBOOK', 20],
-                    ['COMPUTER', 10],
-                    ['PRINTER', 15],
-                    ['เครื่องถ่ายฯ', 0],
-                    ['MONITER', 2],
-                    ['FAX', 0],
-                    ['กล้อง', 0],
-                    ['ตู้สาขา', 0],
-                    ['โทรศัพท์', 0],
-                    ['เครื่องอื่นๆ', 5],
+                    ['NOTEBOOK', nb],
+                    ['COMPUTER', cs],
+                    ['PRINTER', pt],
+                    ['เครื่องถ่ายฯ', cy],
+                    ['MONITER', mt],
+                    ['FAX', ft],
+                    ['กล้อง', cm],
+                    ['ตู้สาขา', sk],
+                    ['โทรศัพท์', tn],
+                    ['เครื่องอื่นๆ', ve],
                 ]);
                 var options = {
                     title: '',
@@ -818,108 +1230,7 @@
                         $('#sumRepair').append(' ' + a.toLocaleString());
                     }
                 });
-                $.ajax({
-                    type: "GET",
-                    url: "/countNB",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function(msg) {
-                        $('#NB').append(msg.deviceCategory);
-                    }
-                });
-                $.ajax({
-                    type: "GET",
-                    url: "/countCS",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function(msg) {
-                        $('#countCS').append(msg.deviceCategory);
-                    }
-                });
-                $.ajax({
-                    type: "GET",
-                    url: "/countPT",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function(msg) {
-                        $('#countPT').append(msg.deviceCategory);
-                    }
-                });
-                $.ajax({
-                    type: "GET",
-                    url: "/countCY",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function(msg) {
-                        $('#countCY').append(msg.deviceCategory);
-                    }
-                });
-                $.ajax({
-                    type: "GET",
-                    url: "/countMT",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function(msg) {
-                        $('#countMT').append(msg.deviceCategory);
-                    }
-                });
-                $.ajax({
-                    type: "GET",
-                    url: "/countFT",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function(msg) {
-                        $('#countFT').append(msg.deviceCategory);
-                    }
-                });
-                $.ajax({
-                    type: "GET",
-                    url: "/countCM",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function(msg) {
-                        $('#countCM').append(msg.deviceCategory);
-                    }
-                });
-                $.ajax({
-                    type: "GET",
-                    url: "/countSK",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function(msg) {
-                        $('#countSK').append(msg.deviceCategory);
-                    }
-                });
-                $.ajax({
-                    type: "GET",
-                    url: "/countTN",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function(msg) {
-                        $('#countTN').append(msg.deviceCategory);
-                    }
-                });
-                $.ajax({
-                    type: "GET",
-                    url: "/countVE",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function(msg) {
-                        $('#countVE').append(msg.deviceCategory);
-                    }
-                });
-                $.ajax({
-                    type: "GET",
-                    url: "/countS0",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function(msg) {
-                        $('#countS0').append(msg.deviceCategory);
-                    }
-                });
-            });
-            $("#เครื่องคอมพิวเตอร์Notebook").click(function() {
-                alert("#เครื่องคอมพิวเตอร์Notebook");
+
             });
         </script>
     </body>
