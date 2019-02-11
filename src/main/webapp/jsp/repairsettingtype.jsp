@@ -44,8 +44,8 @@
                                                     <thead>
                                                         <tr>
                                                             <th>รหัส</th>
-                                                            <th>ชื่อ</th>
-                                                            <th>ชื่อย่อ</th>
+                                                            <th>ชื่อหมวดหมู่อุปกรณ์</th>
+                                                            <th>ชื่อย่อหมวดหมู่อุปกรณ์</th>
                                                             <th>แก้ไข</th>
 
                                                         </tr>
@@ -54,8 +54,8 @@
                                                     <tfoot>
                                                         <tr>
                                                             <th>รหัส</th>
-                                                            <th>ชื่อ</th>
-                                                            <th>ชื่อย่อ</th>
+                                                            <th>ชื่อหมวดหมู่อุปกรณ์</th>
+                                                            <th>ชื่อย่อหมวดหมู่อุปกรณ์</th>
                                                             <th>แก้ไข</th>
 
                                                         </tr>
@@ -84,11 +84,11 @@
                                 <div class="modal-body">
                                     <input type="hidden" id="id" name="id">
                                     <div class="form-group">
-                                        <label class="control-label mb-10">ชื่อ:</label>
+                                        <label class="control-label mb-10">ชื่อหมวดหมู่อุปกรณ์:</label>
                                         <input type="text" class="form-control" id="name" name="name">
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label mb-10">ชื่อย่อ:</label>
+                                        <label class="control-label mb-10">ชื่อย่อหมวดหมู่อุปกรณ์:</label>
                                         <input type="text" class="form-control" id="initials" name="initials">
                                     </div>
 

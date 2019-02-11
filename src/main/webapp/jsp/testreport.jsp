@@ -29,58 +29,58 @@
                 </div>
                 <table style="margin-top: 1%">
                     <tr>
-                        <th style="width: 25%;">รหัสลูกค้า</th>
-                        <th style="width: 25%;" id="customerID"></th>
-                        <th style="width: 35%;">เลขที่ใบซ่อม</th>
+                        <th style="width: 20%;">รหัสลูกค้า</th>
+                        <th style="width: 30%;" id="customerID"></th>
+                        <th style="width: 30%;">เลขที่ใบซ่อม</th>
                         <th style="width: 25%;" id="repairId"></th>
                     </tr>
                     <tr>
-                        <th style="width: 25%;">คุณ</th>
-                        <th style="width: 25%;" id="customerName"></th>
-                        <th style="width: 35%;">วันที่ / เวลารับ</th>
-                        <th style="width: 25%;" id="repairrepairDate"></th>
+                        <th>คุณ</th>
+                        <th id="customerName"></th>
+                        <th>วันที่รับเครื่อง</th>
+                        <th id="repairrepairDate"></th>
                     </tr>
                     <tr>
-                        <th style="width: 25%;">ที่อยู่</th>
-                        <th style="width: 25%;" id="customerAddress"></th>
-                        <th style="width: 35%;">ประมาณการซ่อมเสร็จ</th>
-                        <th style="width: 25%;" id="repaircompleteDate"></th>
+                        <th>ที่อยู่</th>
+                        <th id="customerAddress"></th>
+                        <th>ประมาณการซ่อมเสร็จ</th>
+                        <th id="repaircompleteDate"></th>
                     </tr>
                     <tr>
-                        <th style="width: 25%;">โทรศัพท์</th>
-                        <th style="width: 25%;" id="customePhone"></th>
-                        <th style="width: 35%;">พนักงานรับเรื่อง</th>
-                        <th style="width: 25%;" id="repairmemberId"></th>
+                        <th>โทรศัพท์</th>
+                        <th id="customePhone"></th>
+                        <th>พนักงานรับเรื่อง</th>
+                        <th id="repairmemberId"></th>
                     </tr>
                 </table>
                 <hr class="light-grey-hr">
                 <table>
                     <tr>
-                        <th style="width: 25%;">รหัสอุปกรณ์</th>
-                        <th style="width: 25%;" id="deviceid"></th>
-                        <th style="width: 35%;">หมวดหมู่อุปกรณ์</th>
+                        <th style="width: 15%;">ประเภทการแจ้งซ่อม</th>
+                        <th style="width: 20%;" id="repairtype"></th>
+                        <th style="width: 15%;">หมวดหมู่อุปกรณ์</th>
                         <th style="width: 25%;" id="had"></th>
                     </tr>
                     <tr>
-                        <th style="width: 25%;">ยี่ห้ออุปกรณ์</th>
-                        <th style="width: 25%;" id="devicebrand"></th>
-                        <th style="width: 35%;">รุ่นอุปกรณ์</th>
-                        <th style="width: 25%;" id="devicegeneration"></th>
+                        <th>ยี่ห้ออุปกรณ์</th>
+                        <th id="devicebrand"></th>
+                        <th>รุ่นอุปกรณ์</th>
+                        <th id="devicegeneration"></th>
                     </tr>
                     <tr>
-                        <th style="width: 25%;">หมายเลขซีเรียล</th>
-                        <th style="width: 25%;" id="deviceserialnumber"></th>
-                        <th style="width: 35%;">หมายเหตุ</th>
-                        <th style="width: 25%;" id="devicenote"></th>
+                        <th>หมายเลขซีเรียล</th>
+                        <th id="deviceserialnumber"></th>
+                        <th>อุปกรณ์ที่นำมาด้วย</th>
+                        <th id="accessories1"></th>
                     </tr>
                     <tr>
-                        <th style="width: 25%;">อาการเสีย</th>
-                        <th style="width: 25%;" id="repairproblem"></th>
-                        <th style="width: 35%;"></th>
-                        <th style="width: 25%;"></th>
+                        <th>อาการเสีย</th>
+                        <th id="repairproblem"></th>
+                        <th>ราคาประเมิน</th>
+                        <th id="repairLimit1"></th>
                     </tr>
                 </table>
-                <br><br>
+                <br>
                 <div class="pull-left">
                     <label>ลงชื่อ:</label><label>_________________________ ลูกค้า</label>
                 </div>
@@ -94,7 +94,7 @@
                     <p>***ทางห้างฯ ขอปฎิเสธ ไม่มีส่วนเกี่ยวข้องและความผิดชอบใดๆ ต่อ Hardware,Software,Data,File***</p>
                     <p>*** หรือสิ่งใด ที่เป็นการละเมิดลิขสิทธิ์ หรือ ผิดกฎหมาย***</p>
                 </div>
-                <br><br>
+                <br> <br><br>
                 <hr class="light-grey-hr">
                 <div style="margin-top: 2%">
                     <h6 class="text-center">ใบเครื่องที่ซ่อม</h6>
@@ -104,55 +104,55 @@
                 </div>
                 <table style="margin-top: 1%">
                     <tr>
-                        <th style="width: 25%;">รหัสลูกค้า</th>
-                        <th style="width: 25%;" id="customerID1"></th>
-                        <th style="width: 35%;">เลขที่ใบซ่อม</th>
+                        <th style="width: 20%;">รหัสลูกค้า</th>
+                        <th style="width: 30%;" id="customerID1"></th>
+                        <th style="width: 30%;">เลขที่ใบซ่อม</th>
                         <th style="width: 25%;" id="repairId1"></th>
                     </tr>
                     <tr>
-                        <th style="width: 25%;">คุณ</th>
-                        <th style="width: 25%;" id="customerName1"></th>
-                        <th style="width: 35%;">วันที่ / เวลารับ</th>
-                        <th style="width: 25%;" id="repairrepairDate1"></th>
+                        <th>คุณ</th>
+                        <th id="customerName1"></th>
+                        <th>วันที่รับเครื่อง</th>
+                        <th id="repairrepairDate1"></th>
                     </tr>
                     <tr>
-                        <th style="width: 25%;">ที่อยู่</th>
-                        <th style="width: 25%;" id="customerAddress1"></th>
-                        <th style="width: 35%;">วันนัดหมาย</th>
-                        <th style="width: 25%;" id="repaircompleteDate1"></th>
+                        <th>ที่อยู่</th>
+                        <th id="customerAddress1"></th>
+                        <th>วันนัดหมาย</th>
+                        <th id="repaircompleteDate1"></th>
                     </tr>
                     <tr>
-                        <th style="width: 25%;">โทรศัพท์</th>
-                        <th style="width: 25%;" id="customePhone1"></th>
-                        <th style="width: 35%;">พนักงานรับเรื่อง</th>
-                        <th style="width: 25%;" id="repairmemberId1"></th>
+                        <th>โทรศัพท์</th>
+                        <th id="customePhone1"></th>
+                        <th>พนักงานรับเรื่อง</th>
+                        <th id="repairmemberId1"></th>
                     </tr>
                 </table>
                 <hr class="light-grey-hr">
                 <table>
                     <tr>
-                        <th style="width: 25%;">รหัสอุปกรณ์</th>
-                        <th style="width: 25%;" id="deviceid11"></th>
-                        <th style="width: 35%;">หมวดหมู่อุปกรณ์</th>
+                        <th style="width: 15%;">ประเภทการแจ้งซ่อม</th>
+                        <th style="width: 20%;" id="repairtype2"></th>
+                        <th style="width: 15%;">หมวดหมู่อุปกรณ์</th>
                         <th style="width: 25%;" id="had1"></th>
                     </tr>
                     <tr>
-                        <th style="width: 25%;">ยี่ห้ออุปกรณ์</th>
-                        <th style="width: 25%;" id="devicebrand1"></th>
-                        <th style="width: 35%;">รุ่นอุปกรณ์</th>
-                        <th style="width: 25%;" id="devicegeneration1"></th>
+                        <th>ยี่ห้ออุปกรณ์</th>
+                        <th id="devicebrand1"></th>
+                        <th>รุ่นอุปกรณ์</th>
+                        <th id="devicegeneration1"></th>
                     </tr>
                     <tr>
-                        <th style="width: 25%;">หมายเลขซีเรียล</th>
-                        <th style="width: 25%;" id="deviceserialnumber1"></th>
-                        <th style="width: 35%;">หมายเหตุ</th>
-                        <th style="width: 25%;" id="devicenote1"></th>
+                        <th>หมายเลขซีเรียล</th>
+                        <th id="deviceserialnumber1"></th>
+                        <th>อุปกรณ์ที่นำมาด้วย</th>
+                        <th id="accessories2"></th>
                     </tr>
                     <tr>
-                        <th style="width: 25%;">อาการเสีย</th>
-                        <th style="width: 25%;" id="repairproblem1"></th>
-                        <th style="width: 35%;"></th>
-                        <th style="width: 25%;"></th>
+                        <th>อาการเสีย</th>
+                        <th id="repairproblem1"></th>
+                        <th>ราคาประเมิน</th>
+                        <th id="repairLimit2"></th>
                     </tr>
                 </table>
                 <hr class="light-grey-hr">
@@ -164,16 +164,16 @@
                         <th style="width: 25%;" id="xxx1"></th>
                     </tr>
                     <tr>
-                        <th style="width: 25%;">ค่าบริการ :</th>
-                        <th style="width: 25%;" id="input21"></th>
-                        <th style="width: 35%;">ช่างที่แก้ไข</th>
-                        <th style="width: 25%;" id="technician1"></th>
+                        <th>ค่าบริการ :</th>
+                        <th id="input21"></th>
+                        <th>ช่างที่แก้ไข</th>
+                        <th id="technician1"></th>
                     </tr>
                     <tr>
-                        <th style="width: 25%;">รวม :</th>
-                        <th style="width: 25%;" id="show1"></th>
-                        <th style="width: 35%;">สถานะ</th>
-                        <th style="width: 25%;" id="status1"></th>
+                        <th>รวม :</th>
+                        <th id="show1"></th>
+                        <th>สถานะ</th>
+                        <th id="status1"></th>
                     </tr>
                 </table>
                 <br>
@@ -231,7 +231,7 @@
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function(msg) {
-                            $('#deviceid').append(msg.deviceId);
+                            // $('#deviceid').append(msg.deviceId);
                             $('#had').append(msg.deviceCategory);
                             $('#deviceCategory').append(msg.deviceCategory);
                             $('#devicebrand').append(msg.brand);
@@ -241,7 +241,7 @@
                             $('#deviceprice').append(msg.price);
                             $('#devicenote').append(msg.note);
                             //
-                            $('#deviceid11').append(msg.deviceId);
+                            // $('#deviceid11').append(msg.deviceId);
                             $('#had1').append(msg.deviceCategory);
                             $('#deviceCategory1').append(msg.deviceCategory);
                             $('#devicebrand1').append(msg.brand);
@@ -259,7 +259,7 @@
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function(msg) {
-                            $('#repairId').append(msg.id);
+                            $('#repairId').append(msg.repairID);
                             $('#repairmemberId').append(msg.memberId);
                             $('#repairrepairDate').append(msg.repairDate);
                             $('#repaircompleteDate').append(msg.completeDate);
@@ -271,8 +271,11 @@
                             $('#input2').append(msg.serviceCharge);
                             $('#show').append(msg.sum);
                             $('#repairdetails').append(msg.repairDetails);
+                            $('#repairtype').append(msg.jobType);
+                            $('#accessories1').append(msg.accessories);
+                            $('#repairLimit1').append(msg.repairLimit);
                             //
-                            $('#repairId1').append(msg.id);
+                            $('#repairId1').append(msg.repairID);
                             $('#repairmemberId1').append(msg.memberId);
                             $('#repairrepairDate1').append(msg.repairDate);
                             $('#repaircompleteDate1').append(msg.completeDate);
@@ -284,7 +287,9 @@
                             $('#input21').append(msg.serviceCharge);
                             $('#show1').append(msg.sum);
                             $('#xxx1').append(msg.repairDetails);
-
+                            $('#repairtype2').append(msg.jobType);
+                            $('#accessories2').append(msg.accessories);
+                            $('#repairLimit2').append(msg.repairLimit);
                         }
                     });
 

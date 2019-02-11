@@ -13,6 +13,10 @@
                         <title>แก้ไขใบแจ้งซ่อม</title>
                         <!--alerts CSS -->
                         <link href="vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+                        <!-- select2 CSS -->
+                        <link href="vendors/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
+                        <!-- Custom CSS -->
+                        <link href="dist/css/style.css" rel="stylesheet" type="text/css">
                         <% AmnuayBean bean = null;
         bean = (AmnuayBean) request.getSession().getAttribute("repairbean");
         %>
@@ -109,6 +113,43 @@
                                                                             </div>
                                                                             <!--/span-->
                                                                         </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-offset-3 col-md-9">
+                                                                                        <button type="button" class="btn btn-info btn-icon left-icon  mr-10" data-toggle="modal" data-target="#modaluser"><i class="zmdi zmdi-edit"></i><span>แก้ไขผู้แจ้ง</span></button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6"> </div>
+                                                                        </div>
+
+
+                                                                        <!-- Modal -->
+                                                                        <div id="modaluser" class="modal fade" role="dialog">
+                                                                            <div class="modal-dialog">
+
+                                                                                <!-- Modal content-->
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                        <h4 class="modal-title">แก้ไขผู้แจ้ง</h4>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                        <label class="control-label mb-10">ชื่อผู้แจ้ง</label>
+                                                                                        <select class="form-control select2 select2-hidden-accessible" id="listcustomer">
+                                                                                        <option value="">== เลือกชื่อผู้แจ้ง ==</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-primary" onclick="updatecustomer()">บันทึก</button>
+                                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+
                                                                         <br>
                                                                         <h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-laptop mr-10"></i>รายละเอียดอุปกรณ์</h6>
                                                                         <hr class="light-grey-hr">
@@ -186,9 +227,42 @@
                                                                             </div>
                                                                             <div class="col-md-6">
                                                                                 <div class="form-group">
-                                                                                    <label class="control-label col-md-3">หมายเหตุ:</label>
+                                                                                    <label class="control-label col-md-3">รายละเอียดเพิ่มเติม:</label>
                                                                                     <div class="col-md-9">
                                                                                         <p class="form-control-static" id="devicenote"></p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-offset-3 col-md-9">
+                                                                                        <button type="button" class="btn btn-info btn-icon left-icon  mr-10" data-toggle="modal" data-target="#modaldevice"><i class="zmdi zmdi-edit"></i><span>แก้ไขทะเบียนอุปกรณ์</span></button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6"> </div>
+                                                                        </div>
+
+                                                                        <!-- Modal -->
+                                                                        <div id="modaldevice" class="modal fade" role="dialog">
+                                                                            <div class="modal-dialog">
+                                                                                <!-- Modal content-->
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                        <h4 class="modal-title">แก้ไขทะเบียนอุปกรณ์</h4>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                        <label class="control-label mb-10">ชื่ออุปกรณ์</label>
+                                                                                        <select class="form-control select2 select2-hidden-accessible" id="devicename">
+                                                                                        <option value="">== เลือกชื่ออุปกรณ์ ==</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-primary" onclick="updatedevice()">บันทึก</button>
+                                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -201,7 +275,7 @@
                                                                         <div class="row">
                                                                             <div class="col-md-6">
                                                                                 <div class="form-group">
-                                                                                    <label class="control-label col-md-3">วันที่ / เวลารับ:</label>
+                                                                                    <label class="control-label col-md-3">วันที่รับเครื่อง:</label>
                                                                                     <div class="col-md-9">
                                                                                         <p class="form-control-static" id="repairrepairDate"></p>
                                                                                     </div>
@@ -274,6 +348,52 @@
                                                                                     <div class="col-md-9">
                                                                                         <p class="form-control-static" id="repairLimit">
                                                                                         </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-offset-3 col-md-9">
+                                                                                        <button type="button" class="btn btn-info btn-icon left-icon  mr-10" data-toggle="modal" data-target="#modalrepair"><i class="zmdi zmdi-edit"></i><span>แก้ไขปัญหา</span></button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6"> </div>
+                                                                        </div>
+
+
+                                                                        <!-- Modal -->
+                                                                        <div id="modalrepair" class="modal fade" role="dialog">
+                                                                            <div class="modal-dialog modal-lg">
+                                                                                <!-- Modal content-->
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                        <h4 class="modal-title">แก้ไขปัญหา</h4>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                        <label class="control-label mb-10 text-left">ประเภทการแจ้งซ่อม</label>
+                                                                                        <select class="form-control" id="D_JobType">
+                                                                                        <!-- <option value="">== เลือกประเภทการแจ้งซ่อม  ==</option> -->
+                                                                                        </select>
+
+                                                                                        <label class="control-label mb-10 text-left">อาการเสีย</label>
+                                                                                        <textarea class="form-control" rows="3" id="Bad_condition"></textarea>
+
+                                                                                        <label class="control-label mb-10 text-left">อุปกรณ์ที่นำมาด้วย</label>
+                                                                                        <textarea class="form-control" rows="3" id="D_accessories"></textarea>
+
+                                                                                        <label class="control-label mb-10 text-left">บันทึก</label>
+                                                                                        <input type="text" class="form-control" id="D_repairnote">
+
+                                                                                        <label class="control-label mb-10 text-left">ราคาประเมิน</label>
+                                                                                        <input type="number" class="form-control" id="D_repairLimit">
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-primary" onclick="updaterepair()">บันทึก</button>
+                                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -361,7 +481,7 @@
                                                                             <!--/span-->
                                                                         </div>
                                                                         <div class="text-center">
-                                                                            <button type="button" class="btn btn-info mr-10" onclick="insertConfirm()">อัพเดพสถานะ</button>
+                                                                            <button type="button" class="btn btn-info mr-10" onclick="insertConfirm()">อัพเดทสถานะ</button>
                                                                             <!-- <button type="button" class="btn btn-default" onclick="window.location.href='/tabel'">ยกเลิก</button> -->
                                                                         </div>
                                                                         <br>
@@ -484,6 +604,87 @@
                         <input type="hidden" id="job">
 
                         <script>
+                            function updatecustomer() {
+                                var repairBean = {
+                                    id: $('#idd').val(),
+                                    customerId: $('#listcustomer').val(),
+                                }
+                                console.log(repairBean)
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/updatecustomerEdit",
+                                    contentType: "application/json; charset=utf-8",
+                                    data: JSON.stringify(repairBean),
+                                    dataType: "json",
+                                    success: function(msg) {
+                                        console.log("success")
+                                        window.location.reload();
+                                    },
+                                    error: function() {
+                                        console.log("error")
+                                        $('#modaluser').modal('hide')
+                                        window.location.reload();
+                                    }
+                                });
+                            }
+
+                            function updatedevice() {
+                                var repairBean = {
+                                    id: $('#idd').val(),
+                                    deviceId: $('#devicename').val(),
+                                }
+                                console.log(repairBean)
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/updatedeviceEdit",
+                                    contentType: "application/json; charset=utf-8",
+                                    data: JSON.stringify(repairBean),
+                                    dataType: "json",
+                                    success: function(msg) {
+                                        console.log("success")
+                                        window.location.reload();
+                                    },
+                                    error: function() {
+                                        console.log("error")
+                                        $('#modaldevice').modal('hide')
+                                        window.location.reload();
+                                    }
+                                });
+                            }
+
+                            function updaterepair() {
+                                if ('' == $('#D_repairLimit').val()) {
+                                    repairLimit = null;
+                                } else {
+                                    repairLimit = $('#D_repairLimit').val();
+                                }
+                                var repairBean = {
+                                    id: $('#idd').val(),
+                                    jobTypeID: $('#D_JobType').val(),
+                                    problem: $('#Bad_condition').val(),
+                                    accessories: $('#D_accessories').val(),
+                                    technicialNote: $('#D_repairnote').val(),
+                                    repairLimit: repairLimit,
+                                }
+                                console.log(repairBean)
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/updaterepairEdit",
+                                    contentType: "application/json; charset=utf-8",
+                                    data: JSON.stringify(repairBean),
+                                    dataType: "json",
+                                    success: function(msg) {
+                                        console.log("success")
+                                        window.location.reload();
+                                    },
+                                    error: function() {
+                                        console.log("error")
+                                        $('#modalrepair').modal('hide')
+                                        window.location.reload();
+                                    }
+                                });
+                            }
+
                             function insertModalstatus() {
                                 var repairStatusBean = {
                                     name: $('#namestatus').val(),
@@ -570,8 +771,8 @@
                                     // console.log($('#Limit').val())
                                 console.log(repairBean)
                                 swal({
-                                    title: "Ajax request example",
-                                    text: "Submit to run ajax request",
+                                    title: "คุณแน่ใจหรือไม่ ?",
+                                    text: "คุณต้องการอัพเดพสถานะหรือไม่",
                                     type: "info",
                                     showCancelButton: true,
                                     closeOnConfirm: false,
@@ -734,10 +935,13 @@
                                         if (msg.problem == null) {
                                             console.log('problem null')
                                             $('#repairproblem').append(msg.other);
+                                            $('#Bad_condition').append(msg.other);
                                         } else if (msg.other == null) {
                                             $('#repairproblem').append(msg.problem);
+                                            $('#Bad_condition').append(msg.problem);
                                         } else {
                                             $('#repairproblem').append(msg.problem + " " + msg.other);
+                                            $('#Bad_condition').append(msg.problem + " " + msg.other);
                                         }
                                         $('#repairId').append(msg.repairID);
                                         $('#repairmemberId').append(msg.memberId);
@@ -763,7 +967,17 @@
                                         $('#Limit').val(msg.repairLimit);
                                         $('#job').val(msg.jobTypeID);
                                         console.log(msg)
+
+
+                                        // $('#D_JobType').val(msg.jobType);
+                                        $("#D_JobType").append("<option value='" + msg.jobTypeID + "'>" + msg.jobType + "</option>");
+                                        $('#D_accessories').val(msg.accessories);
+                                        $('#D_repairLimit').val(msg.repairLimit);
+                                        $('#D_repairnote').val(msg.technicialNote);
+
+                                        // 
                                     }
+
                                 });
                                 $.ajax({
                                     type: "POST",
@@ -939,10 +1153,62 @@
                                         }
                                     });
                                 });
+                                $.ajax({
+                                    type: "GET",
+                                    url: "/listcustomer",
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    success: function(msg) {
+                                        for (var i = 0; i < msg.length; i++) {
+                                            $('#listcustomer').append('<option value="' + msg[i].id + '">' + msg[i].name + '</option>');
+                                            // $('#customerdevice').append('<option value="' + msg[i].id + '">' + msg[i].name + '</option>');
+                                        }
+
+                                    }
+                                });
+                                $.ajax({
+                                    type: "GET",
+                                    url: "/deviceropdown",
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    success: function(msg) {
+                                        console.log(msg)
+                                        for (var i = 0; i < msg.length; i++) {
+                                            $('#devicename').append('<option value="' + msg[i].id + '">' + msg[i].name + '</option>');
+                                        }
+                                    }
+                                });
+
+                                $.ajax({
+                                    type: "GET",
+                                    url: "/RepairTypeDrop",
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    success: function(msg) {
+                                        for (var i = 0; i < msg.length; i++) {
+                                            $('#D_JobType').append('<option value="' + msg[i].id + '">' + msg[i].name + '</option>');
+                                            // $('#JobTypemodal').append('<option value="' + msg[i].id + '">' + msg[i].name + '</option>');
+                                        }
+                                    }
+                                });
                             });
                         </script>
                         <!-- Sweet-Alert  -->
                         <script src="vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+                        <!-- Bootstrap Core JavaScript -->
+                        <script src="vendors/bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
+                        <!-- Select2 JavaScript -->
+                        <script src="vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
+                        <!-- Bootstrap Select JavaScript -->
+                        <script src="vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+                        <!-- Bootstrap Touchspin JavaScript -->
+                        <script src="vendors/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+                        <!-- Multiselect JavaScript -->
+                        <script src="vendors/bower_components/multiselect/js/jquery.multi-select.js"></script>
+                        <!-- Bootstrap Switch JavaScript -->
+                        <script src="vendors/bower_components/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
+                        <!-- Form Advance Init JavaScript -->
+                        <script src="dist/js/form-advance-data.js"></script>
                     </body>
 
                     </html>

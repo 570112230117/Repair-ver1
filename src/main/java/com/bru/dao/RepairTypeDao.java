@@ -120,7 +120,7 @@ public class RepairTypeDao {
 		}
 
 	} // end method delete
-	
+
 	public List<RepairTypeBean> countType(String name) throws SQLException {
 		List<RepairTypeBean> list = new ArrayList<>();
 		ConnectDB con = new ConnectDB();
@@ -129,10 +129,8 @@ public class RepairTypeDao {
 		RepairTypeBean bean = new RepairTypeBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append(" SELECT r.id ,  rt.name ,COUNT(r.job_type) as countType\r\n" + 
-					"FROM repair r\r\n" + 
-					"INNER JOIN repair_type rt ON r.job_type = rt.id\r\n" + 
-					"WHERE rt.name = ? ");
+			sql.append(" SELECT r.id ,  rt.name ,COUNT(r.job_type) as countType\r\n" + "FROM repair r\r\n"
+					+ "INNER JOIN repair_type rt ON r.job_type = rt.id\r\n" + "WHERE rt.name = ? ");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, name);
 			ResultSet rs = prepared.executeQuery();
@@ -151,6 +149,7 @@ public class RepairTypeDao {
 		}
 		return list;
 	}
+
 	public List<RepairTypeBean> testcountType(String name) throws SQLException {
 		List<RepairTypeBean> list = new ArrayList<>();
 		ConnectDB con = new ConnectDB();
@@ -159,18 +158,16 @@ public class RepairTypeDao {
 		RepairTypeBean bean = new RepairTypeBean();
 		Connection conn = con.openConnect();
 		try {
-			sql.append(" SELECT  r.problem  \r\n" + 
-					"FROM repair r\r\n" + 
-					"INNER JOIN repair_type rt ON r.job_type = rt.id\r\n" + 
-					"WHERE rt.name = ? ");
+			sql.append(" SELECT  r.problem  \r\n" + "FROM repair r\r\n"
+					+ "INNER JOIN repair_type rt ON r.job_type = rt.id\r\n" + "WHERE rt.name = ? ");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, name);
 			ResultSet rs = prepared.executeQuery();
 			while (rs.next()) {
 				bean = new RepairTypeBean();
-//				bean.setId(rs.getInt("r.id"));
+				// bean.setId(rs.getInt("r.id"));
 				bean.setName(rs.getString("r.problem"));
-//				bean.setCountType(rs.getInt("countType"));
+				// bean.setCountType(rs.getInt("countType"));
 				list.add(bean);
 			}
 		} catch (Exception e) {

@@ -19,7 +19,6 @@ import java.text.ParseException;
 
 @Repository
 public class RepairDao {
-
 	// 18
 	int a = 2543;
 	Date date = new Date();
@@ -35,7 +34,7 @@ public class RepairDao {
 		Connection conn = con.openConnect();
 		try {
 			sql.append(
-					" INSERT INTO repair (repair_id,customer_id,device_id,repair_date,complete_date,problem,member_id,repair_status,job_type,accessories,repair_limit,technicial_note,spareparts,servicecharge,sum,other) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
+					" INSERT INTO repair (repair_id,customer_id,device_id,repair_date,complete_date,problem,member_id,repair_status,job_type,accessories,repair_limit,technicial_note,spareparts,servicecharge,sum,other,technician) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, bean.getId() + c + bean.getSeq());
 			prepared.setString(2, bean.getCustomerId());
@@ -53,6 +52,7 @@ public class RepairDao {
 			prepared.setString(14, bean.getServiceCharge());
 			prepared.setString(15, bean.getSum());
 			prepared.setString(16, bean.getOther());
+			prepared.setString(17, bean.getMemberId());
 			prepared.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -69,7 +69,7 @@ public class RepairDao {
 		Connection conn = con.openConnect();
 		try {
 			sql.append(
-					" INSERT INTO repair_history (repair_id,customer_id,device_id,repair_date,complete_date,problem,member_id,repair_status,job_type,accessories,repair_limit,technicial_note,spareparts,servicecharge,sum,completion_date,other) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
+					" INSERT INTO repair_history (repair_id,customer_id,device_id,repair_date,complete_date,problem,member_id,repair_status,job_type,accessories,repair_limit,technicial_note,spareparts,servicecharge,sum,completion_date,other,technician) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
 			prepared = conn.prepareStatement(sql.toString());
 			prepared.setString(1, bean.getId() + c + bean.getSeq());
 			prepared.setString(2, bean.getCustomerId());
@@ -88,6 +88,7 @@ public class RepairDao {
 			prepared.setString(15, bean.getSum());
 			prepared.setString(16, bean.getRepairDate());
 			prepared.setString(17, bean.getOther());
+			prepared.setString(18, bean.getMemberId());
 			prepared.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -384,6 +385,70 @@ public class RepairDao {
 		return bean;
 	}
 
+	public void updatcustomer(RepairBean bean) throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(
+					" UPDATE repair	SET customer_id = ? WHERE id = ? ");
+			prepared = conn.prepareStatement(sql.toString());
+			prepared.setString(1, bean.getCustomerId());			
+			prepared.setString(2, bean.getId());
+			prepared.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+	}
+	
+	public void updatdevice(RepairBean bean) throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(
+					" UPDATE repair	SET device_id = ? WHERE id = ? ");
+			prepared = conn.prepareStatement(sql.toString());
+			prepared.setString(1, bean.getDeviceId());			
+			prepared.setString(2, bean.getId());
+			prepared.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+	}
+	
+	public void updatrepair(RepairBean bean) throws SQLException {
+		ConnectDB con = new ConnectDB();
+		PreparedStatement prepared = null;
+		StringBuilder sql = new StringBuilder();
+		Connection conn = con.openConnect();
+		try {
+			sql.append(
+					" UPDATE repair	SET job_type = ?, problem = ?, accessories = ?, technicial_note = ? , repair_limit = ?  WHERE id = ? ");
+			prepared = conn.prepareStatement(sql.toString());
+			prepared.setString(1, bean.getJobTypeID());	
+			prepared.setString(2, bean.getProblem());
+			prepared.setString(3, bean.getAccessories());
+			prepared.setString(4, bean.getTechnicialNote());
+			prepared.setString(5, bean.getRepairLimit());
+			prepared.setString(6, bean.getId());
+			prepared.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+	}
+	
 	public RepairBean COUNTC1() throws SQLException {
 		ConnectDB con = new ConnectDB();
 		PreparedStatement prepared = null;

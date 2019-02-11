@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.bru.dao.BrandDao;
-import com.bru.dao.CompanyDao;
 import com.bru.dao.CustomerDao;
 import com.bru.dao.DeviceCategoryDao;
 import com.bru.dao.DeviceDao;
@@ -21,7 +20,6 @@ import com.bru.dao.RepairDao;
 import com.bru.dao.RepairStatusDao;
 import com.bru.dao.RepairTypeDao;
 import com.bru.model.BrandBean;
-import com.bru.model.CompanyBean;
 import com.bru.model.CustomerBean;
 import com.bru.model.DeviceBean;
 import com.bru.model.DeviceCategoryBean;
@@ -48,8 +46,6 @@ public class RepairRestController {
 	RepairStatusDao repairStatusDao;
 	@Autowired
 	ProblemDao problemDao;
-	@Autowired
-	CompanyDao companyDao;
 	@Autowired
 	BrandDao brandDao;
 	@Autowired
@@ -176,21 +172,6 @@ public class RepairRestController {
 		List<TabelallBean> list = new ArrayList<>();
 		list = repairDao.listID(testBean.getA());
 		return list;
-	}
-
-	// ดรอบดาวบริษัทส่งซ่อม
-	@RequestMapping(value = "/companyDrop")
-	public List<CompanyBean> company() throws SQLException {
-		List<CompanyBean> list = new ArrayList<>();
-		list = companyDao.company();
-		return list;
-	}
-
-	@RequestMapping(value = "/listcompany")
-	public CompanyBean listcompany(@RequestBody TestBean testBean) throws SQLException {
-		CompanyBean bean = new CompanyBean();
-		bean = companyDao.companyId(testBean.getA());
-		return bean;
 	}
 
 	// ดรอบดาวปัญหา
@@ -607,8 +588,6 @@ public class RepairRestController {
 		return bean;
 	}
 
-
-
 	// @RequestMapping(value = "/JobType")
 	// public List<JobTypeBean> JobType() throws SQLException {
 	// List<JobTypeBean> list = new ArrayList<>();
@@ -693,7 +672,6 @@ public class RepairRestController {
 	public HistoryBean editHistory(@RequestBody TestBean testBean) throws SQLException {
 		HistoryBean bean = new HistoryBean();
 		bean = historyDao.findByIdlist(testBean.getA());
-		System.out.println(testBean.getA());
 		return bean;
 	}
 
@@ -701,7 +679,6 @@ public class RepairRestController {
 	public List<RepairTypeBean> countType(@RequestBody TestBean testBean) throws SQLException {
 		List<RepairTypeBean> list = new ArrayList<>();
 		list = repairTypeDao.testcountType(testBean.getA());
-		// list.
 		return list;
 	}
 	// end

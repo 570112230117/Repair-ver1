@@ -138,14 +138,14 @@ bean = (MemberBean) request.getSession().getAttribute("login");
                                                                                                     </div>
 
                                                                                                 </div>
-                                                                                                <div class="form-group">
+                                                                                                <!-- <div class="form-group">
                                                                                                     <label class="control-label mb-10">วันที่เข้างาน:</label>
                                                                                                     <div class="input-group">
                                                                                                         <div class="input-group-addon"><i class="icon-calender"></i></div>
                                                                                                         <input type="date" class="form-control" id="joiningDate" name="joiningDate">
                                                                                                     </div>
 
-                                                                                                </div>
+                                                                                                </div> -->
                                                                                                 <div class="form-group">
                                                                                                     <label class="control-label mb-10">การใช้งาน:</label>
                                                                                                     <div>

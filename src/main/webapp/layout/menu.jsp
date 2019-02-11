@@ -205,7 +205,7 @@
                         </li>
                         <li>
                             <a href="/tabeldevice">
-                                <div class="pull-left"><i class="zmdi zmdi-collection-text mr-20"></i><span class="right-nav-text">อุปกรณ์</span></div>
+                                <div class="pull-left"><i class="zmdi zmdi-collection-text mr-20"></i><span class="right-nav-text">ทะเบียนอุปกรณ์</span></div>
                                 <div class="clearfix"></div>
                             </a>
                         </li>
@@ -274,7 +274,7 @@
                                                 <div class="streamline message-box nicescroll-bar" style="overflow: hidden; width: auto; height: 100%;">
                                                     <a href="/repairsetting">
                                                         <div class="sl-item unread-message">
-                                                            <i class="glyphicon glyphicon-pencil"></i> ตั้งค่าปัญหา
+                                                            <i class="glyphicon glyphicon-pencil"></i> ตั้งค่าอาการเสีย
                                                         </div>
                                                     </a>
                                                     <a href="/repairtype">

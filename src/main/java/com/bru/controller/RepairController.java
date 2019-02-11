@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.bru.dao.BrandDao;
-import com.bru.dao.CompanyDao;
 import com.bru.dao.CustomerDao;
 import com.bru.dao.DeviceDao;
 import com.bru.dao.HistoryDao;
@@ -23,7 +22,6 @@ import com.bru.dao.RepairStatusDao;
 import com.bru.dao.RepairTypeDao;
 import com.bru.model.AmnuayBean;
 import com.bru.model.BrandBean;
-import com.bru.model.CompanyBean;
 import com.bru.model.CustomerBean;
 import com.bru.model.DeviceBean;
 import com.bru.model.HistoryBean;
@@ -45,8 +43,6 @@ public class RepairController {
 	RepairStatusDao repairStatusDao;
 	@Autowired
 	ProblemDao problemDao;
-	@Autowired
-	CompanyDao companyDao;
 	@Autowired
 	DeviceDao deviceDao;
 	@Autowired
@@ -132,25 +128,6 @@ public class RepairController {
 		bean = repairDao.editId(values);
 		request.getSession().setAttribute("repairbean", bean);
 		return "repair_edit";
-	}
-
-	// insert
-	@RequestMapping(value = "/insertcompany")
-	public String insertcompany(@RequestBody CompanyBean companyBean) throws Exception {
-		companyDao.insert(companyBean);
-		return "company";
-	}
-
-	@RequestMapping(path = "/updatecompany", method = RequestMethod.POST)
-	public String updatecompany(CompanyBean companyBean) throws SQLException {
-		companyDao.update(companyBean);
-		return "company";
-	}
-
-	@RequestMapping(path = "/deletecompany/{id}", method = RequestMethod.DELETE)
-	public String deletecompany(@PathVariable String id) throws SQLException {
-		companyDao.delete(id);
-		return "company";
 	}
 
 	// insert
@@ -356,4 +333,19 @@ public class RepairController {
 		return "repairtype";
 	}
 
+	@RequestMapping(path = "/updatecustomerEdit")
+	public String updatecustomerEdit(@RequestBody RepairBean bean) throws Exception {
+		repairDao.updatcustomer(bean);
+		return "repair_edit";
+	}
+	@RequestMapping(path = "/updatedeviceEdit")
+	public String updatdevice(@RequestBody RepairBean bean) throws Exception {
+		repairDao.updatdevice(bean);
+		return "repair_edit";
+	}
+	@RequestMapping(path = "/updaterepairEdit")
+	public String updaterepairEdit(@RequestBody RepairBean bean) throws Exception {
+		repairDao.updatrepair(bean);
+		return "repair_edit";
+	}
 }

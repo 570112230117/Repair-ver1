@@ -610,7 +610,7 @@
                 packages: ['corechart']
             });
             google.charts.setOnLoadCallback(drawChart);
-            var nb = parseInt(chartNOTEBOOK);
+            var nbx = parseInt(chartNOTEBOOK);
             var com = parseInt(chartCOMPUTER);
             var pr = parseInt(chartPRINTER);
             var ct1 = parseInt(chartThai1);
@@ -626,7 +626,7 @@
                     ["Element", "Density", {
                         role: "style"
                     }],
-                    ["NOTEBOOK", nb, "#4d4dff"],
+                    ["NOTEBOOK", nbx, "#4d4dff"],
                     ["COMPUTER", com, "#ff3300"],
                     ["PRINTER", pr, "#ff9900"],
                     ["เครื่องถ่ายฯ", ct1, "#ff0066"],
@@ -825,7 +825,7 @@
                 packages: ["corechart"]
             });
             google.charts.setOnLoadCallback(drawChart);
-            var nb = parseInt(repairType1);
+            var nbType = parseInt(repairType1);
             var pc = parseInt(repairType2);
             var pr = parseInt(repairType3);
             var In = parseInt(repairType4);
@@ -843,7 +843,7 @@
             function drawChart() {
                 var data = google.visualization.arrayToDataTable([
                     ['Task', 'Hours per Day'],
-                    ['เครื่องคอมพิวเตอร์Notebook', nb],
+                    ['เครื่องคอมพิวเตอร์Notebook', nbType],
                     ['เครื่องคอมพิวเตอร์PC', pc],
                     ['เครื่องพิมพ์เลเซอร์Laser Printer', pr],
                     ['เครื่องพิมพ์แบบพ่นหมึก(Inkjet)', In],
@@ -898,6 +898,7 @@
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function(msg) {
+                            console.log(msg)
                             google.charts.load("current", {
                                 packages: ["corechart"]
                             });

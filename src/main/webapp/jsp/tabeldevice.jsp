@@ -44,8 +44,8 @@
                                                                     <th>หมายเลขเครื่อง</th>
                                                                     <th>ชื่ออุปกรณ์</th>
                                                                     <th>ผู้ครอบครองอุปกรณ์</th>
-                                                                    <th></th>
-                                                                    <th></th>
+                                                                    <th>ข้อมูลอุปกรณ์ & ประวัติการซ่อม</th>
+                                                                    <th>แก้ไข</th>
                                                                 </tr>
                                                             </thead>
                                                             <!-- Footer Table -->
@@ -55,8 +55,8 @@
                                                                     <th>หมายเลขเครื่อง</th>
                                                                     <th>ชื่ออุปกรณ์</th>
                                                                     <th>ผู้ครอบครองอุปกรณ์</th>
-                                                                    <th></th>
-                                                                    <th></th>
+                                                                    <th>ข้อมูลอุปกรณ์&ประวัติการซ่อม</th>
+                                                                    <th>แก้ไข</th>
                                                                 </tr>
                                                             </tfoot>
                                                         </table>
@@ -208,7 +208,7 @@
                                                     </div>
                                                     <div class="span1"></div>
                                                     <div class="col-md-6 col-xs-12">
-                                                        <label class="control-label mb-10 text-left">ผู้ใช้งานอุปกรณ์</label>
+                                                        <label class="control-label mb-10 text-left">ผู้ครอบครองอุปกรณ์</label>
                                                         <select class="form-control" id="customer">
                                                 <option value="">== เลือกผู้แจ้ง ==</option>
                                                 </select>
@@ -837,7 +837,7 @@
                         }, {
                             "mData": "",
                             "mRender": function(data, type, full) {
-                                return '<a onclick="gotodevice(' + full.id + ')" data-toggle="modal" data-target="#modaldevice"><img src="dist/img/if_computer.png" width="40" height="40"></a>';
+                                return '<center><a onclick="gotodevice(' + full.id + ')" data-toggle="modal" data-target="#modaldevice"><img src="dist/img/if_computer.png" width="40" height="40"></a></center>';
                             }
                         }, {
                             "mData": "",

@@ -17,13 +17,13 @@
             <div class="container-fluid">
                 <div class="row heading-bg">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h5 class="txt-dark">ตั้งค่าปัญหา</h5>
+                        <h5 class="txt-dark">ตั้งค่าอาการเสีย</h5>
                     </div>
                     <!-- Breadcrumb -->
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
                             <li><a>ตั้งค่า</a></li>
-                            <li class="active"><span>ตั้งค่าปัญหา</span></li>
+                            <li class="active"><span>ตั้งค่าอาการเสีย</span></li>
                         </ol>
                     </div>
                     <!-- /Breadcrumb -->
@@ -33,14 +33,14 @@
                         <div class="panel panel-default card-view">
                             <div class="panel-heading">
                                 <div class="pull-left">
-                                    <h6 class="panel-title txt-dark">ตั้งค่าปัญหา</h6>
+                                    <h6 class="panel-title txt-dark">ตั้งค่าอาการเสีย</h6>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="panel-wrapper collapse in">
                                 <div class="panel-body">
                                     <!-- Trigger the modal with a button -->
-                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Modal">เพิ่มปัญหา</button>
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Modal">เพิ่มอาการเสีย</button>
                                     <div class="table-wrap">
                                         <div class="table-responsive">
                                             <div id="datable_1_wrapper" class="dataTables_wrapper">
@@ -49,7 +49,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th>รหัส</th>
-                                                            <th>ชื่อปัญหา</th>
+                                                            <th>ชื่ออาการเสีย</th>
                                                             <th>หมวดหมู่อุปกรณ์</th>
                                                             <th>แก้ไข</th>
                                                             <th>ลบ</th>
@@ -59,7 +59,7 @@
                                                     <tfoot>
                                                         <tr>
                                                             <th>รหัส</th>
-                                                            <th>ชื่อปัญหา</th>
+                                                            <th>ชื่ออาการเสีย</th>
                                                             <th>หมวดหมู่อุปกรณ์</th>
                                                             <th>แก้ไข</th>
                                                             <th>ลบ</th>
@@ -83,13 +83,13 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">แก้ไขพนักงาน</h4>
+                                <h4 class="modal-title">แก้ไขอาการเสีย</h4>
                             </div>
                             <form action="/updateproblem" name="updateproblem" method="POST">
                                 <div class="modal-body">
                                     <input type="hidden" name="id" id="aa">
                                     <div class="form-group">
-                                        <label class="control-label mb-10">ชื่อปัญหา:</label>
+                                        <label class="control-label mb-10">ชื่ออาการเสีย:</label>
                                         <input type="text" class="form-control" id="bb" name="name">
                                     </div>
                                     <div class="form-group">
@@ -117,14 +117,14 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">เพิ่มปัญหา</h4>
+                                <h4 class="modal-title">เพิ่มอาการเสีย</h4>
                             </div>
                             <div class="modal-body">
                                 <div class="form-group">
                                     <input type="hidden" class="form-control" id="id">
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label mb-10">ชื่อปัญหา:</label>
+                                    <label class="control-label mb-10">ชื่ออาการเสีย:</label>
                                     <input type="text" class="form-control" id="name" placeholder="ชื่อปัญหา">
                                 </div>
                                 <div class="form-group">
